@@ -8,6 +8,7 @@ import TOC from "./TOC";
 function Labs() {
     return (
         <div>
+            <h2>Name: Marsh Royden</h2>
             <h1>Labs</h1>
             <TOC/>
             <Routes>
