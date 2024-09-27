@@ -11,6 +11,8 @@ import Zindex from "./Zindex";
 import Float from "./Float";
 import GridLayout from "./GridLayout";
 import Flex from "./Flex";
+import ReactIcons from "./ReactIcons";
+import {CiText} from "react-icons/ci";
 
 function Lab2() {
     return (
@@ -76,6 +78,7 @@ function Lab2() {
                 <Float/>
                 <GridLayout/>
                 <Flex/>
+                <ReactIcons/>
             </div>
         </div>
     );
