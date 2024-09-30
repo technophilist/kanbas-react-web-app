@@ -5,31 +5,30 @@ import Modules from "./modules";
 import Home from "./home";
 import Assignments from "./assignments";
 import AssignmentEditor from "./assignments/Editor";
+import {FaAlignJustify} from "react-icons/fa";
 
 function Courses() {
     return (
         <div id="wd-courses">
-            <h2>Course 1234</h2>
+            <h2 className="text-danger">Course 1234
+                <FaAlignJustify className="me-4 fs-4 mb-1"/>
+            </h2>
             <hr/>
-            <table>
-                <tbody>
-                <tr>
-                    <td valign="top">
-                        <CoursesNavigation/>
-                    </td>
-                    <td valign="top">
-                        <Routes>
-                            <Route path="/" element={<Navigate to="home"/>}/>
-                            <Route path="home" element={<Home/>}/>
-                            <Route path="modules" element={<Modules/>}/>
-                            <Route path="assignments" element={<Assignments/>}/>
-                            <Route path="assignments/:aid" element={<AssignmentEditor/>}/>
-                            <Route path="people" element={<h2>People</h2>}/>
-                        </Routes>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div className="d-flex">
+                <div className="d-none d-md-block">
+                    <CoursesNavigation/>
+                </div>
+                <div className="flex-fill">
+                    <Routes>
+                        <Route path="/" element={<Navigate to="home"/>}/>
+                        <Route path="home" element={<Home/>}/>
+                        <Route path="modules" element={<Modules/>}/>
+                        <Route path="assignments" element={<Assignments/>}/>
+                        <Route path="assignments/:aid" element={<AssignmentEditor/>}/>
+                        <Route path="people" element={<h2>People</h2>}/>
+                    </Routes>
+                </div>
+            </div>
         </div>
     );
 }
