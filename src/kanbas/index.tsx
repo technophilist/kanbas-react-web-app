@@ -1,4 +1,4 @@
-import React from "react";
+import "./styles.css"
 import Account from "./account";
 import {Navigate, Route, Routes} from "react-router-dom";
 import Dashboard from "./Dashboard";
@@ -10,7 +10,7 @@ function Kanbas() {
     return (
         <div id="wd-kanbas">
             <KanbasNavigation/>
-            <div>
+            <div className="wd-main-content-offset p-3">
                 <Routes>
                     <Route path="/" element={<Navigate to="account"/>}/>
                     <Route path="/account/*" element={<Account/>}/>
