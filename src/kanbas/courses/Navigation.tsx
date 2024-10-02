@@ -26,7 +26,7 @@ function CoursesNavigation() {
                   to="/kanbas/courses/1234/grades">Grades</Link>
 
             <Link id="wd-course-people-link" className="list-group-item text-danger border-0"
-                  to="/kanbas/people">People</Link>
+                  to="/kanbas/courses/1234/people">People</Link>
         </div>);
 }
 
