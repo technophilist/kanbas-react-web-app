@@ -6,6 +6,7 @@ import Home from "./home";
 import Assignments from "./assignments";
 import AssignmentEditor from "./assignments/Editor";
 import {FaAlignJustify} from "react-icons/fa";
+import PeopleTable from "./people/Table";
 
 function Courses() {
     return (
@@ -25,7 +26,7 @@ function Courses() {
                         <Route path="modules" element={<Modules/>}/>
                         <Route path="assignments" element={<Assignments/>}/>
                         <Route path="assignments/:aid" element={<AssignmentEditor/>}/>
-                        <Route path="people" element={<h2>People</h2>}/>
+                        <Route path="people" element={<PeopleTable/>}/>
                     </Routes>
                 </div>
             </div>
