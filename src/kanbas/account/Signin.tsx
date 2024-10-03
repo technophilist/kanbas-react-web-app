@@ -4,10 +4,12 @@ function Signin() {
     return (
         <div id="wd-signin-screen">
             <h3>Sign in</h3>
-            <input id="wd-username" placeholder="username"/> <br/>
-            <input id="wd-password" placeholder="password" type="password"/> <br/>
+            <input id="wd-username" placeholder="username" className="form-control mb-2"/>
+            <input id="wd-password" placeholder="password" type="password" className="form-control mb-2"/>
             <Link id="wd-signin-btn"
-                  to="/kanbas/dashboard"> Sign in </Link> <br/>
+                  to="/kanbas/dashboard"
+                  className="btn btn-primary w-100"
+            > Sign in </Link>
             <Link id="wd-signup-link" to="/kanbas/account/signup">Sign up</Link>
         </div>
     )
