@@ -16,7 +16,7 @@ function Labs() {
                 <Route path="/" element={<Navigate to="lab1"/>}/>
                 <Route path="lab1" element={<Lab1/>}/>
                 <Route path="lab2" element={<Lab2/>}/>
-                <Route path="lab3" element={<Lab3/>}/>
+                <Route path="lab3/*" element={<Lab3/>}/>
             </Routes>
         </div>
     )
