@@ -1,21 +1,23 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import {useMemo} from "react";
-
-const navLinkItems = [
-    {link: "/kanbas/courses/1234/home", label: "Home"},
-    {link: "/kanbas/courses/1234/modules", label: "Modules"},
-    {link: "/kanbas/courses/1234/piazza", label: "Piazza"},
-    {link: "/kanbas/courses/1234/zoom", label: "Zoom"},
-    {link: "/kanbas/courses/1234/assignments", label: "Assignments"},
-    {link: "/kanbas/courses/1234/quizzes", label: "Quizzes"},
-    {link: "/kanbas/courses/1234/grades", label: "Grades"},
-    {link: "/kanbas/courses/1234/people", label: "People"}
-];
 
 function CoursesNavigation() {
     const {pathname} = useLocation()
-    const navigationItems = useMemo(() => {
-        return navLinkItems.map((navItem) => {
+    const {cid} = useParams()
+    const navItems = useMemo(() => {
+        return [
+            {link: `/kanbas/courses/${cid}/home`, label: "Home"},
+            {link: `/kanbas/courses/${cid}/modules`, label: "Modules"},
+            {link: `/kanbas/courses/${cid}/piazza`, label: "Piazza"},
+            {link: `/kanbas/courses/${cid}/zoom`, label: "Zoom"},
+            {link: `/kanbas/courses/${cid}/assignments`, label: "Assignments"},
+            {link: `/kanbas/courses/${cid}/quizzes`, label: "Quizzes"},
+            {link: `/kanbas/courses/${cid}/grades`, label: "Grades"},
+            {link: `/kanbas/courses/${cid}/people`, label: "People"}
+        ]
+    }, [cid])
+    const navLinkItems = useMemo(() => {
+        return navItems.map((navItem) => {
             return (
                 <Link id="wd-course-home-link"
                       key={navItem.link}
@@ -26,7 +28,7 @@ function CoursesNavigation() {
     }, [pathname])
     return (
         <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
-            {navigationItems}
+            {navLinkItems}
         </div>);
 }
 

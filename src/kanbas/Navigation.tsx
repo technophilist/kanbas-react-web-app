@@ -32,36 +32,10 @@ function KanbasNavigation() {
             </a>
             {navItems.map((navItem) => {
                 return <Link to={navItem.link} id="wd-account-link"
-                             className= {`list-group-item text-center border-0 ${pathname === navItem.link ? "bg-white text-danger" : "bg-black text-white"}`}>
+                             className={`list-group-item text-center border-0 ${pathname === navItem.link ? "bg-white text-danger" : "bg-black text-white"}`}>
                     {navItem.icon}<br/> {navItem.label}
                 </Link>
             })}
-            {/*<Link to="/kanbas/account" id="wd-account-link"*/}
-            {/*      className="list-group-item text-center border-0 bg-black text-white">*/}
-            {/*    <FaRegCircleUser className="fs-1 text text-white"/> <br/> Account*/}
-            {/*</Link>*/}
-
-            {/*<Link to="/kanbas/dashboard" id="wd-dashboard-link"*/}
-            {/*      className="list-group-item text-center border-0 bg-white text-danger">*/}
-            {/*    <AiOutlineDashboard className="fs-1 text-danger"/> <br/> Dashboard</Link>*/}
-            {/*<Link to="/kanbas/courses" id="wd-course-link"*/}
-            {/*      className="list-group-item text-white bg-black text-center border-0">*/}
-            {/*    <LiaBookSolid className="fs-1 text-danger"/> <br/>Courses</Link>*/}
-
-            {/*For these three*/}
-            {/*<Link to="/kanbas/calendar" id="wd-calendar-link"*/}
-            {/*      className="list-group-item text-white bg-black text-center border-0">*/}
-            {/*    <BsCalendar4Week className="fs-1 text-danger"/><br/>Calendar</Link>*/}
-
-            {/*<Link*/}
-            {/*    to="/kanbas/inbox"*/}
-            {/*    id="wd-inbox-link"*/}
-            {/*    className="list-group-item text-white bg-black text-center border-0">*/}
-            {/*    <FaInbox className="fs-1 text-danger"/> <br/>Inbox</Link>*/}
-
-            {/*<Link to="/labs" id="wd-labs-link"*/}
-            {/*      className="list-group-item text-white bg-black text-center border-0"><GoGear*/}
-            {/*    className="fs-1 text-danger"/> <br/>Labs</Link>*/}
         </div>
     );
 }

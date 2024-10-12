@@ -1,18 +1,26 @@
 import CoursesNavigation from "./Navigation";
-import React from "react";
-import {Navigate, Route, Routes} from "react-router-dom";
+import React, {useMemo} from "react";
+import {Navigate, Route, Routes, useLocation, useParams} from "react-router-dom";
 import Modules from "./modules";
 import Home from "./home";
 import Assignments from "./assignments";
 import AssignmentEditor from "./assignments/Editor";
 import {FaAlignJustify} from "react-icons/fa";
 import PeopleTable from "./people/Table";
+import courses from "../database/courses.json"
 
+function toSentenceCase(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 function Courses() {
+    const {cid} = useParams()
+    const course = useMemo(() => courses.find((course) => course._id === cid), [cid])
+    const {pathname} = useLocation()
     return (
         <div id="wd-courses">
-            <h2 className="text-danger">Course 1234
+            <h2 className="text-danger">
                 <FaAlignJustify className="me-4 fs-4 mb-1"/>
+                {course && course.name} &gt; {toSentenceCase(pathname.split("/")[4])}
             </h2>
             <hr/>
             <div className="d-flex">
