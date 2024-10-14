@@ -1,0 +1,674 @@
+[
+  {
+    "_id": "A101",
+    "title": "Propulsion Assignment",
+    "course": "RS101",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A101_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A101_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A101_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A102",
+    "title": "Combustion Analysis",
+    "course": "RS101",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A102_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A102_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A102_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A103",
+    "title": "Nozzle Design Project",
+    "course": "RS101",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A103_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A103_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS101/assignments/A103_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A201",
+    "title": "Aerodynamics Quiz",
+    "course": "RS102",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A201_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A201_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A201_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A202",
+    "title": "Flow Analysis",
+    "course": "RS102",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A202_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A202_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A202_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A203",
+    "title": "Heating Analysis",
+    "course": "RS102",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A203_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A203_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS102/assignments/A203_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A301",
+    "title": "Structural Design Task",
+    "course": "RS103",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A301_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A301_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A301_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A302",
+    "title": "Orbital Calculations",
+    "course": "RS103",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A302_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A302_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A302_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A303",
+    "title": "Systems Engineering Exam",
+    "course": "RS103",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A303_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A303_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS103/assignments/A303_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A401",
+    "title": "Organic Chemistry Assignment",
+    "course": "RS104",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A401_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A401_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A401_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A402",
+    "title": "Organic Chemistry Lab",
+    "course": "RS104",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A402_1",
+        "title": "Lab 1",
+        "notAvailableUntil": "May 23 at 12:00 am",
+        "due": "May 30 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A402_2",
+        "title": "Lab 2",
+        "notAvailableUntil": "May 24 at 12:00 am",
+        "due": "May 31 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A402_3",
+        "title": "Lab 3",
+        "notAvailableUntil": "May 25 at 12:00 am",
+        "due": "June 1 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A403",
+    "title": "Organic Chemistry Final Exam",
+    "course": "RS104",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A403_1",
+        "title": "Final Exam Part 1",
+        "notAvailableUntil": "June 2 at 12:00 am",
+        "due": "June 9 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A403_2",
+        "title": "Final Exam Part 2",
+        "notAvailableUntil": "June 3 at 12:00 am",
+        "due": "June 10 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS104/assignments/A403_3",
+        "title": "Final Exam Part 3",
+        "notAvailableUntil": "June 4 at 12:00 am",
+        "due": "June 11 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A501",
+    "title": "Inorganic Chemistry Assignment 1",
+    "course": "RS105",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A501_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A501_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A501_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A502",
+    "title": "Inorganic Chemistry Assignment 2",
+    "course": "RS105",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A502_1",
+        "title": "A1",
+        "notAvailableUntil": "May 23 at 12:00 am",
+        "due": "May 30 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A502_2",
+        "title": "A2",
+        "notAvailableUntil": "May 24 at 12:00 am",
+        "due": "May 31 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A502_3",
+        "title": "A3",
+        "notAvailableUntil": "May 25 at 12:00 am",
+        "due": "June 1 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A503",
+    "title": "Inorganic Chemistry Assignment 3",
+    "course": "RS105",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A503_1",
+        "title": "A1",
+        "notAvailableUntil": "May 26 at 12:00 am",
+        "due": "June 2 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A503_2",
+        "title": "A2",
+        "notAvailableUntil": "May 27 at 12:00 am",
+        "due": "June 3 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS105/assignments/A503_3",
+        "title": "A3",
+        "notAvailableUntil": "May 28 at 12:00 am",
+        "due": "June 4 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A504",
+    "title": "Physical Chemistry Assignment",
+    "course": "RS106",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A504_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A504_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A504_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A505",
+    "title": "Physical Chemistry Lab",
+    "course": "RS106",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A505_1",
+        "title": "Lab 1",
+        "notAvailableUntil": "May 23 at 12:00 am",
+        "due": "May 30 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A505_2",
+        "title": "Lab 2",
+        "notAvailableUntil": "May 24 at 12:00 am",
+        "due": "May 31 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A505_3",
+        "title": "Lab 3",
+        "notAvailableUntil": "May 25 at 12:00 am",
+        "due": "June 1 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A506",
+    "title": "Physical Chemistry Final Exam",
+    "course": "RS106",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A506_1",
+        "title": "Final Exam Part 1",
+        "notAvailableUntil": "June 2 at 12:00 am",
+        "due": "June 9 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A506_2",
+        "title": "Final Exam Part 2",
+        "notAvailableUntil": "June 3 at 12:00 am",
+        "due": "June 10 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS106/assignments/A506_3",
+        "title": "Final Exam Part 3",
+        "notAvailableUntil": "June 4 at 12:00 am",
+        "due": "June 11 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A601",
+    "title": "Ancient Languages Assignment 1",
+    "course": "RS107",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A601_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A601_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A601_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A602",
+    "title": "Ancient Languages Assignment 2",
+    "course": "RS107",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A602_1",
+        "title": "A1",
+        "notAvailableUntil": "May 23 at 12:00 am",
+        "due": "May 30 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A602_2",
+        "title": "A2",
+        "notAvailableUntil": "May 24 at 12:00 am",
+        "due": "May 31 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A602_3",
+        "title": "A3",
+        "notAvailableUntil": "May 25 at 12:00 am",
+        "due": "June 1 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A603",
+    "title": "Ancient Languages Assignment 3",
+    "course": "RS107",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A603_1",
+        "title": "A1",
+        "notAvailableUntil": "May 26 at 12:00 am",
+        "due": "June 2 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A603_2",
+        "title": "A2",
+        "notAvailableUntil": "May 27 at 12:00 am",
+        "due": "June 3 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS107/assignments/A603_3",
+        "title": "A3",
+        "notAvailableUntil": "May 28 at 12:00 am",
+        "due": "June 4 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A701",
+    "title": "Diplomacy Assignment 1",
+    "course": "RS108",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A701_1",
+        "title": "A1",
+        "notAvailableUntil": "May 20 at 12:00 am",
+        "due": "May 27 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A701_2",
+        "title": "A2",
+        "notAvailableUntil": "May 21 at 12:00 am",
+        "due": "May 28 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A701_3",
+        "title": "A3",
+        "notAvailableUntil": "May 22 at 12:00 am",
+        "due": "May 29 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A702",
+    "title": "Diplomacy Assignment 2",
+    "course": "RS108",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A702_1",
+        "title": "A1",
+        "notAvailableUntil": "May 23 at 12:00 am",
+        "due": "May 30 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A702_2",
+        "title": "A2",
+        "notAvailableUntil": "May 24 at 12:00 am",
+        "due": "May 31 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A702_3",
+        "title": "A3",
+        "notAvailableUntil": "May 25 at 12:00 am",
+        "due": "June 1 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  },
+  {
+    "_id": "A703",
+    "title": "Diplomacy Assignment 3",
+    "course": "RS108",
+    "assignmentItems": [
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A703_1",
+        "title": "A1",
+        "notAvailableUntil": "May 26 at 12:00 am",
+        "due": "June 2 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A703_2",
+        "title": "A2",
+        "notAvailableUntil": "May 27 at 12:00 am",
+        "due": "June 3 at 11:59pm",
+        "totalPoints": "100 pts"
+      },
+      {
+        "link": "#/kanbas/courses/RS108/assignments/A703_3",
+        "title": "A3",
+        "notAvailableUntil": "May 28 at 12:00 am",
+        "due": "June 4 at 11:59pm",
+        "totalPoints": "100 pts"
+      }
+    ]
+  }
+]
