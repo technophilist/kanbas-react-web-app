@@ -17,7 +17,7 @@ function Modules() {
                         <div className="wd-title p-3 ps-2 bg-secondary">
                             <BsGripVertical className="me-2 fs-3"/> {module.name} <ModuleControlButtons/>
                         </div>
-                        {module.lessons && module.lessons.map((lesson: any) => (
+                        {module.lessons && module.lessons.map((lesson) => (
                             <li className="wd-lesson list-group-item p-3 ps-1">
                                 <BsGripVertical className="me-2 fs-3"/> {lesson.name} <LessonControlButtons/>
                             </li>))}
