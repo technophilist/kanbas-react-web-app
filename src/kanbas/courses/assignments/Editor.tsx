@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {MdAddIcCall, MdOutlineCalendarMonth} from "react-icons/md";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import dbAssignments from "../../database/assignments.json"
 
 function AssignmentEditor() {
@@ -173,8 +173,12 @@ function AssignmentEditor() {
                 </div>
                 <hr className="mt-5"/>
                 <div className="d-flex justify-content-end">
-                    <button className="btn btn-secondary me-2 rounded-1">Cancel</button>
-                    <button className="btn btn-danger rounded-1">Save</button>
+                    <Link to={`/kanbas/courses/${cid}/assignments`}>
+                        <button className="btn btn-secondary me-2 rounded-1">Cancel</button>
+                    </Link>
+                    <Link to={`/kanbas/courses/${cid}/assignments`}>
+                        <button className="btn btn-danger rounded-1">Save</button>
+                    </Link>
                 </div>
             </form>
         </div>
