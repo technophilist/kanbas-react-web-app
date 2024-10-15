@@ -1,14 +1,44 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {MdAddIcCall, MdOutlineCalendarMonth} from "react-icons/md";
+import {useParams} from "react-router-dom";
+import dbAssignments from "../../database/assignments.json"
 
 function AssignmentEditor() {
+    const {cid, aid} = useParams()
+    const assignment = useMemo(() => {
+        const listOfAssignmentLists = dbAssignments
+            .filter((assignment) => assignment.course === cid)
+            .map((assignment) => assignment.assignmentItems)
+
+        for (const assignmentList of listOfAssignmentLists) {
+            const assignment = assignmentList.find((assignmentItem) => assignmentItem.id === aid)
+            if (assignment) return assignment
+        }
+        return undefined
+    }, [aid, cid])
+    const dueDateString = useMemo(() => {
+        if (!assignment) return ""
+        const date = new Date(`${assignment.due.substring(0, 6)}, 2024`);
+        return date.toISOString().slice(0, 10);
+    }, [assignment])
+
+    const availableFromDateString = useMemo(() => {
+        if (!assignment) return ""
+        const date = new Date(`${assignment.notAvailableUntil.substring(0, 6)}, 2024`);
+        return date.toISOString().slice(0, 10);
+    }, [assignment])
+
+
+    if (!assignment) return <h1>An error occurred, please try again</h1>
+
     return (
         <div id="wd-assignments-editor">
             <form className="p-5">
                 <label htmlFor="wd-name" className="form-label"><span
-                    className="fw-semibold"> Assignment Name</span></label>
-                <input id="wd-name" value="A1" className="form-control"/>
-                <p id="wd-description" className="form-text border border-secondary-subtle p-4 rounded-2 fw-semibold mt-3">
+                    className="fw-semibold"> Assignment Name </span></label>
+                <input id="wd-name" value={assignment.title} className="form-control"/>
+                <p id="wd-description"
+                   className="form-text border border-secondary-subtle p-4 rounded-2 fw-semibold mt-3">
                     The assignment is <span className="text-danger">available online</span> <br/><br/>
                     Submit a link to the landing page of your Web application running on
                     Netlify.
@@ -97,7 +127,8 @@ function AssignmentEditor() {
                 </div>
 
                 <div className="row">
-                    <div className="col-3 d-flex justify-content-end"><p className="col-form-label fw-semibold">Assign</p></div>
+                    <div className="col-3 d-flex justify-content-end"><p
+                        className="col-form-label fw-semibold">Assign</p></div>
                     <div className="col-9">
                         <div className="border p-3 rounded-2">
                             <label htmlFor="wd-assign-to" className="form-label fw-semibold">Assign to</label> <br/>
@@ -105,7 +136,7 @@ function AssignmentEditor() {
 
                             <label htmlFor="wd-due-date" className="form-label fw-semibold mt-3">Due</label><br/>
                             <div className="input-group">
-                                <input id="wd-due-date" type="date" className="form-control"/>
+                                <input id="wd-due-date" type="date" value={dueDateString} className="form-control"/>
                                 <div className="input-group-append">
                                     <div className="input-group-text rounded-start-0"><MdOutlineCalendarMonth
                                         className="fs-4"/></div>
@@ -116,7 +147,8 @@ function AssignmentEditor() {
                                     <label htmlFor="wd-available-from" className="form-label fw-semibold mt-3">Available
                                         from</label><br/>
                                     <div className="input-group">
-                                        <input id="wd-available-from" type="date" className="form-control"/>
+                                        <input id="wd-available-from" type="date" value={availableFromDateString}
+                                               className="form-control"/>
                                         <div className="input-group-append me-2">
                                             <div className="input-group-text rounded-start-0"><MdOutlineCalendarMonth
                                                 className="fs-4"/></div>
@@ -127,7 +159,8 @@ function AssignmentEditor() {
                                     <label htmlFor="wd-available-until"
                                            className="form-label fw-semibold mt-3">Until</label><br/>
                                     <div className="input-group">
-                                        <input id="wd-available-until" type="date" className="form-control"/>
+                                        <input id="wd-available-until" type="date" value={dueDateString}
+                                               className="form-control"/>
                                         <div className="input-group-append">
                                             <div className="input-group-text rounded-start-0"><MdOutlineCalendarMonth
                                                 className="fs-4"/></div>
