@@ -4,6 +4,7 @@ import Lab1 from "./lab1";
 import Lab2 from "./lab2";
 import Lab3 from "./lab3";
 import TOC from "./TOC";
+import Lab4 from "./lab4";
 
 function Labs() {
     return (
@@ -17,6 +18,7 @@ function Labs() {
                 <Route path="lab1" element={<Lab1/>}/>
                 <Route path="lab2" element={<Lab2/>}/>
                 <Route path="lab3/*" element={<Lab3/>}/>
+                <Route path="lab4" element={<Lab4/>}/>
             </Routes>
         </div>
     )
