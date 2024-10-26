@@ -7,14 +7,19 @@ import Assignments from "./assignments";
 import AssignmentEditor from "./assignments/Editor";
 import {FaAlignJustify} from "react-icons/fa";
 import PeopleTable from "./people/Table";
-import courses from "../database/courses.json"
+import {Course} from "../Dashboard";
 
 function toSentenceCase(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
-function Courses() {
+
+type Props = {
+    courses: Course[]
+}
+
+function Courses(props: Props) {
     const {cid} = useParams()
-    const course = useMemo(() => courses.find((course) => course._id === cid), [cid])
+    const course = useMemo(() => props.courses.find((course) => course._id === cid), [cid])
     const {pathname} = useLocation()
     return (
         <div id="wd-courses">
