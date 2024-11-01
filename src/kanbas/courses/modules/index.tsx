@@ -7,6 +7,8 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../store";
 import {addModule, deleteModule, editModule, updateModule} from "./reducer";
+import {BiImport} from "react-icons/bi";
+import {deleteAssignment} from "../assignments/reducer";
 
 export type KanbasModule = {
     _id: string;
@@ -27,6 +29,7 @@ function Modules() {
     const [moduleName, setModuleName] = useState("")
     const {modules} = useSelector((state: RootState) => state.modulesReducer)
     const dispatch = useDispatch<AppDispatch>()
+    const {currentUser} = useSelector((state: RootState) => state.accountReducer)
 
     const moduleItems = useMemo(() => {
         return modules
@@ -50,19 +53,19 @@ function Modules() {
                                     defaultValue={module.name}
                                 />
                             )}
-                            <ModuleControlButtons
+                            {currentUser && currentUser.role === "FACULTY" && <ModuleControlButtons
                                 deleteModule={(moduleId) => dispatch(deleteModule(moduleId))}
                                 moduleId={module._id}
                                 editModule={(moduleId) => dispatch(editModule(moduleId))}
-                            />
+                            />}
                         </div>
                         {module.lessons && module.lessons.map((lesson) => (
                             <li className="wd-lesson list-group-item p-3 ps-1">
-                                <BsGripVertical className="me-2 fs-3"/> {lesson.name} <LessonControlButtons/>
+                                <BsGripVertical className="me-2 fs-3"/> {lesson.name}
                             </li>))}
                     </li>)
             })
-    }, [cid, dispatch, modules])
+    }, [cid, currentUser, dispatch, modules])
     return (
         <div>
             <ModuleControls

@@ -4,8 +4,11 @@ import React from "react";
 import Signup from "./Signup";
 import Profile from "./Profile";
 import AccountNavigation from "./navigation";
+import {RootState} from "../store";
+import {useSelector} from "react-redux";
 
 function Account() {
+    const {currentUser} = useSelector((state: RootState) => state.accountReducer);
     return (
         <div id="wd-account-screen">
             <table>
@@ -18,7 +21,7 @@ function Account() {
                         {/*Similar to <Outlet/> in new react v6 Api*/}
                         <Routes>
                             <Route path="/"
-                                   element={<Navigate to="signin"/>}/>
+                                   element={currentUser ? <Navigate to="profile"/> : <Navigate to="signin"/>}/>
                             <Route path="/signin" element={<Signin/>}/>
                             <Route path="/profile" element={<Profile/>}/>
                             <Route path="/signup" element={<Signup/>}/>

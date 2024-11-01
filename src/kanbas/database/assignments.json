@@ -6,26 +6,10 @@
     "assignmentItems": [
       {
         "id": "A101_1",
-        "link": "#/kanbas/courses/RS101/assignments/A101_1",
+        "link": "#/kanbas/courses/RS101/assignments/A101/A101_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A101_2",
-        "link": "#/kanbas/courses/RS101/assignments/A101_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A101_3",
-        "link": "#/kanbas/courses/RS101/assignments/A101_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -37,26 +21,10 @@
     "assignmentItems": [
       {
         "id": "A102_1",
-        "link": "#/kanbas/courses/RS101/assignments/A102_1",
+        "link": "#/kanbas/courses/RS101/assignments/A102/A102_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A102_2",
-        "link": "#/kanbas/courses/RS101/assignments/A102_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A102_3",
-        "link": "#/kanbas/courses/RS101/assignments/A102_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -68,26 +36,10 @@
     "assignmentItems": [
       {
         "id": "A103_1",
-        "link": "#/kanbas/courses/RS101/assignments/A103_1",
+        "link": "#/kanbas/courses/RS101/assignments/A103/A103_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A103_2",
-        "link": "#/kanbas/courses/RS101/assignments/A103_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A103_3",
-        "link": "#/kanbas/courses/RS101/assignments/A103_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -99,26 +51,10 @@
     "assignmentItems": [
       {
         "id": "A201_1",
-        "link": "#/kanbas/courses/RS102/assignments/A201_1",
+        "link": "#/kanbas/courses/RS102/assignments/A201/A201_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A201_2",
-        "link": "#/kanbas/courses/RS102/assignments/A201_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A201_3",
-        "link": "#/kanbas/courses/RS102/assignments/A201_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -130,26 +66,10 @@
     "assignmentItems": [
       {
         "id": "A202_1",
-        "link": "#/kanbas/courses/RS102/assignments/A202_1",
+        "link": "#/kanbas/courses/RS102/assignments/A202/A202_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A202_2",
-        "link": "#/kanbas/courses/RS102/assignments/A202_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A202_3",
-        "link": "#/kanbas/courses/RS102/assignments/A202_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -161,26 +81,10 @@
     "assignmentItems": [
       {
         "id": "A203_1",
-        "link": "#/kanbas/courses/RS102/assignments/A203_1",
+        "link": "#/kanbas/courses/RS102/assignments/A203/A203_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A203_2",
-        "link": "#/kanbas/courses/RS102/assignments/A203_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A203_3",
-        "link": "#/kanbas/courses/RS102/assignments/A203_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -192,26 +96,10 @@
     "assignmentItems": [
       {
         "id": "A301_1",
-        "link": "#/kanbas/courses/RS103/assignments/A301_1",
+        "link": "#/kanbas/courses/RS103/assignments/A301/A301_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A301_2",
-        "link": "#/kanbas/courses/RS103/assignments/A301_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A301_3",
-        "link": "#/kanbas/courses/RS103/assignments/A301_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -223,26 +111,10 @@
     "assignmentItems": [
       {
         "id": "A302_1",
-        "link": "#/kanbas/courses/RS103/assignments/A302_1",
+        "link": "#/kanbas/courses/RS103/assignments/A302/A302_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A302_2",
-        "link": "#/kanbas/courses/RS103/assignments/A302_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A302_3",
-        "link": "#/kanbas/courses/RS103/assignments/A302_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -254,26 +126,10 @@
     "assignmentItems": [
       {
         "id": "A303_1",
-        "link": "#/kanbas/courses/RS103/assignments/A303_1",
+        "link": "#/kanbas/courses/RS103/assignments/A303/A303_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A303_2",
-        "link": "#/kanbas/courses/RS103/assignments/A303_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A303_3",
-        "link": "#/kanbas/courses/RS103/assignments/A303_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -285,26 +141,10 @@
     "assignmentItems": [
       {
         "id": "A401_1",
-        "link": "#/kanbas/courses/RS104/assignments/A401_1",
+        "link": "#/kanbas/courses/RS104/assignments/A401/A401_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A401_2",
-        "link": "#/kanbas/courses/RS104/assignments/A401_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A401_3",
-        "link": "#/kanbas/courses/RS104/assignments/A401_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -316,26 +156,10 @@
     "assignmentItems": [
       {
         "id": "A402_1",
-        "link": "#/kanbas/courses/RS104/assignments/A402_1",
+        "link": "#/kanbas/courses/RS104/assignments/A402/A402_1",
         "title": "Lab 1",
-        "notAvailableUntil": "May 23 at 12:00 am",
-        "due": "May 30 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A402_2",
-        "link": "#/kanbas/courses/RS104/assignments/A402_2",
-        "title": "Lab 2",
-        "notAvailableUntil": "May 24 at 12:00 am",
-        "due": "May 31 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A402_3",
-        "link": "#/kanbas/courses/RS104/assignments/A402_3",
-        "title": "Lab 3",
-        "notAvailableUntil": "May 25 at 12:00 am",
-        "due": "June 1 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -347,26 +171,10 @@
     "assignmentItems": [
       {
         "id": "A403_1",
-        "link": "#/kanbas/courses/RS104/assignments/A403_1",
+        "link": "#/kanbas/courses/RS104/assignments/A403/A403_1",
         "title": "Final Exam Part 1",
-        "notAvailableUntil": "June 2 at 12:00 am",
-        "due": "June 9 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A403_2",
-        "link": "#/kanbas/courses/RS104/assignments/A403_2",
-        "title": "Final Exam Part 2",
-        "notAvailableUntil": "June 3 at 12:00 am",
-        "due": "June 10 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A403_3",
-        "link": "#/kanbas/courses/RS104/assignments/A403_3",
-        "title": "Final Exam Part 3",
-        "notAvailableUntil": "June 4 at 12:00 am",
-        "due": "June 11 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -378,26 +186,10 @@
     "assignmentItems": [
       {
         "id": "A501_1",
-        "link": "#/kanbas/courses/RS105/assignments/A501_1",
+        "link": "#/kanbas/courses/RS105/assignments/A501/A501_1",
         "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A501_2",
-        "link": "#/kanbas/courses/RS105/assignments/A501_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A501_3",
-        "link": "#/kanbas/courses/RS105/assignments/A501_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -409,26 +201,10 @@
     "assignmentItems": [
       {
         "id": "A502_1",
-        "link": "#/kanbas/courses/RS105/assignments/A502_1",
+        "link": "#/kanbas/courses/RS105/assignments/A502/A502_1",
         "title": "A1",
-        "notAvailableUntil": "May 23 at 12:00 am",
-        "due": "May 30 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A502_2",
-        "link": "#/kanbas/courses/RS105/assignments/A502_2",
-        "title": "A2",
-        "notAvailableUntil": "May 24 at 12:00 am",
-        "due": "May 31 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A502_3",
-        "link": "#/kanbas/courses/RS105/assignments/A502_3",
-        "title": "A3",
-        "notAvailableUntil": "May 25 at 12:00 am",
-        "due": "June 1 at 11:59pm",
+        "notAvailableUntil": "2024-11-1",
+        "due": "2024-11-30",
         "totalPoints": "100 pts"
       }
     ]
@@ -440,26 +216,10 @@
     "assignmentItems": [
       {
         "id": "A503_1",
-        "link": "#/kanbas/courses/RS105/assignments/A503_1",
+        "link": "#/kanbas/courses/RS105/assignments/A503/A503_1",
         "title": "A1",
         "notAvailableUntil": "May 26 at 12:00 am",
         "due": "June 2 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A503_2",
-        "link": "#/kanbas/courses/RS105/assignments/A503_2",
-        "title": "A2",
-        "notAvailableUntil": "May 27 at 12:00 am",
-        "due": "June 3 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A503_3",
-        "link": "#/kanbas/courses/RS105/assignments/A503_3",
-        "title": "A3",
-        "notAvailableUntil": "May 28 at 12:00 am",
-        "due": "June 4 at 11:59pm",
         "totalPoints": "100 pts"
       }
     ]
@@ -471,26 +231,10 @@
     "assignmentItems": [
       {
         "id": "A504_1",
-        "link": "#/kanbas/courses/RS106/assignments/A504_1",
+        "link": "#/kanbas/courses/RS106/assignments/A504/A504_1",
         "title": "A1",
         "notAvailableUntil": "May 20 at 12:00 am",
         "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A504_2",
-        "link": "#/kanbas/courses/RS106/assignments/A504_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A504_3",
-        "link": "#/kanbas/courses/RS106/assignments/A504_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
         "totalPoints": "100 pts"
       }
     ]
@@ -502,26 +246,10 @@
     "assignmentItems": [
       {
         "id": "A505_1",
-        "link": "#/kanbas/courses/RS106/assignments/A505_1",
+        "link": "#/kanbas/courses/RS106/assignments/A505/A505_1",
         "title": "Lab 1",
         "notAvailableUntil": "May 23 at 12:00 am",
         "due": "May 30 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A505_2",
-        "link": "#/kanbas/courses/RS106/assignments/A505_2",
-        "title": "Lab 2",
-        "notAvailableUntil": "May 24 at 12:00 am",
-        "due": "May 31 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A505_3",
-        "link": "#/kanbas/courses/RS106/assignments/A505_3",
-        "title": "Lab 3",
-        "notAvailableUntil": "May 25 at 12:00 am",
-        "due": "June 1 at 11:59pm",
         "totalPoints": "100 pts"
       }
     ]
@@ -533,119 +261,10 @@
     "assignmentItems": [
       {
         "id": "A506_1",
-        "link": "#/kanbas/courses/RS106/assignments/A506_1",
+        "link": "#/kanbas/courses/RS106/assignments/A506/A506_1",
         "title": "Final Exam Part 1",
         "notAvailableUntil": "June 2 at 12:00 am",
         "due": "June 9 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A506_2",
-        "link": "#/kanbas/courses/RS106/assignments/A506_2",
-        "title": "Final Exam Part 2",
-        "notAvailableUntil": "June 3 at 12:00 am",
-        "due": "June 10 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A506_3",
-        "link": "#/kanbas/courses/RS106/assignments/A506_3",
-        "title": "Final Exam Part 3",
-        "notAvailableUntil": "June 4 at 12:00 am",
-        "due": "June 11 at 11:59pm",
-        "totalPoints": "100 pts"
-      }
-    ]
-  },
-  {
-    "_id": "A601",
-    "title": "Ancient Languages Assignment 1",
-    "course": "RS107",
-    "assignmentItems": [
-      {
-        "id": "A601_1",
-        "link": "#/kanbas/courses/RS107/assignments/A601_1",
-        "title": "A1",
-        "notAvailableUntil": "May 20 at 12:00 am",
-        "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A601_2",
-        "link": "#/kanbas/courses/RS107/assignments/A601_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A601_3",
-        "link": "#/kanbas/courses/RS107/assignments/A601_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
-        "totalPoints": "100 pts"
-      }
-    ]
-  },
-  {
-    "_id": "A602",
-    "title": "Ancient Languages Assignment 2",
-    "course": "RS107",
-    "assignmentItems": [
-      {
-        "id": "A602_1",
-        "link": "#/kanbas/courses/RS107/assignments/A602_1",
-        "title": "A1",
-        "notAvailableUntil": "May 23 at 12:00 am",
-        "due": "May 30 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A602_2",
-        "link": "#/kanbas/courses/RS107/assignments/A602_2",
-        "title": "A2",
-        "notAvailableUntil": "May 24 at 12:00 am",
-        "due": "May 31 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A602_3",
-        "link": "#/kanbas/courses/RS107/assignments/A602_3",
-        "title": "A3",
-        "notAvailableUntil": "May 25 at 12:00 am",
-        "due": "June 1 at 11:59pm",
-        "totalPoints": "100 pts"
-      }
-    ]
-  },
-  {
-    "_id": "A603",
-    "title": "Ancient Languages Assignment 3",
-    "course": "RS107",
-    "assignmentItems": [
-      {
-        "id": "A603_1",
-        "link": "#/kanbas/courses/RS107/assignments/A603_1",
-        "title": "A1",
-        "notAvailableUntil": "May 26 at 12:00 am",
-        "due": "June 2 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A603_2",
-        "link": "#/kanbas/courses/RS107/assignments/A603_2",
-        "title": "A2",
-        "notAvailableUntil": "May 27 at 12:00 am",
-        "due": "June 3 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A603_3",
-        "link": "#/kanbas/courses/RS107/assignments/A603_3",
-        "title": "A3",
-        "notAvailableUntil": "May 28 at 12:00 am",
-        "due": "June 4 at 11:59pm",
         "totalPoints": "100 pts"
       }
     ]
@@ -657,26 +276,10 @@
     "assignmentItems": [
       {
         "id": "A701_1",
-        "link": "#/kanbas/courses/RS108/assignments/A701_1",
+        "link": "#/kanbas/courses/RS108/assignments/A701/A701_1",
         "title": "A1",
         "notAvailableUntil": "May 20 at 12:00 am",
         "due": "May 27 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A701_2",
-        "link": "#/kanbas/courses/RS108/assignments/A701_2",
-        "title": "A2",
-        "notAvailableUntil": "May 21 at 12:00 am",
-        "due": "May 28 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A701_3",
-        "link": "#/kanbas/courses/RS108/assignments/A701_3",
-        "title": "A3",
-        "notAvailableUntil": "May 22 at 12:00 am",
-        "due": "May 29 at 11:59pm",
         "totalPoints": "100 pts"
       }
     ]
@@ -688,26 +291,10 @@
     "assignmentItems": [
       {
         "id": "A702_1",
-        "link": "#/kanbas/courses/RS108/assignments/A702_1",
+        "link": "#/kanbas/courses/RS108/assignments/A702/A702_1",
         "title": "A1",
         "notAvailableUntil": "May 23 at 12:00 am",
         "due": "May 30 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A702_2",
-        "link": "#/kanbas/courses/RS108/assignments/A702_2",
-        "title": "A2",
-        "notAvailableUntil": "May 24 at 12:00 am",
-        "due": "May 31 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A702_3",
-        "link": "#/kanbas/courses/RS108/assignments/A702_3",
-        "title": "A3",
-        "notAvailableUntil": "May 25 at 12:00 am",
-        "due": "June 1 at 11:59pm",
         "totalPoints": "100 pts"
       }
     ]
@@ -719,26 +306,10 @@
     "assignmentItems": [
       {
         "id": "A703_1",
-        "link": "#/kanbas/courses/RS108/assignments/A703_1",
+        "link": "#/kanbas/courses/RS108/assignments/A703/A703_1",
         "title": "A1",
         "notAvailableUntil": "May 26 at 12:00 am",
         "due": "June 2 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A703_2",
-        "link": "#/kanbas/courses/RS108/assignments/A703_2",
-        "title": "A2",
-        "notAvailableUntil": "May 27 at 12:00 am",
-        "due": "June 3 at 11:59pm",
-        "totalPoints": "100 pts"
-      },
-      {
-        "id": "A703_3",
-        "link": "#/kanbas/courses/RS108/assignments/A703_3",
-        "title": "A3",
-        "notAvailableUntil": "May 28 at 12:00 am",
-        "due": "June 4 at 11:59pm",
         "totalPoints": "100 pts"
       }
     ]

@@ -9,6 +9,7 @@ import {FaAlignJustify} from "react-icons/fa";
 import PeopleTable from "./people/Table";
 import {Course} from "../Dashboard";
 
+
 function toSentenceCase(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
@@ -19,7 +20,7 @@ type Props = {
 
 function Courses(props: Props) {
     const {cid} = useParams()
-    const course = useMemo(() => props.courses.find((course) => course._id === cid), [cid])
+    const course = useMemo(() => props.courses.find((course) => course._id === cid), [cid, props.courses])
     const {pathname} = useLocation()
     return (
         <div id="wd-courses">
@@ -38,7 +39,7 @@ function Courses(props: Props) {
                         <Route path="home" element={<Home/>}/>
                         <Route path="modules" element={<Modules/>}/>
                         <Route path="assignments" element={<Assignments/>}/>
-                        <Route path="assignments/:aid" element={<AssignmentEditor/>}/>
+                        <Route path="assignments/:parentAssignmentId/:aid" element={<AssignmentEditor/>}/>
                         <Route path="people" element={<PeopleTable/>}/>
                     </Routes>
                 </div>

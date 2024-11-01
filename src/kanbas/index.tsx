@@ -8,8 +8,11 @@ import dbCourses from "./database/courses.json"
 import {useState} from "react";
 import store from "./store";
 import {Provider} from "react-redux";
+import ProtectedRoute from "./account/ProtectedRoute";
+import dbEnrollments from "../kanbas/database/enrollments.json";
 
 function Kanbas() {
+    const [enrollments, setEnrollments] = useState(dbEnrollments);
     const [courses, setCourses] = useState<Course[]>(dbCourses);
     const [course, setCourse] = useState<Course>({
         _id: "1234",
@@ -22,12 +25,13 @@ function Kanbas() {
         credits: 3,
         imageFileName: "reactjs.jpg"
     });
-    const addNewCourse = () => {
-        setCourses([...courses, {...course, _id: new Date().getTime().toString()}])
+    const addNewCourse = (userId: string) => {
+        const newCourseId = new Date().getTime().toString()
+        setCourses([...courses, {...course, _id: newCourseId}])
+        setEnrollments([...enrollments, {_id: new Date().getTime().toString(), user: userId, course: newCourseId}])
     }
-    const deleteCourse = (courseId: any) => {
-        setCourses(courses.filter((course) => course._id !== courseId
-        ))
+    const deleteCourse = (courseId: string) => {
+        setCourses(courses.filter((course) => course._id !== courseId))
     }
     const updateCourse = () => {
         setCourses(
@@ -51,20 +55,25 @@ function Kanbas() {
                         <Route
                             path="/dashboard"
                             element={
-                                <Dashboard
-                                    courses={courses}
-                                    course={course}
-                                    setCourse={setCourse}
-                                    addNewCourse={addNewCourse}
-                                    deleteCourse={deleteCourse}
-                                    updateCourse={updateCourse}
-                                />
+                                <ProtectedRoute>
+                                    <Dashboard
+                                        courses={courses}
+                                        enrollments={enrollments}
+                                        course={course}
+                                        setCourse={setCourse}
+                                        addNewCourse={addNewCourse}
+                                        deleteCourse={deleteCourse}
+                                        updateCourse={updateCourse}
+                                    />
+                                </ProtectedRoute>
                             }>
                         </Route>
                         <Route
                             path="/courses/:cid/*"
                             element={
-                                <Courses courses={courses}/>
+                                <ProtectedRoute>
+                                    <Courses courses={courses}/>
+                                </ProtectedRoute>
                             }
                         />
                         <Route path="/calendar" element={<h1>Calendar</h1>}/>

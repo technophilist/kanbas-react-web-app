@@ -1,42 +1,53 @@
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {MdAddIcCall, MdOutlineCalendarMonth} from "react-icons/md";
-import {Link, useParams} from "react-router-dom";
-import dbAssignments from "../../database/assignments.json"
+import {Link, useNavigate, useParams} from "react-router-dom";
+import {v4 as uuidv4} from 'uuid';
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store";
+import {AssignmentItem} from "./reducer";
+import {addAssignment, updateAssignment, deleteAssignment} from "./reducer";
+
 
 function AssignmentEditor() {
-    const {cid, aid} = useParams()
-    const assignment = useMemo(() => {
-        const listOfAssignmentLists = dbAssignments
+    const {cid, parentAssignmentId, aid} = useParams()
+    const navigate = useNavigate()
+    const {assignments} = useSelector((state: RootState) => state.assignmentsReducer)
+    const dispatch = useDispatch()
+    const [assignment, setAssignment] = useState<AssignmentItem>({
+        id: uuidv4(),
+        link: "",
+        title: "",
+        notAvailableUntil: "2024-05-28",
+        due: "2024-05-29",
+        totalPoints: ""
+    })
+
+    const [isUpdatingOldAssignment, setIsUpdatingOldAssignment] = useState(false)
+
+    useEffect(() => {
+        const listOfAssignmentLists = assignments
             .filter((assignment) => assignment.course === cid)
             .map((assignment) => assignment.assignmentItems)
 
         for (const assignmentList of listOfAssignmentLists) {
             const assignment = assignmentList.find((assignmentItem) => assignmentItem.id === aid)
-            if (assignment) return assignment
+            if (assignment) {
+                setAssignment(assignment)
+                setIsUpdatingOldAssignment(true)
+            }
         }
-        return undefined
-    }, [aid, cid])
-    const dueDateString = useMemo(() => {
-        if (!assignment) return ""
-        const date = new Date(`${assignment.due.substring(0, 6)}, 2024`);
-        return date.toISOString().slice(0, 10);
-    }, [assignment])
-
-    const availableFromDateString = useMemo(() => {
-        if (!assignment) return ""
-        const date = new Date(`${assignment.notAvailableUntil.substring(0, 6)}, 2024`);
-        return date.toISOString().slice(0, 10);
-    }, [assignment])
-
-
-    if (!assignment) return <h1>An error occurred, please try again</h1>
+    }, [aid, cid, assignments])
 
     return (
         <div id="wd-assignments-editor">
             <form className="p-5">
                 <label htmlFor="wd-name" className="form-label"><span
                     className="fw-semibold"> Assignment Name </span></label>
-                <input id="wd-name" value={assignment.title} className="form-control"/>
+                <input
+                    id="wd-name"
+                    value={assignment.title}
+                    className="form-control"
+                    onChange={(e) => setAssignment({...assignment, title: e.target.value})}/>
                 <p id="wd-description"
                    className="form-text border border-secondary-subtle p-4 rounded-2 fw-semibold mt-3">
                     The assignment is <span className="text-danger">available online</span> <br/><br/>
@@ -58,7 +69,11 @@ function AssignmentEditor() {
                         <label htmlFor="wd-points" className="col-form-label fw-semibold">Points</label>
                     </div>
                     <div className="col-9">
-                        <input id="wd-points" className="form-control" value={100}/>
+                        <input
+                            id="wd-points"
+                            className="form-control" value={assignment.totalPoints}
+                            onChange={(e) => setAssignment({...assignment, totalPoints: e.target.value})}
+                        />
                     </div>
                 </div>
                 <div className="row p-2">
@@ -136,7 +151,12 @@ function AssignmentEditor() {
 
                             <label htmlFor="wd-due-date" className="form-label fw-semibold mt-3">Due</label><br/>
                             <div className="input-group">
-                                <input id="wd-due-date" type="date" value={dueDateString} className="form-control"/>
+                                <input
+                                    id="wd-due-date"
+                                    type="date"
+                                    value={assignment.due}
+                                    onChange={(e) => setAssignment({...assignment, due: e.target.value})}
+                                    className="form-control"/>
                                 <div className="input-group-append">
                                     <div className="input-group-text rounded-start-0"><MdOutlineCalendarMonth
                                         className="fs-4"/></div>
@@ -147,7 +167,13 @@ function AssignmentEditor() {
                                     <label htmlFor="wd-available-from" className="form-label fw-semibold mt-3">Available
                                         from</label><br/>
                                     <div className="input-group">
-                                        <input id="wd-available-from" type="date" value={availableFromDateString}
+                                        <input id="wd-available-from"
+                                               type="date"
+                                               value={assignment.notAvailableUntil}
+                                               onChange={(e) => setAssignment({
+                                                   ...assignment,
+                                                   notAvailableUntil: e.target.value
+                                               })}
                                                className="form-control"/>
                                         <div className="input-group-append me-2">
                                             <div className="input-group-text rounded-start-0"><MdOutlineCalendarMonth
@@ -159,7 +185,10 @@ function AssignmentEditor() {
                                     <label htmlFor="wd-available-until"
                                            className="form-label fw-semibold mt-3">Until</label><br/>
                                     <div className="input-group">
-                                        <input id="wd-available-until" type="date" value={dueDateString}
+                                        <input id="wd-available-until"
+                                               type="date"
+                                               value={assignment.due}
+                                               onChange={(e) => setAssignment({...assignment, due: e.target.value})}
                                                className="form-control"/>
                                         <div className="input-group-append">
                                             <div className="input-group-text rounded-start-0"><MdOutlineCalendarMonth
@@ -173,12 +202,30 @@ function AssignmentEditor() {
                 </div>
                 <hr className="mt-5"/>
                 <div className="d-flex justify-content-end">
-                    <Link to={`/kanbas/courses/${cid}/assignments`}>
-                        <button className="btn btn-secondary me-2 rounded-1">Cancel</button>
-                    </Link>
-                    <Link to={`/kanbas/courses/${cid}/assignments`}>
-                        <button className="btn btn-danger rounded-1">Save</button>
-                    </Link>
+                    <button
+                        className="btn btn-secondary me-2 rounded-1"
+                        onClick={() => navigate(`/kanbas/courses/${cid}/assignments`)}
+                    >Cancel
+                    </button>
+
+                    <button
+                        className="btn btn-danger rounded-1"
+                        onClick={() => {
+                            if (isUpdatingOldAssignment) {
+                                dispatch(updateAssignment({updatedAssignment: assignment, parentAssignmentId, cid}))
+                            } else {
+                                dispatch(addAssignment({
+                                    newAssignment: {
+                                        ...assignment,
+                                        totalPoints: `${assignment.totalPoints} pts`
+                                    }, parentAssignmentId, cid
+                                }))
+                            }
+                            navigate(`/kanbas/courses/${cid}/assignments`)
+                        }}
+                    > Save
+                    </button>
+
                 </div>
             </form>
         </div>

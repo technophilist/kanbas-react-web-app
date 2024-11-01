@@ -1,9 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
-import modules from "../../database/modules.json";
+import dbModules from "../../database/modules.json";
 import {KanbasModule} from "./index";
 
 const initialState: { modules: KanbasModule[] } = {
-    modules: modules
+    modules: dbModules
 }
 
 const modulesSlice = createSlice({
@@ -20,8 +20,9 @@ const modulesSlice = createSlice({
             };
             state.modules = [...state.modules, newModule]
         },
-        deleteModule: (state, {payload: moduleId}) => {
-            state.modules = state.modules.filter((m: any) => m.id !== moduleId);
+        deleteModule: (state, action) => {
+            const moduleId = action.payload
+            state.modules = state.modules.filter((m: any) => m._id !== moduleId)
         },
         updateModule: (state, {payload: module}) => {
             state.modules = state.modules.map((m: any) =>
