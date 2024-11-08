@@ -5,7 +5,7 @@ import Dashboard, {Course} from "./Dashboard";
 import Courses from "./courses";
 import KanbasNavigation from "./Navigation";
 import dbCourses from "./database/courses.json"
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import store from "./store";
 import {Provider} from "react-redux";
 import ProtectedRoute from "./account/ProtectedRoute";
@@ -42,8 +42,13 @@ function Kanbas() {
                 return c;
             })
         );
-    };
-
+    }
+    const addNewEnrollment = useCallback((userId: string, courseId: string) => {
+        setEnrollments([...enrollments, {_id: new Date().getTime().toString(), user: userId, course: courseId}])
+    }, [enrollments])
+    const removeEnrollment = useCallback((userId: string, courseId: string) => {
+        setEnrollments(enrollments.filter((enrollment) => !(enrollment.user === userId && enrollment.course === courseId)))
+    }, [enrollments])
     return (
         <Provider store={store}>
             <div id="wd-kanbas">
@@ -64,6 +69,8 @@ function Kanbas() {
                                         addNewCourse={addNewCourse}
                                         deleteCourse={deleteCourse}
                                         updateCourse={updateCourse}
+                                        onEnrollButtonClick={addNewEnrollment}
+                                        onUnEnrollButtonClick={removeEnrollment}
                                     />
                                 </ProtectedRoute>
                             }>
