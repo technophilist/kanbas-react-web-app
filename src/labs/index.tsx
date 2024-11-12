@@ -7,6 +7,7 @@ import TOC from "./TOC";
 import Lab4 from "./lab4";
 import {Provider} from "react-redux";
 import store from "./store";
+import Lab5 from "./lab5";
 
 function Labs() {
     return (
@@ -22,6 +23,7 @@ function Labs() {
                     <Route path="lab2" element={<Lab2/>}/>
                     <Route path="lab3/*" element={<Lab3/>}/>
                     <Route path="lab4" element={<Lab4/>}/>
+                    <Route path="lab5" element={<Lab5/>}/>
                 </Routes>
             </div>
         </Provider>
