@@ -1,15 +1,17 @@
 import {createSlice} from "@reduxjs/toolkit";
-import dbModules from "../../database/modules.json";
 import {KanbasModule} from "./index";
 
 const initialState: { modules: KanbasModule[] } = {
-    modules: dbModules
+    modules: []
 }
 
 const modulesSlice = createSlice({
     name: "modules",
     initialState,
     reducers: {
+        setModules: (state, action) => {
+            state.modules = action.payload
+        },
         addModule: (state, {payload: module}) => {
             const newModule: KanbasModule = {
                 description: "",
@@ -37,5 +39,5 @@ const modulesSlice = createSlice({
     },
 });
 
-export const {addModule, deleteModule, updateModule, editModule} = modulesSlice.actions;
+export const {addModule, deleteModule, updateModule, editModule, setModules} = modulesSlice.actions;
 export default modulesSlice.reducer;

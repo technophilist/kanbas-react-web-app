@@ -1,14 +1,13 @@
 import ModuleControls from "./ModuleControls";
-import {useMemo, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {BsGripVertical} from "react-icons/bs";
-import LessonControlButtons from "./LessonControlButtons";
 import ModuleControlButtons from "./ModuleControlButtons";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../store";
-import {addModule, deleteModule, editModule, updateModule} from "./reducer";
-import {BiImport} from "react-icons/bi";
-import {deleteAssignment} from "../assignments/reducer";
+import {setModules, addModule, deleteModule, editModule, updateModule} from "./reducer";
+import * as coursesClient from "../client";
+import * as modulesClient from "./client"
 
 export type KanbasModule = {
     _id: string;
@@ -29,11 +28,27 @@ function Modules() {
     const [moduleName, setModuleName] = useState("")
     const {modules} = useSelector((state: RootState) => state.modulesReducer)
     const dispatch = useDispatch<AppDispatch>()
+    const fetchModules = useCallback(async () => {
+        const modules = await coursesClient.findModulesForCourse(cid as string)
+        dispatch(setModules(modules))
+    }, [cid, dispatch])
+    const createModuleForCourse = useCallback(async () => {
+        if (!cid) return
+        const newModule = {name: moduleName, course: cid}
+        const module = await coursesClient.createModuleForCourse(cid, newModule)
+        dispatch(addModule(module))
+    }, [cid, dispatch, moduleName])
+    const removeModule = useCallback(async (moduleId: string) => {
+        await modulesClient.deleteModule(moduleId)
+        dispatch(deleteModule(moduleId))
+    }, [dispatch])
     const {currentUser} = useSelector((state: RootState) => state.accountReducer)
-
+    const saveModule = useCallback(async (module: KanbasModule) => {
+        await modulesClient.updateModule(module)
+        dispatch(updateModule(module))
+    }, [])
     const moduleItems = useMemo(() => {
         return modules
-            .filter((module) => module.course === cid)
             .map((module) => {
                 return (
                     <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
@@ -48,13 +63,13 @@ function Modules() {
                                     }}
                                     onKeyDown={(e) => {
                                         if (e.key !== "Enter") return
-                                        dispatch(updateModule({...module, editing: false}))
+                                        saveModule({...module, editing: false})
                                     }}
                                     defaultValue={module.name}
                                 />
                             )}
                             {currentUser && currentUser.role === "FACULTY" && <ModuleControlButtons
-                                deleteModule={(moduleId) => dispatch(deleteModule(moduleId))}
+                                deleteModule={removeModule}
                                 moduleId={module._id}
                                 editModule={(moduleId) => dispatch(editModule(moduleId))}
                             />}
@@ -66,15 +81,16 @@ function Modules() {
                     </li>)
             })
     }, [cid, currentUser, dispatch, modules])
+
+    useEffect(() => {
+        fetchModules()
+    }, [fetchModules]);
     return (
         <div>
             <ModuleControls
                 setModuleName={setModuleName}
                 moduleName={moduleName}
-                addModule={() => {
-                    dispatch(addModule({name: moduleName, course: cid}))
-                    setModuleName("")
-                }}
+                addModule={createModuleForCourse}
             /> <br/> <br/> <br/>
             <ul id="wd-modules" className="list-group rounded-0">
                 {moduleItems}
