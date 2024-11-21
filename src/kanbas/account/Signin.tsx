@@ -1,15 +1,15 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import usersDb from "../database/users.json"
+import * as client from "./client"
 import {setCurrentUser} from "./reducer";
 
 function Signin() {
     const [credentials, setCredentials] = useState({username: '', password: ''})
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const signin = () => {
-        const user = usersDb.find((u) => u.username === credentials.username && u.password === credentials.password)
+    const signin = async () => {
+        const user = await client.signIn(credentials)
         if (!user) return;
         dispatch(setCurrentUser(user))
         navigate("/kanbas/dashboard")

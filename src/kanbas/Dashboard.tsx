@@ -20,7 +20,7 @@ type DashboardProps = Readonly<{
     enrollments: { _id: string, user: string, course: string }[]
     course: Course,
     setCourse: (course: Course) => void
-    addNewCourse: (userId: string) => void
+    addNewCourse: () => void
     deleteCourse: (courseId: string) => void
     updateCourse: () => void
     onEnrollButtonClick: (userId: string, courseId: string) => void
@@ -32,6 +32,7 @@ type CourseItemProps = Readonly<{
     isEnrolled: boolean,
     isFaculty: boolean,
     onUnenrollCourseButtonClick: (courseId: string) => void
+    onDeleteCourseButtonClick: (courseId: string) => void
     onEnrollCourseButtonClick: (courseId: string) => void
     setCourse: (course: Course) => void
 }>
@@ -63,7 +64,7 @@ function CourseItem(props: CourseItemProps) {
                 {props.isFaculty && <button
                     onClick={(event) => {
                         event.preventDefault();
-                        props.onUnenrollCourseButtonClick(props.course._id)
+                        props.onDeleteCourseButtonClick(props.course._id)
                     }} className="btn btn-danger float-end"
                     id="wd-delete-course-click">Delete</button>}
                 {props.isFaculty && <button id="wd-edit-course-click"
@@ -82,15 +83,6 @@ function CourseItem(props: CourseItemProps) {
 function Dashboard(props: DashboardProps) {
     const {currentUser} = useSelector((state: RootState) => state.accountReducer)
     const isFaculty = useMemo(() => currentUser ? currentUser.role === "FACULTY" : false, [currentUser])
-    const enrolledCourses = useMemo(() => {
-        return props.courses
-            .filter((course) => {
-                if (currentUser == null) return false
-                return props.enrollments.some((enrollment) => {
-                    return enrollment.user === currentUser._id && enrollment.course === course._id
-                })
-            })
-    }, [currentUser, props.courses, props.enrollments])
     const notEnrolledCourses = useMemo(() => {
         return props.courses.filter((course) => {
             if (currentUser == null) return false
@@ -100,7 +92,7 @@ function Dashboard(props: DashboardProps) {
         })
     }, [currentUser, props.courses, props.enrollments])
     const enrolledCourseItems = useMemo(() => {
-        return enrolledCourses
+        return props.courses
             .map((course) => (
                 <CourseItem
                     key={course._id}
@@ -111,13 +103,14 @@ function Dashboard(props: DashboardProps) {
                         if (currentUser == null) return
                         props.onUnEnrollButtonClick(currentUser._id, course._id)
                     }}
+                    onDeleteCourseButtonClick={props.deleteCourse}
                     onEnrollCourseButtonClick={() => {
                         if (currentUser == null) return
                         props.onEnrollButtonClick(currentUser._id, course._id)
                     }}
                     setCourse={props.setCourse}/>
             ))
-    }, [currentUser, enrolledCourses, isFaculty, props])
+    }, [currentUser, isFaculty, props])
     const notEnrolledCourseItems = useMemo(() => {
         return notEnrolledCourses
             .map((course) => (
@@ -134,6 +127,7 @@ function Dashboard(props: DashboardProps) {
                         if (currentUser == null) return
                         props.onEnrollButtonClick(currentUser._id, course._id)
                     }}
+                    onDeleteCourseButtonClick={props.deleteCourse}
                     setCourse={props.setCourse}/>
             ))
     }, [currentUser, isFaculty, notEnrolledCourses, props])
@@ -170,7 +164,7 @@ function Dashboard(props: DashboardProps) {
                     <h5>New Course
                         <button className="btn btn-primary float-end"
                                 id="wd-add-new-course-click"
-                                onClick={() => props.addNewCourse(currentUser._id)}> Add </button>
+                                onClick={() => props.addNewCourse()}> Add </button>
                         <button className="btn btn-warning float-end me-2"
                                 onClick={props.updateCourse} id="wd-update-course-click">
                             Update
