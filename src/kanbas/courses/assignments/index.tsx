@@ -1,4 +1,4 @@
-import {useMemo, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {BsGripVertical, BsPlus} from "react-icons/bs";
 import {IoEllipsisVertical, IoSearch} from "react-icons/io5";
 import {IoMdArrowDropdown} from "react-icons/io";
@@ -7,7 +7,8 @@ import {FaRegEdit} from "react-icons/fa";
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {deleteAssignment} from "./reducer";
+import * as reducer from "./reducer";
+import * as client from "./client"
 
 function Assignments() {
     const {cid} = useParams()
@@ -16,11 +17,25 @@ function Assignments() {
     const navigate = useNavigate()
     const [parentOfLastAssignment, setParentOfLastAssignment] = useState("")
     const dispatch = useDispatch()
-
+    const fetchAndSetAssignmentsForCurrentCourse = useCallback(async () => {
+        if (!cid) return
+        const assignmentsForCourse = await client.fetchAllAssignmentsForCourse(cid)
+        dispatch(reducer.setAssignmentsForCourse({assignments: assignmentsForCourse}))
+    }, [cid, dispatch])
+    const deleteAssignment = useCallback(async (parent: string, assignmentId: string) => {
+        if (!cid) return
+        await client.deleteAssignment(parent, assignmentId, cid)
+        dispatch(reducer.deleteAssignment({
+            parentAssignmentId: parent,
+            assignmentId: assignmentId,
+            cid: cid
+        }))
+    }, [cid, dispatch])
     const assignmentItems = useMemo(() => {
-        const res = assignments.filter((assignments) => assignments.course === cid)
-        setParentOfLastAssignment(res.at(-1)!._id)
-        return res.map((assignment) => {
+        if (assignments.at(-1)) {
+            setParentOfLastAssignment(assignments.at(-1)!._id)
+        }
+        return assignments.map((assignment) => {
             return (
                 <li className="list-group-item p-0 mb-5 fs-5 border-gray" key={assignment._id}>
                     <div id="wd-assignments-title"
@@ -39,8 +54,7 @@ function Assignments() {
                         </div>
                     </div>
                     {assignment.assignmentItems && assignment.assignmentItems.map((assignmentItem) => {
-                        return (
-                            <li style={{borderLeft: "3px solid green"}}
+                        return (<li key={assignmentItem.id} style={{borderLeft: "3px solid green"}}
                                 className="wd-assignment-list-item list-group-item rounded-0 d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center">
                                     {currentUser && currentUser.role === "FACULTY" &&
@@ -72,17 +86,22 @@ function Assignments() {
                                 </div>
                                 {currentUser && currentUser.role === "FACULTY" &&
                                     <LessonControlButtons
-                                        deleteAssignment={() => dispatch(deleteAssignment({
-                                            parentAssignmentId: assignment._id,
-                                            assignmentId: assignmentItem.id,
-                                            cid: cid
-                                        }))}/>}
-                            </li>)
+                                        deleteAssignment={() => {
+                                            //FIXME
+                                            // alert(`hmm.....Deleting assignment ${assignmentItem.id}, parent ${assignment._id}`)
+                                            deleteAssignment(assignment._id, assignmentItem.id)
+                                        }}/>}
+                            </li>
+                        )
                     })}
                 </li>
             )
         })
-    }, [assignments, cid, currentUser])
+    }, [assignments, cid, currentUser, dispatch])
+
+    useEffect(() => {
+        fetchAndSetAssignmentsForCurrentCourse()
+    }, [fetchAndSetAssignmentsForCurrentCourse]);
 
     return (
         <div id="wd-assignments">

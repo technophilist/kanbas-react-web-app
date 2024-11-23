@@ -11,10 +11,13 @@ import Session from "./account/Session"
 import * as userClient from "./account/client"
 import {RootState} from "./store";
 import * as courseClient from "./courses/client";
+import * as enrollmentsClient from "./enrollments/client"
+import * as coursesClient from "./courses/client";
 
 function Kanbas() {
     const {currentUser} = useSelector((state: RootState) => state.accountReducer);
     const [courses, setCourses] = useState<Course[]>([])
+    const [enrolledCourses, setEnrolledCourses] = useState<Course[]>([])
     const [course, setCourse] = useState<Course>({
         _id: "1234",
         name: "New Course",
@@ -44,26 +47,28 @@ function Kanbas() {
             })
         )
     }
-    // const addNewEnrollment = useCallback((userId: string, courseId: string) => {
-    //     setEnrollments([...enrollments, {_id: new Date().getTime().toString(), user: userId, course: courseId}])
-    // }, [enrollments])
-    // const removeEnrollment = useCallback((userId: string, courseId: string) => {
-    //     setEnrollments(enrollments.filter((enrollment) => !(enrollment.user === userId && enrollment.course === courseId)))
-    // }, [enrollments])
-
-    const fetchCourses = useCallback(async () => {
-        let courses: Array<Course> = []
-        try {
-            courses = await userClient.findMyCourses()
-        } catch (error) {
-            console.error(error)
-        }
-        setCourses(courses)
+    const fetchCoursesForUser = useCallback(async () => {
+        const userEnrolledCourses = await userClient.findMyCourses()
+        setEnrolledCourses(userEnrolledCourses)
     }, [])
-
+    const fetchAllCourses = useCallback(async () => {
+        const allCourses = await coursesClient.fetchAllCourses()
+        setCourses(allCourses)
+    }, [])
     useEffect(() => {
-        fetchCourses()
-    }, [fetchCourses, currentUser])
+        if (!currentUser) return
+        fetchAllCourses()
+        fetchCoursesForUser()
+    }, [fetchCoursesForUser, currentUser, fetchAllCourses])
+
+    const enrollCurrentUserToCourse = useCallback(async (courseId: string) => {
+        await enrollmentsClient.enrollCurrentUserToCourse(courseId)
+        fetchCoursesForUser()
+    }, [fetchCoursesForUser])
+    const unEnrollCurrentUserToCourse = useCallback(async (courseId: string) => {
+        await enrollmentsClient.unenrollCurrentUserFromCourse(courseId)
+        fetchCoursesForUser()
+    }, [fetchCoursesForUser])
 
     return (
         <Session>
@@ -78,15 +83,15 @@ function Kanbas() {
                             element={
                                 <ProtectedRoute>
                                     <Dashboard
-                                        courses={courses}
-                                        enrollments={[]} // TODO
+                                        allCourses={courses}
+                                        enrolledCourses={enrolledCourses}
                                         course={course}
                                         setCourse={setCourse}
-                                        addNewCourse={addNewCourse} // TODO
+                                        addNewCourse={addNewCourse}
                                         deleteCourse={deleteCourse}
                                         updateCourse={updateCourse}
-                                        onEnrollButtonClick={() => {}}// TODO
-                                        onUnEnrollButtonClick={() => {}} // TODO
+                                        onEnrollButtonClick={(userId, courseId) => enrollCurrentUserToCourse(courseId)}
+                                        onUnEnrollButtonClick={(userId, courseId) => unEnrollCurrentUserToCourse(courseId)}
                                     />
                                 </ProtectedRoute>
                             }>

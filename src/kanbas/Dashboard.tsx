@@ -16,8 +16,8 @@ export type Course = Readonly<{
 }>
 
 type DashboardProps = Readonly<{
-    courses: Course[],
-    enrollments: { _id: string, user: string, course: string }[]
+    allCourses: Course[],
+    enrolledCourses: Course[],
     course: Course,
     setCourse: (course: Course) => void
     addNewCourse: () => void
@@ -83,16 +83,8 @@ function CourseItem(props: CourseItemProps) {
 function Dashboard(props: DashboardProps) {
     const {currentUser} = useSelector((state: RootState) => state.accountReducer)
     const isFaculty = useMemo(() => currentUser ? currentUser.role === "FACULTY" : false, [currentUser])
-    const notEnrolledCourses = useMemo(() => {
-        return props.courses.filter((course) => {
-            if (currentUser == null) return false
-            return !props.enrollments.some((enrollment) => {
-                return enrollment.user === currentUser._id && enrollment.course === course._id
-            })
-        })
-    }, [currentUser, props.courses, props.enrollments])
     const enrolledCourseItems = useMemo(() => {
-        return props.courses
+        return props.enrolledCourses
             .map((course) => (
                 <CourseItem
                     key={course._id}
@@ -111,8 +103,12 @@ function Dashboard(props: DashboardProps) {
                     setCourse={props.setCourse}/>
             ))
     }, [currentUser, isFaculty, props])
+    const enrolledCourseIds = useMemo(() => {
+        return props.enrolledCourses.map(course => course._id)
+    }, [props.enrolledCourses])
     const notEnrolledCourseItems = useMemo(() => {
-        return notEnrolledCourses
+        return props.allCourses
+            .filter(course => !enrolledCourseIds.includes(course._id))
             .map((course) => (
                 <CourseItem
                     key={course._id}
@@ -130,7 +126,7 @@ function Dashboard(props: DashboardProps) {
                     onDeleteCourseButtonClick={props.deleteCourse}
                     setCourse={props.setCourse}/>
             ))
-    }, [currentUser, isFaculty, notEnrolledCourses, props])
+    }, [currentUser, isFaculty, props])
     const [isCurrentlyDisplayingAllCourses, setIsCurrentlyDisplayingAllCourses] = useState(false)
     const coursesTypeButton = useMemo(() => {
         if (isCurrentlyDisplayingAllCourses) {

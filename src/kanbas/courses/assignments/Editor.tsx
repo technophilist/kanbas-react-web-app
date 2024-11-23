@@ -1,11 +1,12 @@
-import React, {useEffect, useMemo, useState} from "react";
-import {MdAddIcCall, MdOutlineCalendarMonth} from "react-icons/md";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
+import { MdOutlineCalendarMonth} from "react-icons/md";
+import { useNavigate, useParams} from "react-router-dom";
 import {v4 as uuidv4} from 'uuid';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {AssignmentItem} from "./reducer";
-import {addAssignment, updateAssignment, deleteAssignment} from "./reducer";
+import {addAssignment, updateAssignment} from "./reducer";
+import * as client from "./client"
 
 
 function AssignmentEditor() {
@@ -14,13 +15,28 @@ function AssignmentEditor() {
     const {assignments} = useSelector((state: RootState) => state.assignmentsReducer)
     const dispatch = useDispatch()
     const [assignment, setAssignment] = useState<AssignmentItem>({
-        id: uuidv4(),
-        link: "",
+        id: aid || uuidv4(),
+        link: `#/kanbas/courses/${cid}/assignments/${parentAssignmentId}/${aid}`,
         title: "",
         notAvailableUntil: "2024-05-28",
         due: "2024-05-29",
         totalPoints: ""
     })
+    const createNewAssignment = useCallback(async () => {
+        if (!parentAssignmentId || !cid) return
+        const newAssignment = {
+            ...assignment,
+            totalPoints: `${assignment.totalPoints} pts`
+        }
+        await client.createNewAssignment(newAssignment, parentAssignmentId, cid)
+        dispatch(addAssignment({newAssignment: newAssignment, parentAssignmentId, cid}))
+    }, [assignment, cid, dispatch, parentAssignmentId])
+
+    const updateCurrentAssignment = useCallback(async () => {
+        if (!parentAssignmentId || !cid) return
+        await client.updateAssignment(assignment, parentAssignmentId, cid)
+        dispatch(updateAssignment({updatedAssignment: assignment, parentAssignmentId, cid}))
+    }, [assignment, cid, dispatch, parentAssignmentId])
 
     const [isUpdatingOldAssignment, setIsUpdatingOldAssignment] = useState(false)
 
@@ -211,16 +227,8 @@ function AssignmentEditor() {
                     <button
                         className="btn btn-danger rounded-1"
                         onClick={() => {
-                            if (isUpdatingOldAssignment) {
-                                dispatch(updateAssignment({updatedAssignment: assignment, parentAssignmentId, cid}))
-                            } else {
-                                dispatch(addAssignment({
-                                    newAssignment: {
-                                        ...assignment,
-                                        totalPoints: `${assignment.totalPoints} pts`
-                                    }, parentAssignmentId, cid
-                                }))
-                            }
+                            if (isUpdatingOldAssignment) updateCurrentAssignment()
+                            else createNewAssignment()
                             navigate(`/kanbas/courses/${cid}/assignments`)
                         }}
                     > Save
