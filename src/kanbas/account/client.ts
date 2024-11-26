@@ -1,22 +1,31 @@
 import axios from "axios"
-import {User} from "./reducer"
-
-const axiosWithCredentials = axios.create({withCredentials: true})
 
 export const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER
 export const USERS_API = `${REMOTE_SERVER}/api/users`
+
+type UserDTO = {
+    username: string
+    password: string
+    firstName: string
+    lastName: string
+    dob: string
+    email: string
+    role: string
+}
+const axiosWithCredentials = axios.create({withCredentials: true})
+
 
 const signIn = async (credentials: { username: string, password: string }) => {
     const response = await axiosWithCredentials.post(`${USERS_API}/signin`, credentials)
     return response.data
 }
 
-const signup = async (user: { username: string, password: string }) => {
+const signup = async (user: UserDTO) => {
     const response = await axiosWithCredentials.post(`${USERS_API}/signup`, user)
     return response.data
 }
 
-const updateUser = async (user: User) => {
+const updateUser = async (user: UserDTO & { _id: string }) => {
     const response = await axiosWithCredentials.put(`${USERS_API}/${user._id}`, user)
     return response.data
 }
