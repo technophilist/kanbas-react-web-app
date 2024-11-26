@@ -31,7 +31,7 @@ function KanbasNavigation() {
                 <img src={neuLogo} width="75px"/>
             </a>
             {navItems.map((navItem) => {
-                return <Link to={navItem.link} id="wd-account-link"
+                return <Link key={navItem.link} to={navItem.link} id="wd-account-link"
                              className={`list-group-item text-center border-0 ${pathname === navItem.link ? "bg-white text-danger" : "bg-black text-white"}`}>
                     {navItem.icon}<br/> {navItem.label}
                 </Link>
