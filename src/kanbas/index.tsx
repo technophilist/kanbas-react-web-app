@@ -55,12 +55,6 @@ function Kanbas() {
         const allCourses = await coursesClient.fetchAllCourses()
         setCourses(allCourses)
     }, [])
-    useEffect(() => {
-        if (!currentUser) return
-        fetchAllCourses()
-        fetchCoursesForUser()
-    }, [fetchCoursesForUser, currentUser, fetchAllCourses])
-
     const enrollCurrentUserToCourse = useCallback(async (courseId: string) => {
         await enrollmentsClient.enrollCurrentUserToCourse(courseId)
         fetchCoursesForUser()
@@ -70,6 +64,15 @@ function Kanbas() {
         fetchCoursesForUser()
     }, [fetchCoursesForUser])
 
+    useEffect(() => {
+        if (!currentUser) return
+        fetchAllCourses()
+    }, [fetchCoursesForUser, currentUser, fetchAllCourses])
+
+    useEffect(() => {
+        if (!currentUser) return
+        fetchCoursesForUser()
+    }, [courses, currentUser, fetchCoursesForUser]);
     return (
         <Session>
             <div id="wd-kanbas">
