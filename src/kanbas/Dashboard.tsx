@@ -1,5 +1,5 @@
-import {Link, useNavigate} from "react-router-dom";
-import React, {useCallback, useMemo, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import React, {useMemo, useState} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "./store";
 
@@ -126,7 +126,7 @@ function Dashboard(props: DashboardProps) {
                     onDeleteCourseButtonClick={props.deleteCourse}
                     setCourse={props.setCourse}/>
             ))
-    }, [currentUser, isFaculty, props])
+    }, [currentUser, enrolledCourseIds, isFaculty, props])
     const [isCurrentlyDisplayingAllCourses, setIsCurrentlyDisplayingAllCourses] = useState(false)
     const coursesTypeButton = useMemo(() => {
         if (isCurrentlyDisplayingAllCourses) {
