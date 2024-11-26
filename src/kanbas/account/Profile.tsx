@@ -68,7 +68,7 @@ function Profile() {
                            onChange={(e) => setProfile({...profile, email: e.target.value})}/>
                     <label htmlFor="wd-role">Role</label>
                     <select id="wd-role"
-                            value={currentUser?.role}
+                            value={profile?.role}
                             onChange={(e) => setProfile({...profile, role: e.target.value})}
                             className="form-select mt-2">
                         <option value="FACULTY">Faculty</option>
