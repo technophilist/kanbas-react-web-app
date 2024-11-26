@@ -71,8 +71,6 @@ function Profile() {
                             value={currentUser?.role}
                             onChange={(e) => setProfile({...profile, role: e.target.value})}
                             className="form-select mt-2">
-                        <option value="USER">User</option>
-                        <option value="ADMIN">Admin</option>
                         <option value="FACULTY">Faculty</option>
                         <option value="STUDENT">Student</option>
                     </select><br/>
