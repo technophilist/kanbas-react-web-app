@@ -145,7 +145,10 @@ function Quizzes() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 {currentUser?.role === "FACULTY" && (
-                    <button className="btn btn-danger">+ Quiz</button>
+                    <button
+                        onClick={() => navigate("new")}
+                        className="btn btn-danger"
+                    >+ Quiz</button>
                 )}
             </div>
             <hr className="mb-4"/>
