@@ -1,54 +1,47 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import {FaRegEdit} from 'react-icons/fa'
-import {useSelector} from "react-redux";
-import {RootState} from "../../store";
-import {useParams} from "react-router-dom";
-
-type QuizDetail = {
-    quizType: string
-    points: string
-    assignmentGroup: string
-    shouldShuffleAnswers: boolean
-    timeLimitInMinutes: number
-    isMultipleAttempts: boolean
-    viewResponses: string
-    showCorrectAnswers: string
-    isOneQuestionAtATime: boolean
-    accessCode: string
-    isRequiredToViewResults: boolean
-    isWebcamRequired: boolean
-    shouldLockQuestionsAfterAnswering: boolean
-    title: string
-    dueDateTimestamp: string
-    availableFromTimestamp: string
-    availableUntilTimestamp: string
-}
+import {useSelector} from "react-redux"
+import {RootState} from "../../store"
+import {useNavigate, useParams} from "react-router-dom"
+import QuizDetail from "./QuizDetail";
 
 function QuizDetailScreen() {
     const {currentUser} = useSelector((state: RootState) => state.accountReducer)
     const {qid} = useParams() //TODO: use this for fetching the quizdetails from server
+    const navigate = useNavigate()
 
     const [quizDetails, setQuizDetails] = useState<QuizDetail>(
         {
-            quizType: "Multiple Choice",
-            points: "100",
-            assignmentGroup: "Group A",
-            shouldShuffleAnswers: true,
-            timeLimitInMinutes: 60,
-            isMultipleAttempts: false,
-            viewResponses: "After each attempt",
-            showCorrectAnswers: "Immediately",
-            isOneQuestionAtATime: true,
-            accessCode: "1234",
-            isRequiredToViewResults: true,
-            isWebcamRequired: false,
-            shouldLockQuestionsAfterAnswering: true,
             title: "Sample Quiz",
-            dueDateTimestamp: "1672531199000",
-            availableFromTimestamp: "1672444800000",
-            availableUntilTimestamp: "1672617599000"
+            quizType: "Multiple Choice",
+            points: 100,
+            assignmentGroup: "Group A",
+            dueDateTimestamp: "1700000000000",
+            availableFromTimestamp: "1690000000000",
+            availableUntilTimestamp: "1710000000000",
+            dueDate: "2023-12-15",
+            availableFrom: "2023-11-15",
+            availableUntil: "2024-01-15",
+            timeLimit: "60",
+            timeLimitInMinutes: 60,
+            shuffleAnswers: true,
+            shouldShuffleAnswers: true,
+            allowMultipleAttempts: false,
+            isMultipleAttempts: false,
+            oneQuestionAtATime: true,
+            isOneQuestionAtATime: true,
+            webcamRequired: false,
+            isWebcamRequired: false,
+            lockQuestionsAfterAnswering: true,
+            shouldLockQuestionsAfterAnswering: true,
+            description: "This is a sample quiz description.",
+            assignTo: "Class A",
+            viewResponses: "After submission",
+            showCorrectAnswersImmediately: true,
+            accessCode: "12345"
         }
     )
+
 
     const getDateTimeStringForTimestamp = useCallback((timestamp: string) => {
         const date = new Date(parseInt(timestamp))
@@ -61,8 +54,10 @@ function QuizDetailScreen() {
                 <div>
                     <div className="d-flex justify-content-center mb-4">
                         <button className="btn btn-light me-2">Preview</button>
-                        <button className="btn btn-light d-flex align-items-center"><FaRegEdit className="me-1"/><span
-                            className="mt-1">Edit</span></button>
+                        <button
+                            onClick={() => navigate(`edit`)}
+                            className="btn btn-light d-flex align-items-center"
+                        ><FaRegEdit className="me-1"/><span className="mt-1">Edit</span></button>
                     </div>
                     <hr className="mb-4"/>
                 </div>
@@ -111,7 +106,7 @@ function QuizDetailScreen() {
                         <td className="text-end text-secondary fw-bold" style={{whiteSpace: "nowrap"}}>Show Correct
                             Answers
                         </td>
-                        <td>{quizDetails.showCorrectAnswers}</td>
+                        <td>{quizDetails.showCorrectAnswersImmediately ? "Immediately" : "After submission"}</td>
                     </tr>
                     <tr>
                         <td className="text-end text-secondary fw-bold" style={{whiteSpace: "nowrap"}}>One Question at a
@@ -123,12 +118,6 @@ function QuizDetailScreen() {
                         <td className="text-end text-secondary fw-bold" style={{whiteSpace: "nowrap"}}>Access Code
                         </td>
                         <td>{quizDetails.accessCode}</td>
-                    </tr>
-                    <tr>
-                        <td className="text-end text-secondary fw-bold" style={{whiteSpace: "nowrap"}}>Required to View
-                            Quiz Results
-                        </td>
-                        <td>{quizDetails.isRequiredToViewResults ? "Yes" : "No"}</td>
                     </tr>
                     <tr>
                         <td className="text-end text-secondary fw-bold" style={{whiteSpace: "nowrap"}}>Webcam Required
