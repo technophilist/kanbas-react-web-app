@@ -4,37 +4,14 @@ import {ImBlocked} from "react-icons/im";
 import {BsThreeDotsVertical} from "react-icons/bs";
 import QuizDetail from "./QuizDetail";
 
-function DetailsTabContent() {
+type DetailsTabContentProps = {
+    quiz: QuizDetail,
+    setQuizDetail: (updatedQuizDetail: QuizDetail) => void
+}
+
+function DetailsTabContent(props: DetailsTabContentProps) {
     const navigate = useNavigate();
-    const [quizData, setQuizData] = useState<QuizDetail>({
-        title: "Sample Quiz",
-        quizType: "Multiple Choice",
-        points: 100,
-        assignmentGroup: "Group A",
-        dueDateTimestamp: "1700000000000",
-        availableFromTimestamp: "1690000000000",
-        availableUntilTimestamp: "1710000000000",
-        dueDate: "2023-12-15",
-        availableFrom: "2023-11-15",
-        availableUntil: "2024-01-15",
-        timeLimit: "20",
-        timeLimitInMinutes: 60,
-        shuffleAnswers: true,
-        shouldShuffleAnswers: true,
-        allowMultipleAttempts: false,
-        isMultipleAttempts: false,
-        oneQuestionAtATime: true,
-        isOneQuestionAtATime: true,
-        webcamRequired: false,
-        isWebcamRequired: false,
-        lockQuestionsAfterAnswering: true,
-        shouldLockQuestionsAfterAnswering: true,
-        description: "This is a sample quiz description.",
-        assignTo: "Class A",
-        viewResponses: "After submission",
-        showCorrectAnswersImmediately: true,
-        accessCode: "12345"
-    })
+
 
     const handleSave = () => {
         navigate("../"); // Navigate back to quiz list
@@ -45,9 +22,9 @@ function DetailsTabContent() {
                 <input
                     type="text"
                     className="form-control"
-                    value={quizData.title}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                        ...quizData,
+                    value={props.quiz.title}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                        ...props.quiz,
                         title: e.target.value
                     })}
                 />
@@ -64,9 +41,9 @@ function DetailsTabContent() {
                     <td>
                         <select
                             className="form-select"
-                            value={quizData.quizType}
-                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setQuizData({
-                                ...quizData,
+                            value={props.quiz.quizType}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => props.setQuizDetail({
+                                ...props.quiz,
                                 quizType: e.target.value
                             })}
                         >
@@ -83,9 +60,9 @@ function DetailsTabContent() {
                     <td>
                         <select
                             className="form-select"
-                            value={quizData.assignmentGroup}
-                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setQuizData({
-                                ...quizData,
+                            value={props.quiz.assignmentGroup}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => props.setQuizDetail({
+                                ...props.quiz,
                                 assignmentGroup: e.target.value
                             })}
                         >
@@ -101,9 +78,9 @@ function DetailsTabContent() {
                                     type="checkbox"
                                     className="form-check-input me-2"
                                     id="shuffleAnswers"
-                                    checked={quizData.shuffleAnswers}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    checked={props.quiz.shuffleAnswers}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         shuffleAnswers: e.target.checked
                                     })}
                                 />
@@ -115,9 +92,9 @@ function DetailsTabContent() {
                                     type="checkbox"
                                     className="form-check-input me-2"
                                     id="showCorrectAnswers"
-                                    checked={quizData.showCorrectAnswersImmediately}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    checked={props.quiz.showCorrectAnswersImmediately}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         showCorrectAnswersImmediately: e.target.checked
                                     })}
                                 />
@@ -129,9 +106,9 @@ function DetailsTabContent() {
                                     type="checkbox"
                                     className="form-check-input me-2"
                                     id="oneQuestionAtATime"
-                                    checked={quizData.oneQuestionAtATime}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    checked={props.quiz.oneQuestionAtATime}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         oneQuestionAtATime: e.target.checked
                                     })}
                                 />
@@ -143,9 +120,9 @@ function DetailsTabContent() {
                                     type="checkbox"
                                     className="form-check-input me-2"
                                     id="lockQuestions"
-                                    checked={quizData.lockQuestionsAfterAnswering}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    checked={props.quiz.lockQuestionsAfterAnswering}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         lockQuestionsAfterAnswering: e.target.checked
                                     })}
                                 />
@@ -157,9 +134,9 @@ function DetailsTabContent() {
                                     type="checkbox"
                                     className="form-check-input me-2"
                                     id="webcamRequired"
-                                    checked={quizData.webcamRequired}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    checked={props.quiz.webcamRequired}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         webcamRequired: e.target.checked
                                     })}
                                 />
@@ -182,9 +159,9 @@ function DetailsTabContent() {
                                         className="form-control ms-5 me-2"
                                         id="timeLimitMinutes"
                                         type="number"
-                                        value={quizData.timeLimit}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                            ...quizData,
+                                        value={props.quiz.timeLimit}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                            ...props.quiz,
                                             timeLimit: e.target.value
                                         })}
                                     />
@@ -198,9 +175,9 @@ function DetailsTabContent() {
                                     type="checkbox"
                                     className="form-check-input mt-2 ms-2 me-2 align-self-baseline"
                                     id="multipleAttempts"
-                                    checked={quizData.allowMultipleAttempts}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    checked={props.quiz.allowMultipleAttempts}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         allowMultipleAttempts: e.target.checked
                                     })}
                                 />
@@ -218,9 +195,9 @@ function DetailsTabContent() {
                             type="number"
                             className="form-control"
                             style={{width: "100px"}}
-                            value={quizData.points}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                ...quizData,
+                            value={props.quiz.points}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                ...props.quiz,
                                 points: parseInt(e.target.value)
                             })}
                         />
@@ -233,9 +210,9 @@ function DetailsTabContent() {
                         <input
                             type="text"
                             className="form-control"
-                            value={quizData.accessCode}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                ...quizData,
+                            value={props.quiz.accessCode}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                ...props.quiz,
                                 accessCode: e.target.value
                             })}
                         />
@@ -254,9 +231,9 @@ function DetailsTabContent() {
                                     type="text"
                                     className="form-control"
                                     placeholder="Assign to"
-                                    value={quizData.assignTo}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    value={props.quiz.assignTo}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         assignTo: e.target.value
                                     })}
                                 />
@@ -268,9 +245,9 @@ function DetailsTabContent() {
                                     id="dueDate"
                                     type="date"
                                     className="form-control"
-                                    value={quizData.dueDate}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                        ...quizData,
+                                    value={props.quiz.dueDate}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                        ...props.quiz,
                                         dueDate: e.target.value
                                     })}
                                 />
@@ -285,9 +262,9 @@ function DetailsTabContent() {
                                         type="date"
                                         className="form-control"
                                         placeholder="Available from"
-                                        value={quizData.availableFrom}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                            ...quizData,
+                                        value={props.quiz.availableFrom}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                            ...props.quiz,
                                             availableFrom: e.target.value
                                         })}
                                     />
@@ -301,9 +278,9 @@ function DetailsTabContent() {
                                         type="date"
                                         className="form-control"
                                         placeholder="Until"
-                                        value={quizData.availableUntil}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({
-                                            ...quizData,
+                                        value={props.quiz.availableUntil}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                            ...props.quiz,
                                             availableUntil: e.target.value
                                         })}
                                     />
@@ -332,9 +309,46 @@ function QuestionsTabContent() {
 
 function QuizDetailsEditorScreen() {
     const [activeTab, setActiveTab] = useState("details");
+    const [quizDetail, setQuizDetail] = useState<QuizDetail>({
+        title: "Sample Quiz",
+        quizType: "Multiple Choice",
+        points: 100,
+        assignmentGroup: "Group A",
+        dueDateTimestamp: "1700000000000",
+        availableFromTimestamp: "1690000000000",
+        availableUntilTimestamp: "1710000000000",
+        dueDate: "2023-12-15",
+        availableFrom: "2023-11-15",
+        availableUntil: "2024-01-15",
+        timeLimit: "20",
+        timeLimitInMinutes: 60,
+        shuffleAnswers: true,
+        shouldShuffleAnswers: true,
+        allowMultipleAttempts: false,
+        isMultipleAttempts: false,
+        oneQuestionAtATime: true,
+        isOneQuestionAtATime: true,
+        webcamRequired: false,
+        isWebcamRequired: false,
+        lockQuestionsAfterAnswering: true,
+        shouldLockQuestionsAfterAnswering: true,
+        description: "This is a sample quiz description.",
+        assignTo: "Class A",
+        viewResponses: "After submission",
+        showCorrectAnswersImmediately: true,
+        accessCode: "12345"
+    })
     const renderContent = useCallback(() => {
-        return activeTab === "questions" ? <QuestionsTabContent/> : <DetailsTabContent/>
-    },[activeTab])
+        if (activeTab === "questions") {
+            return <QuestionsTabContent/>
+        }
+        return (
+            <DetailsTabContent
+                quiz={quizDetail}
+                setQuizDetail={updatedQuizDetail => setQuizDetail(updatedQuizDetail)}
+            />
+        )
+    }, [activeTab, quizDetail])
 
     return (
         <div className="container">
