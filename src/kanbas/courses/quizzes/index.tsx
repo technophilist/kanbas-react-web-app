@@ -5,6 +5,7 @@ import {FaCaretDown} from "react-icons/fa"
 import {useSelector} from "react-redux"
 import {RootState} from "../../store"
 import {ImBlocked} from "react-icons/im";
+import {useNavigate} from "react-router-dom";
 
 type Quiz = {
     id: string,
@@ -92,6 +93,7 @@ const quizzes = [
 ]
 
 function Quizzes() {
+    const navigate = useNavigate()
     const [searchTerm, setSearchTerm] = useState("")
     const {currentUser} = useSelector((state: RootState) => state.accountReducer)
 
@@ -160,7 +162,10 @@ function Quizzes() {
                         <div className="d-flex align-items-center">
                             <FaRocket className="me-4 text-success"/>
                             <div>
-                                <h6 className="mb-1 fw-semibold">{quiz.title}</h6>
+                                <h6
+                                    onClick={() => navigate(`${quiz.id}`)}
+                                    className="mb-1 fw-semibold">{quiz.title}
+                                </h6>
                                 <small className="text-muted">
                                     {getQuizStatusString(quiz)} | {formatDueDate(quiz.dueEpochTimestamp)} | {quiz.points} pts
                                     | {quiz.questionsCount} Questions
