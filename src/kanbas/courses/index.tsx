@@ -9,6 +9,8 @@ import {FaAlignJustify} from "react-icons/fa";
 import PeopleTable from "./people/Table";
 import {Course} from "../Dashboard";
 import Quizzes from "./quizzes";
+import QuizDetails from "./quizzes/QuizDetailScreen";
+import QuizDetailScreen from "./quizzes/QuizDetailScreen";
 
 
 function toSentenceCase(str: string): string {
@@ -43,6 +45,7 @@ function Courses(props: Props) {
                         <Route path="assignments/:parentAssignmentId/:aid" element={<AssignmentEditor/>}/>
                         <Route path="people" element={<PeopleTable/>}/>
                         <Route path="quizzes" element={<Quizzes/>}/>
+                        <Route path="quizzes/:qid" element={<QuizDetailScreen/>} />
                     </Routes>
                 </div>
             </div>
