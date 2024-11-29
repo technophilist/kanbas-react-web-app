@@ -11,6 +11,7 @@ import {Course} from "../Dashboard";
 import Quizzes from "./quizzes";
 import QuizDetails from "./quizzes/QuizDetailScreen";
 import QuizDetailScreen from "./quizzes/QuizDetailScreen";
+import QuizDetailsEditorScreen from "./quizzes/QuizDetailsEditorScreen";
 
 
 function toSentenceCase(str: string): string {
@@ -45,7 +46,8 @@ function Courses(props: Props) {
                         <Route path="assignments/:parentAssignmentId/:aid" element={<AssignmentEditor/>}/>
                         <Route path="people" element={<PeopleTable/>}/>
                         <Route path="quizzes" element={<Quizzes/>}/>
-                        <Route path="quizzes/:qid" element={<QuizDetailScreen/>} />
+                        <Route path="quizzes/:qid" element={<QuizDetailScreen/>}/>
+                        <Route path="quizzes/:qid/edit" element={<QuizDetailsEditorScreen/>}/>
                     </Routes>
                 </div>
             </div>
