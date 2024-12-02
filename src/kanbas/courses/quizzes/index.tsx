@@ -151,7 +151,10 @@ function Quizzes() {
                                     </button>
                                     <ul className="dropdown-menu">
                                         <li>
-                                            <button className="dropdown-item">Edit</button>
+                                            <button
+                                                className="dropdown-item"
+                                                onClick={() => navigate(`${quiz.id}`)}
+                                            >Edit</button>
                                         </li>
                                         <li>
                                             <button
