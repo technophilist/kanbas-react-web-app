@@ -102,7 +102,7 @@ function QuestionEditor(props: QuestionEditorProps) {
 
     return (
         <div className="d-flex justify-content-center">
-            <div className="border rounded p-3 w-50 mt-4">
+            <div className="border rounded p-3 w-50 ">
                 <div className="d-flex align-items-center justify-content-between gap-2 mb-3">
                     <div className="d-flex">
                         <input
