@@ -4,47 +4,26 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../store"
 import { useNavigate, useParams } from "react-router-dom"
 import QuizDetail from "./QuizDetail";
-
+import * as quizzesClient from "./client"
 function QuizDetailScreen() {
     const { currentUser } = useSelector((state: RootState) => state.accountReducer)
-    const { qid } = useParams() //TODO: use this for fetching the quizdetails from server
+    const { qid } = useParams()
     const navigate = useNavigate()
 
-    const [quizDetails, setQuizDetails] = useState<QuizDetail>(
-        {
-            id: "test+test",
-            title: "Sample Quiz",
-            quizType: "Multiple Choice",
-            points: 100,
-            assignmentGroup: "Group A",
-            dueDateTimestampMillis: "1700000000000",
-            availableFromTimestampMillis: "1690000000000",
-            availableUntilTimestampMillis: "1710000000000",
-            timeLimitInMinutes: 60,
-            shuffleAnswers: true,
-            shouldShuffleAnswers: true,
-            allowMultipleAttempts: false,
-            isMultipleAttempts: false,
-            oneQuestionAtATime: true,
-            isOneQuestionAtATime: true,
-            webcamRequired: false,
-            isWebcamRequired: false,
-            lockQuestionsAfterAnswering: true,
-            shouldLockQuestionsAfterAnswering: true,
-            description: "This is a sample quiz description.",
-            assignTo: "Class A",
-            viewResponses: "After submission",
-            showCorrectAnswersImmediately: true,
-            accessCode: "12345"
-        }
-    )
-
+    const [quizDetails, setQuizDetails] = useState<QuizDetail | null>(null)
 
     const getDateTimeStringForTimestamp = useCallback((timestamp: string) => {
         const date = new Date(parseInt(timestamp))
         return date.toLocaleString()
     }, [])
 
+    useEffect(() => {
+        if (!qid) return
+        quizzesClient.getQuizDetails(qid)
+            .then(setQuizDetails)
+    }, [qid])
+
+    if (!quizDetails) return <div>Loading...</div>
     return (
         <div className="p-4">
             {currentUser && currentUser.role === "FACULTY" && (
