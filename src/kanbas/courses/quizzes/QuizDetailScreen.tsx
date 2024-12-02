@@ -16,13 +16,9 @@ function QuizDetailScreen() {
             quizType: "Multiple Choice",
             points: 100,
             assignmentGroup: "Group A",
-            dueDateTimestamp: "1700000000000",
-            availableFromTimestamp: "1690000000000",
-            availableUntilTimestamp: "1710000000000",
-            dueDate: "2023-12-15",
-            availableFrom: "2023-11-15",
-            availableUntil: "2024-01-15",
-            timeLimit: "60",
+            dueDateTimestampMillis: "1700000000000",
+            availableFromTimestampMillis: "1690000000000",
+            availableUntilTimestampMillis: "1710000000000",
             timeLimitInMinutes: 60,
             shuffleAnswers: true,
             shouldShuffleAnswers: true,
@@ -144,10 +140,10 @@ function QuizDetailScreen() {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{getDateTimeStringForTimestamp(quizDetails.dueDateTimestamp)}</td>
+                        <td>{getDateTimeStringForTimestamp(quizDetails.dueDateTimestampMillis)}</td>
                         <td>Everyone</td>
-                        <td>{getDateTimeStringForTimestamp(quizDetails.availableFromTimestamp)}</td>
-                        <td>{getDateTimeStringForTimestamp(quizDetails.availableUntilTimestamp)}</td>
+                        <td>{getDateTimeStringForTimestamp(quizDetails.availableFromTimestampMillis)}</td>
+                        <td>{getDateTimeStringForTimestamp(quizDetails.availableUntilTimestampMillis)}</td>
                     </tr>
                     </tbody>
                 </table>
