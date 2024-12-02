@@ -13,10 +13,17 @@ type DetailsTabContentProps = {
 function DetailsTabContent(props: DetailsTabContentProps) {
     const navigate = useNavigate();
 
+    const getDateFromTimestamp = useCallback((timestamp: string) => {
+        return new Date(parseInt(timestamp)).toISOString().split('T')[0];
+    }, [])
 
-    const handleSave = () => {
+    const getTimestampFromDate = useCallback((date: string) => {
+        return new Date(date).getTime().toString();
+    }, [])
+
+    const handleSave = useCallback(() => {
         navigate("../"); // Navigate back to quiz list
-    };
+    }, [])
     return (
         <form>
             <div className="mb-3">
@@ -160,10 +167,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                             className="form-control ms-5 me-2"
                                             id="timeLimitMinutes"
                                             type="number"
-                                            value={props.quiz.timeLimit}
+                                            value={props.quiz.timeLimitInMinutes}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                                 ...props.quiz,
-                                                timeLimit: e.target.value
+                                                timeLimitInMinutes: parseInt(e.target.value)
                                             })}
                                         />
                                         <label className="form-label text-secondary"
@@ -246,10 +253,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                         id="dueDate"
                                         type="date"
                                         className="form-control"
-                                        value={props.quiz.dueDate}
+                                        value={getDateFromTimestamp(props.quiz.dueDateTimestampMillis)}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                             ...props.quiz,
-                                            dueDate: e.target.value
+                                            dueDateTimestampMillis: getTimestampFromDate(e.target.value)
                                         })}
                                     />
                                 </div>
@@ -263,10 +270,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                             type="date"
                                             className="form-control"
                                             placeholder="Available from"
-                                            value={props.quiz.availableFrom}
+                                            value={getDateFromTimestamp(props.quiz.availableFromTimestampMillis)}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                                 ...props.quiz,
-                                                availableFrom: e.target.value
+                                                availableFromTimestampMillis: getTimestampFromDate(e.target.value)
                                             })}
                                         />
                                     </div>
@@ -279,10 +286,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                             type="date"
                                             className="form-control"
                                             placeholder="Until"
-                                            value={props.quiz.availableUntil}
+                                            value={getDateFromTimestamp(props.quiz.availableUntilTimestampMillis)}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                                 ...props.quiz,
-                                                availableUntil: e.target.value
+                                                availableUntilTimestampMillis: getTimestampFromDate(e.target.value)
                                             })}
                                         />
                                     </div>
@@ -312,13 +319,9 @@ function QuizDetailsEditorScreen() {
         quizType: "Multiple Choice",
         points: 100,
         assignmentGroup: "Group A",
-        dueDateTimestamp: "1700000000000",
-        availableFromTimestamp: "1690000000000",
-        availableUntilTimestamp: "1710000000000",
-        dueDate: "2023-12-15",
-        availableFrom: "2023-11-15",
-        availableUntil: "2024-01-15",
-        timeLimit: "20",
+        dueDateTimestampMillis: "1700000000000",
+        availableFromTimestampMillis: "1690000000000",
+        availableUntilTimestampMillis: "1710000000000",
         timeLimitInMinutes: 60,
         shuffleAnswers: true,
         shouldShuffleAnswers: true,
