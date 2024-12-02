@@ -5,13 +5,9 @@ type QuizDetail = {
     points: number
     assignmentGroup: string
     // Time-related properties
-    dueDateTimestamp: string
-    availableFromTimestamp: string
-    availableUntilTimestamp: string
-    dueDate: string
-    availableFrom: string
-    availableUntil: string
-    timeLimit: string
+    dueDateTimestampMillis: string
+    availableFromTimestampMillis: string
+    availableUntilTimestampMillis: string
     timeLimitInMinutes: number
     // Boolean flags
     shuffleAnswers: boolean
