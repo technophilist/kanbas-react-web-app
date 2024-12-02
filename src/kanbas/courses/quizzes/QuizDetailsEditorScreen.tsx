@@ -315,6 +315,7 @@ function DetailsTabContent(props: DetailsTabContentProps) {
 function QuizDetailsEditorScreen() {
     const [activeTab, setActiveTab] = useState("details");
     const [quizDetail, setQuizDetail] = useState<QuizDetail>({
+        id: "test_test",
         title: "Sample Quiz",
         quizType: "Multiple Choice",
         points: 100,

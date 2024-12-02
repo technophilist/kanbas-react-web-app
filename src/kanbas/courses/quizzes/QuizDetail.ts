@@ -1,5 +1,6 @@
 type QuizDetail = {
     // Common properties with aligned names
+    id: string,
     title: string
     quizType: string
     points: number
