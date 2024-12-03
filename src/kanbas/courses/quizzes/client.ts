@@ -40,4 +40,18 @@ const updateQuizQuestion = async (quizId: string, question: Question) => {
     return response.data
 }
 
-export { deleteQuiz, fetchQuizSummariesForCourse, getQuizDetails, updatePublishedStatusOfQuiz, updateQuizDetails, getQuizQuestions, updateQuizQuestion }
+const updateQuestionsForQuiz = async (quizId: string, questions: Question[]) => {
+    const response = await axios.put(`${QUIZZES_API}/${quizId}/questions`, questions)
+    return response.data
+}
+
+export {
+    deleteQuiz,
+    fetchQuizSummariesForCourse,
+    getQuizDetails,
+    updatePublishedStatusOfQuiz,
+    updateQuizDetails,
+    getQuizQuestions,
+    updateQuizQuestion,
+    updateQuestionsForQuiz
+}
