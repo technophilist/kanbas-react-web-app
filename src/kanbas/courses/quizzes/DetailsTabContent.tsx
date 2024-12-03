@@ -141,10 +141,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                         type="checkbox"
                                         className="form-check-input me-2"
                                         id="webcamRequired"
-                                        checked={props.quiz.webcamRequired}
+                                        checked={props.quiz.isWebcamRequired}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                             ...props.quiz,
-                                            webcamRequired: e.target.checked
+                                            isWebcamRequired: e.target.checked
                                         })}
                                     />
                                     <label className="form-label text-secondary" htmlFor="webcamRequired">Webcam

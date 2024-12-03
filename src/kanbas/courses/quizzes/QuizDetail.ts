@@ -17,7 +17,6 @@ type QuizDetail = {
     isMultipleAttempts: boolean
     oneQuestionAtATime: boolean
     isOneQuestionAtATime: boolean
-    webcamRequired: boolean
     isWebcamRequired: boolean
     lockQuestionsAfterAnswering: boolean
     shouldLockQuestionsAfterAnswering: boolean
