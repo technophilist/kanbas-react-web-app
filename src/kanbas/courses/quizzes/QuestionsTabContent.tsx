@@ -14,6 +14,7 @@ function QuestionsTabContent() {
         if (!qid) return
         const questions = await quizzesClient.getQuizQuestions(qid)
         setExistingQuestions(questions)
+        setNewQuestions([])
     }, [qid])
 
     const updateQuestion = useCallback(async (updatedQuestion: Question) => {
@@ -33,6 +34,12 @@ function QuestionsTabContent() {
     const deleteNewQuestion = useCallback((questionToDelete: Question) => {
         setNewQuestions(prevQuestions => prevQuestions.filter(question => question.id !== questionToDelete.id))
     }, [])
+
+    const onSaveButtonClick = async () => {
+        if (!qid) return
+        await quizzesClient.updateQuestionsForQuiz(qid, [...existingQuestions, ...newQuestions])
+        fetchQuestions()
+    }
 
     useEffect(() => {
         fetchQuestions()
@@ -83,7 +90,7 @@ function QuestionsTabContent() {
             <hr className="mb-4" />
             <div className="d-flex justify-content-center gap-2">
                 <button className="btn btn-light border">Cancel</button>
-                <button className="btn btn-danger">Save</button>
+                <button className="btn btn-danger" onClick={onSaveButtonClick}>Save</button>
             </div>
         </div>
     )
