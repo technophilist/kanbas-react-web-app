@@ -128,7 +128,7 @@ function QuizDetailScreen() {
                     <tbody>
                         <tr>
                             <td>{getDateTimeStringForTimestamp(quizDetails.dueDateTimestampMillis)}</td>
-                            <td>Everyone</td>
+                            <td>{quizDetails.assignTo}</td>
                             <td>{getDateTimeStringForTimestamp(quizDetails.availableFromTimestampMillis)}</td>
                             <td>{getDateTimeStringForTimestamp(quizDetails.availableUntilTimestampMillis)}</td>
                         </tr>
