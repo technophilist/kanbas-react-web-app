@@ -157,7 +157,7 @@ function QuestionEditor(props: QuestionEditorProps) {
                             }}
                             disabled={false}
                         >
-                            <option value={"multiple-choice "}>Multiple Choice</option>
+                            <option value={"multiple-choice"}>Multiple Choice</option>
                             <option value={"true-false"}>True/False</option>
                             <option value={"fill-in-the-blank"}>Fill in the blank</option>
                         </select>
