@@ -127,6 +127,12 @@ function QuizDetailScreen() {
                         </tr>
                     </tbody>
                 </table>
+
+                {currentUser && currentUser.role === "STUDENT" && (
+                    <div className="d-flex justify-content-center mt-4">
+                        <button className="btn btn-danger">Start Quiz</button>
+                    </div>
+                )}
             </div>
         </div>
     )
