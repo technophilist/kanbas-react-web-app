@@ -11,7 +11,6 @@ type QuizDetail = {
     availableUntilTimestampMillis: string
     timeLimitInMinutes: number | null
     // Boolean flags
-    shuffleAnswers: boolean
     shouldShuffleAnswers: boolean
     allowMultipleAttempts: boolean
     oneQuestionAtATime: boolean

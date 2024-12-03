@@ -91,10 +91,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                         type="checkbox"
                                         className="form-check-input me-2"
                                         id="shuffleAnswers"
-                                        checked={props.quiz.shuffleAnswers}
+                                        checked={props.quiz.shouldShuffleAnswers}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                             ...props.quiz,
-                                            shuffleAnswers: e.target.checked
+                                            shouldShuffleAnswers: e.target.checked
                                         })}
                                     />
                                     <label className="form-label text-secondary" htmlFor="shuffleAnswers">Shuffle
