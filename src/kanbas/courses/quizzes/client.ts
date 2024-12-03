@@ -1,4 +1,5 @@
 import axios from "axios";
+import QuizDetail from "./QuizDetail";
 
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`
@@ -23,4 +24,9 @@ const getQuizDetails = async (quizId: string) => {
     return response.data
 }
 
-export { deleteQuiz, fetchQuizSummariesForCourse, getQuizDetails, updatePublishedStatusOfQuiz }
+const updateQuizDetails = async (updatedQuiz: QuizDetail) => {
+    const response = await axios.put(`${QUIZZES_API}/${updatedQuiz.id}`, updatedQuiz)
+    return response.data
+}
+
+export { deleteQuiz, fetchQuizSummariesForCourse, getQuizDetails, updatePublishedStatusOfQuiz, updateQuizDetails }
