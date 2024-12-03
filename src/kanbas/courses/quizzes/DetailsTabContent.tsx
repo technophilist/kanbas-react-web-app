@@ -133,10 +133,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                         type="checkbox"
                                         className="form-check-input me-2"
                                         id="lockQuestions"
-                                        checked={props.quiz.lockQuestionsAfterAnswering}
+                                        checked={props.quiz.shouldLockQuestionsAfterAnswering}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                             ...props.quiz,
-                                            lockQuestionsAfterAnswering: e.target.checked
+                                            shouldLockQuestionsAfterAnswering: e.target.checked
                                         })}
                                     />
                                     <label className="form-label text-secondary" htmlFor="lockQuestions">Lock Questions
