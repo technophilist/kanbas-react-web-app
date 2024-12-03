@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs"
 import QuizDetail from "./QuizDetail"
 import QuestionsTabContent from "./QuestionsTabContent"
 import * as quizzesClient from "./client"
-import { FaInfoCircle } from "react-icons/fa"
+import { FaCheckCircle, FaInfoCircle } from "react-icons/fa"
 import DetailsTabContent from "./DetailsTabContent"
 
 
@@ -59,8 +59,17 @@ function QuizDetailsEditorScreen() {
             <div className="d-flex justify-content-end align-items-center mb-3 gap-3">
                 <div className="d-flex align-items-center gap-3">
                     <div className="text-secondary d-flex align-items-center">
-                        <ImBlocked className="me-2 fw-semibold" />
-                        Not Published
+                        {quizDetail?.isPublished ? (
+                            <>
+                                <FaCheckCircle className="me-2 text-success" />
+                                Published
+                            </>
+                        ) : (
+                            <>
+                                <ImBlocked className="me-2 fw-semibold" />
+                                Not Published
+                            </>
+                        )}
                     </div>
                     <button className="btn btn-light">
                         <BsThreeDotsVertical />
