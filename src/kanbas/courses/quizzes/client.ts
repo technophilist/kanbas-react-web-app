@@ -1,5 +1,6 @@
 import axios from "axios";
 import QuizDetail from "./QuizDetail";
+import Question from "./editor/question-types";
 
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`
@@ -34,4 +35,9 @@ const getQuizQuestions = async (quizId: string) => {
     return response.data
 }
 
-export { deleteQuiz, fetchQuizSummariesForCourse, getQuizDetails, updatePublishedStatusOfQuiz, updateQuizDetails, getQuizQuestions }
+const updateQuizQuestion = async (quizId: string, question: Question) => {
+    const response = await axios.put(`${QUIZZES_API}/${quizId}/questions/${question.id}`, question)
+    return response.data
+}
+
+export { deleteQuiz, fetchQuizSummariesForCourse, getQuizDetails, updatePublishedStatusOfQuiz, updateQuizDetails, getQuizQuestions, updateQuizQuestion }
