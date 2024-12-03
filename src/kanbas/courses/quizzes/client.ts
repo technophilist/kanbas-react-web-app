@@ -29,4 +29,9 @@ const updateQuizDetails = async (updatedQuiz: QuizDetail) => {
     return response.data
 }
 
-export { deleteQuiz, fetchQuizSummariesForCourse, getQuizDetails, updatePublishedStatusOfQuiz, updateQuizDetails }
+const getQuizQuestions = async (quizId: string) => {
+    const response = await axios.get(`${QUIZZES_API}/${quizId}/questions`)
+    return response.data
+}
+
+export { deleteQuiz, fetchQuizSummariesForCourse, getQuizDetails, updatePublishedStatusOfQuiz, updateQuizDetails, getQuizQuestions }
