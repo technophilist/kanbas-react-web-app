@@ -36,7 +36,7 @@ function MultipleChoiceQuestionEditor(props: MultipleChoiceQuestionEditorProps) 
                         <div key={choice.id} className="d-flex align-items-center gap-2">
                             <input
                                 type="radio"
-                                name="correctAnswer"
+                                name={`correct-choice-for-q${props.multipleChoiceQuestion.id}`}
                                 className="form-check-input"
                                 style={{ marginRight: "8px" }}
                                 checked={choice.isCorrect}
