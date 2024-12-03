@@ -9,7 +9,7 @@ type QuizDetail = {
     dueDateTimestampMillis: string
     availableFromTimestampMillis: string
     availableUntilTimestampMillis: string
-    timeLimitInMinutes: number
+    timeLimitInMinutes: number | null
     // Boolean flags
     shuffleAnswers: boolean
     shouldShuffleAnswers: boolean

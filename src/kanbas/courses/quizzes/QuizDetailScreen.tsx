@@ -65,7 +65,7 @@ function QuizDetailScreen() {
                         </tr>
                         <tr>
                             <td className="text-end text-secondary fw-bold" style={{ whiteSpace: "nowrap" }}>Time Limit</td>
-                            <td>{quizDetails.timeLimitInMinutes} minutes</td>
+                            <td>{quizDetails.timeLimitInMinutes ? `${quizDetails.timeLimitInMinutes} minutes` : "None"}</td>
                         </tr>
                         <tr>
                             <td className="text-end text-secondary fw-bold" style={{ whiteSpace: "nowrap" }}>Multiple

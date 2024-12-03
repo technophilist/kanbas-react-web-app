@@ -153,8 +153,22 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                 <div className="d-flex">
                                     <input
                                         type="checkbox"
+                                        checked={props.quiz.timeLimitInMinutes !== null}
                                         className="form-check-input me-2 mb-1 align-self-end"
                                         id="timeLimit"
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                props.setQuizDetail({
+                                                    ...props.quiz,
+                                                    timeLimitInMinutes: props.quiz.timeLimitInMinutes || 0
+                                                })
+                                            } else {
+                                                props.setQuizDetail({
+                                                    ...props.quiz,
+                                                    timeLimitInMinutes: null
+                                                })
+                                            }
+                                        }}
                                     />
                                     <label className="form-label text-secondary align-self-end m-0" htmlFor="timeLimit">Time
                                         limit</label>
@@ -166,7 +180,7 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                             className="form-control ms-5 me-2"
                                             id="timeLimitMinutes"
                                             type="number"
-                                            value={props.quiz.timeLimitInMinutes}
+                                            value={props.quiz.timeLimitInMinutes || 0}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                                 ...props.quiz,
                                                 timeLimitInMinutes: parseInt(e.target.value)
