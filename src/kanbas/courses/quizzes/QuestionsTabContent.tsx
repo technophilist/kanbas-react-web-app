@@ -10,11 +10,17 @@ function QuestionsTabContent() {
     const [newQuestions, setNewQuestions] = useState<Question[]>([])
     const { qid } = useParams()
 
-    const updateQuestion = useCallback((updatedQuestion: Question) => {
-        setExistingQuestions(prevQuestions =>
-            prevQuestions.map(question => question.id === updatedQuestion.id ? updatedQuestion : question)
-        )
-    }, [])
+    const fetchQuestions = useCallback(async () => {
+        if (!qid) return
+        const questions = await quizzesClient.getQuizQuestions(qid)
+        setExistingQuestions(questions)
+    }, [qid])
+
+    const updateQuestion = useCallback(async (updatedQuestion: Question) => {
+        if (!qid) return
+        await quizzesClient.updateQuizQuestion(qid, updatedQuestion)
+        fetchQuestions()
+    }, [fetchQuestions])
 
     const deleteQuestion = useCallback((questionToDelete: Question) => {
         setExistingQuestions(prevQuestions => prevQuestions.filter(question => question.id !== questionToDelete.id))
@@ -29,11 +35,8 @@ function QuestionsTabContent() {
     }, [])
 
     useEffect(() => {
-        if (!qid) return
-        quizzesClient
-            .getQuizQuestions(qid)
-            .then(setExistingQuestions)
-    }, [qid])
+        fetchQuestions()
+    }, [qid, fetchQuestions])
 
     return (
         <div className="container">
