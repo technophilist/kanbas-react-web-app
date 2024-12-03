@@ -21,7 +21,8 @@ type QuizDetail = {
     description: string
     assignTo: string
     viewResponses: string
-    accessCode: string
+    accessCode: string,
+    isPublished: boolean
 }
 
 export default QuizDetail
