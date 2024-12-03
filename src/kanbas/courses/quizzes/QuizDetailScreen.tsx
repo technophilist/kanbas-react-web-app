@@ -14,7 +14,14 @@ function QuizDetailScreen() {
 
     const getDateTimeStringForTimestamp = useCallback((timestamp: string) => {
         const date = new Date(parseInt(timestamp))
-        return date.toLocaleString()
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = date.getHours()
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        const ampm = hours >= 12 ? 'PM' : 'AM'
+        const formattedHours = String(hours % 12 || 12).padStart(2, '0')
+        return `${year}/${month}/${day} ${formattedHours}:${minutes} ${ampm}`
     }, [])
 
     useEffect(() => {
