@@ -31,7 +31,7 @@ function TrueOrFalseQuestionEditor(props: TrueOrFalseQuestionEditorProps) {
                     <div className="d-flex align-items-center gap-2">
                         <input
                             type="radio"
-                            name="correctAnswer"
+                            name={`correct-choice-for-q${props.trueOrFalseQuestion.id}`}
                             className="form-check-input"
                             style={{ marginRight: "8px" }}
                             checked={props.trueOrFalseQuestion.correctAnswer === true}
@@ -42,7 +42,7 @@ function TrueOrFalseQuestionEditor(props: TrueOrFalseQuestionEditorProps) {
                     <div className="d-flex align-items-center gap-2">
                         <input
                             type="radio"
-                            name="correctAnswer"
+                            name={`correct-choice-for-q${props.trueOrFalseQuestion.id}`}
                             className="form-check-input"
                             style={{ marginRight: "8px" }}
                             checked={props.trueOrFalseQuestion.correctAnswer === false}
