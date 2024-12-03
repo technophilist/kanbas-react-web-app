@@ -13,7 +13,6 @@ type QuizDetail = {
     // Boolean flags
     shouldShuffleAnswers: boolean
     allowMultipleAttempts: boolean
-    oneQuestionAtATime: boolean
     isOneQuestionAtATime: boolean
     isWebcamRequired: boolean
     lockQuestionsAfterAnswering: boolean

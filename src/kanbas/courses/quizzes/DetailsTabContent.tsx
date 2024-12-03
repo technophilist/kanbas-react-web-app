@@ -119,10 +119,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                         type="checkbox"
                                         className="form-check-input me-2"
                                         id="oneQuestionAtATime"
-                                        checked={props.quiz.oneQuestionAtATime}
+                                        checked={props.quiz.isOneQuestionAtATime}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                             ...props.quiz,
-                                            oneQuestionAtATime: e.target.checked
+                                            isOneQuestionAtATime: e.target.checked
                                         })}
                                     />
                                     <label className="form-label text-secondary" htmlFor="oneQuestionAtATime">One
