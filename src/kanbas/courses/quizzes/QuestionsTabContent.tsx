@@ -38,7 +38,8 @@ function QuestionsTabContent() {
     const onSaveButtonClick = async () => {
         if (!qid) return
         await quizzesClient.updateQuestionsForQuiz(qid, [...existingQuestions, ...newQuestions])
-        fetchQuestions()
+        await fetchQuestions()
+        alert("Questions saved successfully!")
     }
 
     useEffect(() => {
