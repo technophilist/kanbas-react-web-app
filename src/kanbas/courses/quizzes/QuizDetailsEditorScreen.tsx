@@ -38,6 +38,14 @@ function QuizDetailsEditorScreen() {
         setShowUnsavedChanges(true)
     }, [])
 
+    const onSaveAndPublish = useCallback((currentQuiz: QuizDetail) => {
+        quizzesClient.updateQuizDetails({ ...currentQuiz, isPublished: true })
+            .then(() => {
+                setShowUnsavedChanges(false)
+                navigate(`./../../`)
+            })
+    }, [navigate])
+
     const renderContent = useCallback(() => {
         if (!quizDetail) return <div>Loading...</div>
         if (activeTab === "questions") {
@@ -48,9 +56,10 @@ function QuizDetailsEditorScreen() {
                 quiz={quizDetail}
                 setQuizDetail={handleQuizUpdate}
                 onSaveButtonClick={onSave}
+                onSaveAndPublishButtonClick={onSaveAndPublish}
             />
         )
-    }, [activeTab, quizDetail, handleQuizUpdate, onSave])
+    }, [activeTab, quizDetail, handleQuizUpdate, onSave, onSaveAndPublish])
 
     useEffect(fetchQuizDetails, [fetchQuizDetails])
 

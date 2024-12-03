@@ -5,7 +5,8 @@ import { useCallback } from "react"
 type DetailsTabContentProps = {
     quiz: QuizDetail,
     setQuizDetail: (updatedQuizDetail: QuizDetail) => void,
-    onSaveButtonClick: (currentQuiz: QuizDetail) => void
+    onSaveButtonClick: (currentQuiz: QuizDetail) => void,
+    onSaveAndPublishButtonClick: (currentQuiz: QuizDetail) => void
 }
 
 function DetailsTabContent(props: DetailsTabContentProps) {
@@ -29,6 +30,12 @@ function DetailsTabContent(props: DetailsTabContentProps) {
         props.onSaveButtonClick(props.quiz)
         navigate("../")
     }, [props.quiz])
+
+    const handleSaveAndPublish = useCallback(() => {
+        props.onSaveAndPublishButtonClick(props.quiz)
+        navigate("../")
+    }, [props.quiz])
+
     return (
         <form>
             <div className="mb-3">
@@ -324,6 +331,9 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                 </button>
                 <button type="button" className="btn btn-danger" onClick={handleSave}>
                     Save
+                </button>
+                <button type="button" className="btn btn-danger" onClick={handleSaveAndPublish}>
+                    Save and Publish
                 </button>
             </div>
         </form>
