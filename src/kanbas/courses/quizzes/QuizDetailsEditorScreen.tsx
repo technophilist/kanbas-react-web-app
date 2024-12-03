@@ -1,29 +1,33 @@
-import React, { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ImBlocked } from "react-icons/im";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import QuizDetail from "./QuizDetail";
-import QuestionsTabContent from "./QuestionsTabContent";
+import React, { useCallback, useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { ImBlocked } from "react-icons/im"
+import { BsThreeDotsVertical } from "react-icons/bs"
+import QuizDetail from "./QuizDetail"
+import QuestionsTabContent from "./QuestionsTabContent"
+import * as quizzesClient from "./client"
+import { FaInfoCircle } from "react-icons/fa"
 
 type DetailsTabContentProps = {
     quiz: QuizDetail,
-    setQuizDetail: (updatedQuizDetail: QuizDetail) => void
+    setQuizDetail: (updatedQuizDetail: QuizDetail) => void,
+    onSaveButtonClick: (currentQuiz: QuizDetail) => void
 }
 
 function DetailsTabContent(props: DetailsTabContentProps) {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const getDateFromTimestamp = useCallback((timestamp: string) => {
-        return new Date(parseInt(timestamp)).toISOString().split('T')[0];
+        return new Date(parseInt(timestamp)).toISOString().split('T')[0]
     }, [])
 
     const getTimestampFromDate = useCallback((date: string) => {
-        return new Date(date).getTime().toString();
+        return new Date(date).getTime().toString()
     }, [])
 
     const handleSave = useCallback(() => {
-        navigate("../"); // Navigate back to quiz list
-    }, [])
+        props.onSaveButtonClick(props.quiz)
+        navigate("../")
+    }, [props.quiz])
     return (
         <form>
             <div className="mb-3">
@@ -308,49 +312,54 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                 </button>
             </div>
         </form>
-    );
+    )
 }
 
 
 function QuizDetailsEditorScreen() {
-    const [activeTab, setActiveTab] = useState("details");
-    const [quizDetail, setQuizDetail] = useState<QuizDetail>({
-        id: "test_test",
-        title: "Sample Quiz",
-        quizType: "Multiple Choice",
-        points: 100,
-        assignmentGroup: "Group A",
-        dueDateTimestampMillis: "1700000000000",
-        availableFromTimestampMillis: "1690000000000",
-        availableUntilTimestampMillis: "1710000000000",
-        timeLimitInMinutes: 60,
-        shuffleAnswers: true,
-        shouldShuffleAnswers: true,
-        allowMultipleAttempts: false,
-        isMultipleAttempts: false,
-        oneQuestionAtATime: true,
-        isOneQuestionAtATime: true,
-        webcamRequired: false,
-        isWebcamRequired: false,
-        lockQuestionsAfterAnswering: true,
-        shouldLockQuestionsAfterAnswering: true,
-        description: "This is a sample quiz description.",
-        assignTo: "Class A",
-        viewResponses: "After submission",
-        showCorrectAnswersImmediately: true,
-        accessCode: "12345"
-    })
+    const [activeTab, setActiveTab] = useState("details")
+    const [quizDetail, setQuizDetail] = useState<QuizDetail | null>(null)
+    const [showUnsavedChanges, setShowUnsavedChanges] = useState(false)
+    const { qid } = useParams()
+    const navigate = useNavigate()
+
+    const fetchQuizDetails = useCallback(() => {
+        if (!qid) return
+        quizzesClient.getQuizDetails(qid)
+            .then(quiz => {
+                setQuizDetail(quiz)
+                setShowUnsavedChanges(false)
+            })
+    }, [qid])
+
+    const onSave = useCallback((currentQuiz: QuizDetail) => {
+        quizzesClient.updateQuizDetails(currentQuiz)
+            .then(() => {
+                setShowUnsavedChanges(false)
+                navigate(`./../`)
+            })
+    }, [navigate])
+
+    const handleQuizUpdate = useCallback((updatedQuizDetail: QuizDetail) => {
+        setQuizDetail(updatedQuizDetail)
+        setShowUnsavedChanges(true)
+    }, [])
+
     const renderContent = useCallback(() => {
+        if (!quizDetail) return <div>Loading...</div>
         if (activeTab === "questions") {
             return <QuestionsTabContent />
         }
         return (
             <DetailsTabContent
                 quiz={quizDetail}
-                setQuizDetail={updatedQuizDetail => setQuizDetail(updatedQuizDetail)}
+                setQuizDetail={handleQuizUpdate}
+                onSaveButtonClick={onSave}
             />
         )
-    }, [activeTab, quizDetail])
+    }, [activeTab, quizDetail, handleQuizUpdate, onSave])
+
+    useEffect(fetchQuizDetails, [fetchQuizDetails])
 
     return (
         <div className="container">
@@ -365,6 +374,12 @@ function QuizDetailsEditorScreen() {
                     </button>
                 </div>
             </div>
+            {showUnsavedChanges && (
+                <div className="alert alert-warning d-flex align-items-center">
+                    <FaInfoCircle className="me-2" />
+                    You have unsaved changes. Click the Save button at the bottom to save your changes.
+                </div>
+            )}
 
             <hr />
 
@@ -389,7 +404,7 @@ function QuizDetailsEditorScreen() {
 
             {renderContent()}
         </div>
-    );
+    )
 }
 
-export default QuizDetailsEditorScreen;
+export default QuizDetailsEditorScreen 
