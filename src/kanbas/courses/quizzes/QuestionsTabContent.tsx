@@ -1,103 +1,14 @@
 import { FaInfoCircle } from "react-icons/fa";
 import Question, { MultipleChoiceQuestion } from "./editor/question-types";
 import QuestionEditor from "./editor/QuestionEditor";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import * as quizzesClient from "./client";
+import { useParams } from "react-router-dom";
 
-const fakeQuestions: Array<Question> = [
-    {
-        id: "q1",
-        type: "multiple-choice",
-        title: "Basic JavaScript Question",
-        points: 5,
-        question: "Which of the following is NOT a JavaScript data type?",
-        choices: [
-            {
-                id: "c1",
-                text: "String",
-                isCorrect: false
-            },
-            {
-                id: "c2",
-                text: "Integer",
-                isCorrect: true
-            },
-            {
-                id: "c3",
-                text: "Boolean",
-                isCorrect: false
-            },
-            {
-                id: "c4",
-                text: "Undefined",
-                isCorrect: false
-            }
-        ]
-    },
-    {
-        id: "q2",
-        type: "multiple-choice",
-        title: "React Hooks Question",
-        points: 4,
-        question: "Which hook would you use to perform side effects in a React component?",
-        choices: [
-            {
-                id: "c1",
-                text: "useState",
-                isCorrect: false
-            },
-            {
-                id: "c2",
-                text: "useEffect",
-                isCorrect: true
-            },
-            {
-                id: "c3",
-                text: "useContext",
-                isCorrect: false
-            },
-            {
-                id: "c4",
-                text: "useReducer",
-                isCorrect: false
-            }
-        ]
-    },
-    {
-        id: "q3",
-        type: "true-false",
-        title: "React Components Question",
-        points: 3,
-        question: "In React, all functional components must start with a capital letter.",
-        correctAnswer: true
-    },
-    {
-        id: "q4",
-        type: "true-false",
-        title: "JavaScript Scope",
-        points: 3,
-        question: "Variables declared with 'let' are hoisted to the top of their scope.",
-        correctAnswer: false
-    },
-    {
-        id: "q5",
-        type: "fill-in-the-blank",
-        title: "HTML Basics",
-        points: 4,
-        question: "The HTML tag used to create a hyperlink is _____.",
-        possibleAnswers: ["<a>", "a", "<a", "a>"]
-    },
-    {
-        id: "q6",
-        type: "fill-in-the-blank",
-        title: "CSS Selector",
-        points: 3,
-        question: "To select an element by its ID in CSS, you use the _____ symbol.",
-        possibleAnswers: ["#", "hashtag", "pound", "number sign"]
-    }
-]
 function QuestionsTabContent() {
-    const [existingQuestions, setExistingQuestions] = useState(fakeQuestions)
+    const [existingQuestions, setExistingQuestions] = useState<Question[]>([])
     const [newQuestions, setNewQuestions] = useState<Question[]>([])
+    const { qid } = useParams()
 
     const updateQuestion = useCallback((updatedQuestion: Question) => {
         setExistingQuestions(prevQuestions =>
@@ -116,6 +27,13 @@ function QuestionsTabContent() {
     const deleteNewQuestion = useCallback((questionToDelete: Question) => {
         setNewQuestions(prevQuestions => prevQuestions.filter(question => question.id !== questionToDelete.id))
     }, [])
+
+    useEffect(() => {
+        if (!qid) return
+        quizzesClient
+            .getQuizQuestions(qid)
+            .then(setExistingQuestions)
+    }, [qid])
 
     return (
         <div className="container">
