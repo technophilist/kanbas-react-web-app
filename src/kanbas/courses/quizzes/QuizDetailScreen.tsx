@@ -78,7 +78,7 @@ function QuizDetailScreen() {
                             <td className="text-end text-secondary fw-bold" style={{ whiteSpace: "nowrap" }}>Multiple
                                 Attempts
                             </td>
-                            <td>{quizDetails.isMultipleAttempts ? "Yes" : "No"}</td>
+                            <td>{quizDetails.allowMultipleAttempts ? "Yes" : "No"}</td>
                         </tr>
                         <tr>
                             <td className="text-end text-secondary fw-bold" style={{ whiteSpace: "nowrap" }}>View Responses

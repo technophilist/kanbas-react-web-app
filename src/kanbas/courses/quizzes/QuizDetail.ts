@@ -14,7 +14,6 @@ type QuizDetail = {
     shuffleAnswers: boolean
     shouldShuffleAnswers: boolean
     allowMultipleAttempts: boolean
-    isMultipleAttempts: boolean
     oneQuestionAtATime: boolean
     isOneQuestionAtATime: boolean
     isWebcamRequired: boolean
