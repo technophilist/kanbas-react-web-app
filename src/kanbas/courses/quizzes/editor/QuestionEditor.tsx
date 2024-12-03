@@ -3,6 +3,7 @@ import FillInTheBlankQuestionEditor from "./FillInTheBlankQuestionEditor"
 import TrueOrFalseQuestionEditor from "./TrueOrFalseQuestionEditor"
 import { useCallback, useMemo, useState } from "react"
 import Question, { FillInTheBlankQuestion, MultipleChoiceQuestion, TrueOrFalseQuestion } from "./question-types";
+import { FaInfoCircle } from "react-icons/fa";
 
 type QuestionEditorProps = {
     question: Question,
@@ -103,6 +104,12 @@ function QuestionEditor(props: QuestionEditorProps) {
     return (
         <div className="d-flex justify-content-center">
             <div className="border rounded p-3 w-50 ">
+                {isModified && (
+                    <div className="alert alert-warning mb-3 d-flex align-items-center">
+                        <FaInfoCircle className="me-2" />
+                        Question has been modified. Click "Update Question" to save your changes.
+                    </div>
+                )}
                 <div className="d-flex align-items-center justify-content-between gap-2 mb-3">
                     <div className="d-flex">
                         <input
@@ -197,24 +204,17 @@ function QuestionEditor(props: QuestionEditorProps) {
                         updatePossibleAnswer={fillInTheBlankQuestionOperations.updatePossibleAnswer}
                     />
                 )}
-                <div className="d-flex flex-column gap-2">
-                    {isModified && (
-                        <small className="text-muted fst-italic">
-                            Question has been modified. Click "Update Question" to save your changes.
-                        </small>
-                    )}
-                    <div className="d-flex gap-2">
-                        <button className="btn btn-light border" onClick={() => props.deleteQuestion(componentQuestionInstance)}>Delete</button>
-                        <button
-                            className="btn btn-danger"
-                            onClick={() => {
-                                props.updateQuestion(componentQuestionInstance)
-                                setIsModified(false)
-                            }}
-                        >
-                            Update Question
-                        </button>
-                    </div>
+                <div className="d-flex gap-2">
+                    <button className="btn btn-light border" onClick={() => props.deleteQuestion(componentQuestionInstance)}>Delete</button>
+                    <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                            props.updateQuestion(componentQuestionInstance)
+                            setIsModified(false)
+                        }}
+                    >
+                        Update Question
+                    </button>
                 </div>
             </div>
         </div>
