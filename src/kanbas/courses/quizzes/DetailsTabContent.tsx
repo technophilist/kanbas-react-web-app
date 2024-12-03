@@ -11,12 +11,18 @@ type DetailsTabContentProps = {
 function DetailsTabContent(props: DetailsTabContentProps) {
     const navigate = useNavigate()
 
-    const getDateFromTimestamp = useCallback((timestamp: string) => {
-        return new Date(parseInt(timestamp)).toISOString().split('T')[0]
+    const getDateTimeFromTimestamp = useCallback((timestamp: string) => {
+        const date = new Date(parseInt(timestamp));
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
     }, [])
 
-    const getTimestampFromDate = useCallback((date: string) => {
-        return new Date(date).getTime().toString()
+    const getTimestampFromDateTime = useCallback((dateTime: string) => {
+        return new Date(dateTime).getTime().toString()
     }, [])
 
     const handleSave = useCallback(() => {
@@ -264,12 +270,12 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                         Date</label>
                                     <input
                                         id="dueDate"
-                                        type="date"
+                                        type="datetime-local"
                                         className="form-control"
-                                        value={getDateFromTimestamp(props.quiz.dueDateTimestampMillis)}
+                                        value={getDateTimeFromTimestamp(props.quiz.dueDateTimestampMillis)}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                             ...props.quiz,
-                                            dueDateTimestampMillis: getTimestampFromDate(e.target.value)
+                                            dueDateTimestampMillis: getTimestampFromDateTime(e.target.value)
                                         })}
                                     />
                                 </div>
@@ -280,13 +286,13 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                             from</label>
                                         <input
                                             id="availableFrom"
-                                            type="date"
+                                            type="datetime-local"
                                             className="form-control"
                                             placeholder="Available from"
-                                            value={getDateFromTimestamp(props.quiz.availableFromTimestampMillis)}
-                                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
+                                            value={getDateTimeFromTimestamp(props.quiz.availableFromTimestampMillis)}
+                                            onChange={(e) => props.setQuizDetail({
                                                 ...props.quiz,
-                                                availableFromTimestampMillis: getTimestampFromDate(e.target.value)
+                                                availableFromTimestampMillis: getTimestampFromDateTime(e.target.value)
                                             })}
                                         />
                                     </div>
@@ -296,13 +302,13 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                             until</label>
                                         <input
                                             id="availableUntil"
-                                            type="date"
+                                            type="datetime-local"
                                             className="form-control"
                                             placeholder="Until"
-                                            value={getDateFromTimestamp(props.quiz.availableUntilTimestampMillis)}
+                                            value={getDateTimeFromTimestamp(props.quiz.availableUntilTimestampMillis)}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.setQuizDetail({
                                                 ...props.quiz,
-                                                availableUntilTimestampMillis: getTimestampFromDate(e.target.value)
+                                                availableUntilTimestampMillis: getTimestampFromDateTime(e.target.value)
                                             })}
                                         />
                                     </div>
