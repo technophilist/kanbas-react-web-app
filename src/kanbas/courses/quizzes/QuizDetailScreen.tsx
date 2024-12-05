@@ -36,7 +36,10 @@ function QuizDetailScreen() {
             {currentUser && currentUser.role === "FACULTY" && (
                 <div>
                     <div className="d-flex justify-content-center mb-4">
-                        <button className="btn btn-light me-2">Preview</button>
+                        <button
+                            onClick={() => navigate(`preview`)}
+                            className="btn btn-light me-2"
+                        >Preview</button>
                         <button
                             onClick={() => navigate(`edit`)}
                             className="btn btn-light d-flex align-items-center"
