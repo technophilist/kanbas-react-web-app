@@ -66,7 +66,10 @@ function Quizzes() {
     const fetchQuizSummariesForCourse = useCallback(async () => {
         if (!cid) return
         quizzesClient.fetchQuizSummariesForCourse(cid)
-            .then(quizzes => setQuizzes(quizzes))
+            .then(quizzes => {
+                if (currentUser?.role === "STUDENT") setQuizzes(quizzes.filter((quiz: Quiz) => quiz.isPublished))
+                else setQuizzes(quizzes)
+            })
     }, [cid])
 
     const updatePublishedStatusOfQuiz = useCallback(async (quizId: string, isPublished: boolean) => {
