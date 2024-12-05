@@ -1,6 +1,7 @@
 import axios from "axios";
 import QuizDetail from "./QuizDetail";
 import Question from "./editor/question-types";
+import { AnswerToQuestion } from "./Answer";
 
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`
@@ -45,6 +46,11 @@ const updateQuestionsForQuiz = async (quizId: string, questions: Question[]) => 
     return response.data
 }
 
+const saveQuizAttempt = async (quizId: string, uid: string, answers: Record<string, AnswerToQuestion>, score: number) => {
+    const response = await axios.post(`${QUIZZES_API}/attempts/new`, { quizId, uid, answers, score })
+    return response.data
+}
+
 export {
     deleteQuiz,
     fetchQuizSummariesForCourse,
@@ -53,5 +59,6 @@ export {
     updateQuizDetails,
     getQuizQuestions,
     updateQuizQuestion,
-    updateQuestionsForQuiz
+    updateQuestionsForQuiz,
+    saveQuizAttempt
 }
