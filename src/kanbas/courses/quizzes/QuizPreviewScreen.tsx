@@ -110,9 +110,9 @@ function QuizPreviewScreen() {
         if (questions.length === 0 || !currentQuestion || !quizDetail || !currentUser?._id) return
         setIsSaving(true)
         try {
-            await quizzesClient.saveQuizAttempt(quizDetail.id, currentUser._id, answers, calculateTotalQuizScore(questions, answers))
-            alert('Quiz attempt saved successfully!')
-            navigate(`answers`)
+            const attemptId = await quizzesClient.saveQuizAttempt(quizDetail.id, currentUser._id, answers, calculateTotalQuizScore(questions, answers))
+            if (!attemptId) throw new Error('Failed to save quiz attempt')
+            navigate(`answers/${attemptId}`)
         } catch (error) {
             alert('Failed to save quiz attempt. Please try again.')
         } finally {
