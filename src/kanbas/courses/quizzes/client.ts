@@ -48,6 +48,11 @@ const updateQuestionsForQuiz = async (quizId: string, questions: Question[]) => 
 
 const saveQuizAttempt = async (quizId: string, uid: string, answers: Record<string, AnswerToQuestion>, score: number) => {
     const response = await axios.post(`${QUIZZES_API}/attempts/new`, { quizId, uid, answers, score })
+    return response.data.attemptId
+}
+
+const getQuizAttempt = async (attemptId: string) => {
+    const response = await axios.get(`${QUIZZES_API}/attempts/${attemptId}`)
     return response.data
 }
 
@@ -60,5 +65,6 @@ export {
     getQuizQuestions,
     updateQuizQuestion,
     updateQuestionsForQuiz,
-    saveQuizAttempt
+    saveQuizAttempt,
+    getQuizAttempt
 }
