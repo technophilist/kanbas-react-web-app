@@ -36,10 +36,24 @@ function QuizDetailScreen() {
             })
         } else {
             navigate(`quiz`, {
+                state: { isFacultyPreviewingQuiz: true }
+            })
+        }
+    }, [qid, currentUser?._id, navigate])
+
+    const onStartQuizButtonClick = useCallback(async () => {
+        if (!qid || !currentUser) return
+        const attempts = await quizzesClient.getQuizAttemptsForUser(qid, currentUser._id)
+        if (attempts.length > 0) {
+            navigate(`quiz/answers/${attempts[0].attemptId}`, {
                 state: {
-                    isPreviousAttempt: false,
-                    isFacultyPreviewingQuiz: true
+                    isPreviousAttempt: true,
+                    isFacultyPreviewingQuiz: false
                 }
+            })
+        } else {
+            navigate(`quiz`, {
+                state: { isFacultyPreviewingQuiz: false }
             })
         }
     }, [qid, currentUser?._id, navigate])
@@ -160,7 +174,10 @@ function QuizDetailScreen() {
 
                 {currentUser && currentUser.role === "STUDENT" && (
                     <div className="d-flex justify-content-center mt-4">
-                        <button className="btn btn-danger">Start Quiz</button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={onStartQuizButtonClick}
+                        >Start Quiz</button>
                     </div>
                 )}
             </div>
