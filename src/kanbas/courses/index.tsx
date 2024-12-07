@@ -48,7 +48,6 @@ function Courses(props: Props) {
                         <Route path="people" element={<PeopleTable />} />
                         <Route path="quizzes" element={<Quizzes />} />
                         <Route path="quizzes/:qid" element={<QuizDetailScreen />} />
-                        <Route path="quizzes/new" element={<QuizDetailsEditorScreen />} />
                         <Route path="quizzes/:qid/edit" element={<QuizDetailsEditorScreen />} />
                         <Route path="quizzes/:qid/quiz" element={<QuizScreen />} />
                         <Route path="quizzes/:qid/quiz/answers/:attemptId" element={<QuizAnswersScreen />} />
