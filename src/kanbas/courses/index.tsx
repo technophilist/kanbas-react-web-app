@@ -11,7 +11,7 @@ import { Course } from "../Dashboard";
 import Quizzes from "./quizzes"
 import QuizDetailScreen from "./quizzes/detail/QuizDetailScreen";
 import QuizDetailsEditorScreen from "./quizzes/editor/detailsEditor/QuizDetailsEditorScreen";
-import QuizPreviewScreen from "./quizzes/QuizPreviewScreen";
+import QuizScreen from "./quizzes/QuizScreen";
 import QuizAnswersScreen from "./quizzes/answers/QuizAnswersScreen";
 
 
@@ -50,8 +50,8 @@ function Courses(props: Props) {
                         <Route path="quizzes/:qid" element={<QuizDetailScreen />} />
                         <Route path="quizzes/new" element={<QuizDetailsEditorScreen />} />
                         <Route path="quizzes/:qid/edit" element={<QuizDetailsEditorScreen />} />
-                        <Route path="quizzes/:qid/preview" element={<QuizPreviewScreen />} />
-                        <Route path="quizzes/:qid/preview/answers/:attemptId" element={<QuizAnswersScreen />} />
+                        <Route path="quizzes/:qid/quiz" element={<QuizScreen />} />
+                        <Route path="quizzes/:qid/quiz/answers/:attemptId" element={<QuizAnswersScreen />} />
                     </Routes>
                 </div>
             </div>

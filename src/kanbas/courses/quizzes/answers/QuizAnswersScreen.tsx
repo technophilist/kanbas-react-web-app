@@ -29,7 +29,7 @@ function QuizAnswersScreen() {
         if (!window.confirm('Are you sure you want to retake this quiz? This attempt will be deleted.')) return
         if (!quizAttempt) return
         quizzesClient.deleteQuizAttempt(quizAttempt.attemptId)
-        navigate(`/kanbas/courses/${cid}/quizzes/${qid}/preview`)
+        navigate(`/kanbas/courses/${cid}/quizzes/${qid}/quiz`)
     }, [quizAttempt, navigate])
 
 

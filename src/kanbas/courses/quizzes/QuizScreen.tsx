@@ -8,7 +8,7 @@ import { AnswerToQuestion, TrueOrFalseAnswer, MultipleChoiceAnswer, FillInTheBla
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
 
-function QuizPreviewScreen() {
+function QuizScreen() {
     const { qid } = useParams()
     const navigate = useNavigate()
     const [quizDetail, setQuizDetail] = useState<QuizDetail | null>(null)
@@ -205,4 +205,4 @@ const calculateTotalQuizScore = (questions: Question[], answers: Record<string, 
     }, 0)
 }
 
-export default QuizPreviewScreen
+export default QuizScreen
