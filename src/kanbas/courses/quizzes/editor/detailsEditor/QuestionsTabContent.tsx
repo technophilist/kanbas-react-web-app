@@ -1,8 +1,8 @@
 import { FaInfoCircle } from "react-icons/fa";
-import Question, { MultipleChoiceQuestion } from "./editor/question-types";
-import QuestionEditor from "./editor/QuestionEditor";
+import Question, { MultipleChoiceQuestion } from "../question-types";
+import QuestionEditor from "../QuestionEditor";
 import { useCallback, useEffect, useState } from "react";
-import * as quizzesClient from "./client";
+import * as quizzesClient from "../../client";
 import { useParams } from "react-router-dom";
 
 function QuestionsTabContent() {

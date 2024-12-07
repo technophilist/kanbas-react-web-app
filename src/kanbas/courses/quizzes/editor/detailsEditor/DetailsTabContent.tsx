@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import QuizDetail from "./QuizDetail"
+import QuizDetail from "../../detail/QuizDetail"
 import { useCallback } from "react"
 
 type DetailsTabContentProps = {

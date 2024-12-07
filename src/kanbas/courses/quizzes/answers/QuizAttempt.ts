@@ -1,5 +1,6 @@
 import { AnswerToQuestion } from "./Answer"
 
+
 type QuizAttempt = {
     attemptId: string
     quizId: string

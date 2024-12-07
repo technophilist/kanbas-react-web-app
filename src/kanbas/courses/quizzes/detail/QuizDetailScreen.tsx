@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { FaRegEdit } from 'react-icons/fa'
 import { useSelector } from "react-redux"
-import { RootState } from "../../store"
 import { useNavigate, useParams } from "react-router-dom"
-import QuizDetail from "./QuizDetail";
-import * as quizzesClient from "./client"
+import QuizDetail from "./QuizDetail"
+import * as quizzesClient from "../client"
+import { RootState } from '../../../store'
 function QuizDetailScreen() {
     const { currentUser } = useSelector((state: RootState) => state.accountReducer)
     const { qid } = useParams()

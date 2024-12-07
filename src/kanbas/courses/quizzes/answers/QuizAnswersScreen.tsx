@@ -1,7 +1,7 @@
-import Question from "./editor/question-types"
+import Question from "../editor/question-types"
 import { AnswerToQuestion, TrueOrFalseAnswer, MultipleChoiceAnswer, FillInTheBlankAnswer } from "./Answer"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import * as quizzesClient from "./client"
+import * as quizzesClient from "../client"
 import { useParams, useLocation, useNavigate } from "react-router-dom"
 import QuizAttempt from "./QuizAttempt"
 

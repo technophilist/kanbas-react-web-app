@@ -8,12 +8,11 @@ import AssignmentEditor from "./assignments/Editor";
 import { FaAlignJustify } from "react-icons/fa";
 import PeopleTable from "./people/Table";
 import { Course } from "../Dashboard";
-import Quizzes from "./quizzes";
-import QuizDetails from "./quizzes/QuizDetailScreen";
-import QuizDetailScreen from "./quizzes/QuizDetailScreen";
-import QuizDetailsEditorScreen from "./quizzes/QuizDetailsEditorScreen";
+import Quizzes from "./quizzes"
+import QuizDetailScreen from "./quizzes/detail/QuizDetailScreen";
+import QuizDetailsEditorScreen from "./quizzes/editor/detailsEditor/QuizDetailsEditorScreen";
 import QuizPreviewScreen from "./quizzes/QuizPreviewScreen";
-import QuizAnswersScreen from "./quizzes/QuizAnswersScreen";
+import QuizAnswersScreen from "./quizzes/answers/QuizAnswersScreen";
 
 
 function toSentenceCase(str: string): string {

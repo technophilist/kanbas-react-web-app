@@ -1,7 +1,7 @@
 import axios from "axios";
-import QuizDetail from "./QuizDetail";
+import QuizDetail from "./detail/QuizDetail";
 import Question from "./editor/question-types";
-import { AnswerToQuestion } from "./Answer";
+import { AnswerToQuestion } from "./answers/Answer";
 
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`
