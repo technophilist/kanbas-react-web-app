@@ -66,6 +66,11 @@ const deleteQuizAttempt = async (attemptId: string) => {
     return response.data
 }
 
+const getQuizAttemptsCountForUser = async (quizId: string, uid: string) => {
+    const response = await axios.get(`${QUIZZES_API}/${quizId}/attempts/count/${uid}`)
+    return response.data
+}
+
 export {
     deleteQuiz,
     fetchQuizSummariesForCourse,
@@ -78,5 +83,6 @@ export {
     saveQuizAttempt,
     getQuizAttempt,
     getQuizAttemptsForUser,
-    deleteQuizAttempt
+    deleteQuizAttempt,
+    getQuizAttemptsCountForUser
 }
