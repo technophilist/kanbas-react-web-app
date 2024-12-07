@@ -131,8 +131,8 @@ function QuizPreviewScreen() {
             </div>
 
             <div className="mt-3">
-                <small>Started: Nov 29 at 8:19am</small>
                 <h2 className="mt-2">Quiz Instructions</h2>
+                <p>{quizDetail.description}</p>
                 <hr />
             </div>
 
