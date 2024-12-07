@@ -127,7 +127,7 @@ function QuizScreen() {
     return (
         <div className="container mt-4">
             <h1>Q1 - HTML</h1>
-            {!isFacultyPreviewingQuiz && (
+            {isFacultyPreviewingQuiz && (
                 <div className="alert alert-danger">
                 <FaInfoCircle className="me-2" />
                     This is a preview of the published version of the quiz
