@@ -18,6 +18,32 @@ function QuizDetailsEditorScreen() {
 
     const fetchQuizDetails = useCallback(() => {
         if (!qid) return
+        if (qid === "new") {
+            setQuizDetail({
+                id: `${Date.now()}`,
+                title: "",
+                quizType: "",
+                points: 0,
+                assignmentGroup: "",
+                dueDateTimestampMillis: "",
+                availableFromTimestampMillis: "",
+                availableUntilTimestampMillis: "",
+                timeLimitInMinutes: 1,
+                shouldShuffleAnswers: false,
+                allowMultipleAttempts: false,
+                maxAttempts: 1,
+                isOneQuestionAtATime: false,
+                isWebcamRequired: false,
+                shouldLockQuestionsAfterAnswering: false,
+                showCorrectAnswersImmediately: false,
+                description: "",
+                assignTo: "Everyone",
+                viewResponses: "Immediately",
+                accessCode: "",
+                isPublished: false
+            })
+            return
+        }
         quizzesClient.getQuizDetails(qid)
             .then(quiz => {
                 setQuizDetail(quiz)
