@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { FaInfoCircle } from "react-icons/fa"
 import Question from "./editor/question-types"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import QuizDetail from "./detail/QuizDetail"
 import * as quizzesClient from "./client"
 import { AnswerToQuestion, TrueOrFalseAnswer, MultipleChoiceAnswer, FillInTheBlankAnswer } from "./answers/Answer"
@@ -11,6 +11,7 @@ import { RootState } from "../../store"
 function QuizScreen() {
     const { qid } = useParams()
     const navigate = useNavigate()
+    const location = useLocation()
     const [quizDetail, setQuizDetail] = useState<QuizDetail | null>(null)
     const [questions, setQuestions] = useState<Question[]>([])
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -18,6 +19,7 @@ function QuizScreen() {
     const [answers, setAnswers] = useState<Record<string, AnswerToQuestion>>({})
     const [isSaving, setIsSaving] = useState(false)
     const { currentUser } = useSelector((state: RootState) => state.accountReducer)
+    const isFacultyPreviewingQuiz = useMemo(() => location.state?.isFacultyPreviewingQuiz || false, [location.state])
 
     useEffect(() => {
         if (!qid) return
@@ -125,10 +127,12 @@ function QuizScreen() {
     return (
         <div className="container mt-4">
             <h1>Q1 - HTML</h1>
-            <div className="alert alert-danger">
+            {!isFacultyPreviewingQuiz && (
+                <div className="alert alert-danger">
                 <FaInfoCircle className="me-2" />
-                This is a preview of the published version of the quiz
-            </div>
+                    This is a preview of the published version of the quiz
+                </div>
+            )}
 
             <div className="mt-3">
                 <h2 className="mt-2">Quiz Instructions</h2>
