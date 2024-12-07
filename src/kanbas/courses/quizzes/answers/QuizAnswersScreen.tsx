@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import * as quizzesClient from "../client"
 import { useParams, useLocation, useNavigate } from "react-router-dom"
 import QuizAttempt from "./QuizAttempt"
+import QuizDetail from "../detail/QuizDetail"
+import { useSelector } from "react-redux"
+import { RootState } from "../../../store"
 
 function QuizAnswersScreen() {
     const navigate = useNavigate()
@@ -12,20 +15,51 @@ function QuizAnswersScreen() {
     const isViewingPreviousAttempt = useMemo(() => location.state?.isPreviousAttempt === true, [location.state])
     const [quizAttempt, setQuizAttempt] = useState<QuizAttempt | null>(null)
     const [quizQuestions, setQuizQuestions] = useState<Question[] | null>(null)
+    const { currentUser } = useSelector((state: RootState) => state.accountReducer)
+    const [quizDetail, setQuizDetail] = useState<QuizDetail | null>(null)
+    const [quizAttemptsCount, setQuizAttemptsCount] = useState<number | null>(null)
+    const isRetakeQuizButtonDisabledForStudent = useMemo(() => {
+        if (!quizDetail || !currentUser || currentUser.role !== 'STUDENT') return true
+        if (!quizDetail.allowMultipleAttempts) return true
+        return quizDetail.maxAttempts - (quizAttemptsCount || 0) <= 0
+    }, [quizDetail, currentUser, quizAttemptsCount])
 
+    // Get the number of attempts for the student
+    useEffect(() => {
+        if (!qid || !currentUser || currentUser.role !== 'STUDENT') return
+        quizzesClient.getQuizAttemptsCountForUser(qid, currentUser._id)
+            .then((responseObject) => setQuizAttemptsCount(responseObject.count))
+    }, [qid, currentUser])
+
+    // Get the quiz details
+    useEffect(() => {
+        if (!qid || !currentUser || currentUser.role !== 'STUDENT') return
+        quizzesClient.getQuizDetails(qid)
+            .then(setQuizDetail)
+    }, [qid])
+
+    // Get the quiz attempt
     useEffect(() => {
         if (!attemptId) return
         quizzesClient.getQuizAttempt(attemptId)
             .then(setQuizAttempt)
     }, [attemptId])
 
+    // Get the quiz questions
     useEffect(() => {
         if (!quizAttempt) return
         quizzesClient.getQuizQuestions(quizAttempt.quizId)
             .then(setQuizQuestions)
     }, [quizAttempt])
 
-    const onRetakeQuizButtonClick = useCallback(() => {
+    // Retake the quiz for the student
+    const onRetakeQuizButtonStudentClick = useCallback(() => {
+        if (!window.confirm('Are you sure you want to retake this quiz? This attempt will be deleted.')) return
+        if (!quizAttempt) return
+        navigate(`/kanbas/courses/${cid}/quizzes/${qid}/quiz`)
+    }, [quizAttempt, navigate])
+
+    const onRetakeQuizButtonFacultyClick = useCallback(() => {
         if (!window.confirm('Are you sure you want to retake this quiz? This attempt will be deleted.')) return
         if (!quizAttempt) return
         quizzesClient.deleteQuizAttempt(quizAttempt.attemptId)
@@ -135,12 +169,23 @@ function QuizAnswersScreen() {
                 ))}
             </div>
             <div className="d-flex justify-content-between mt-4">
-                <button
-                    className="btn btn-primary"
-                    onClick={onRetakeQuizButtonClick}
-                >
-                    {isViewingPreviousAttempt ? 'Start New Attempt' : 'Retake Quiz'}
-                </button>
+                {currentUser && currentUser.role === "STUDENT" && quizDetail && (
+                    <button
+                        className="btn btn-primary"
+                        onClick={onRetakeQuizButtonStudentClick}
+                        disabled={isRetakeQuizButtonDisabledForStudent}
+                    >
+                        {`Retake Quiz: ${quizDetail.maxAttempts - (quizAttemptsCount || 0)} attempts remaining`}
+                    </button>
+                )}
+                {currentUser && currentUser.role === "FACULTY" && (
+                    <button
+                        className="btn btn-primary"
+                        onClick={onRetakeQuizButtonFacultyClick}
+                    >
+                        Retake Quiz
+                    </button>
+                )}
             </div>
         </div>
     )
