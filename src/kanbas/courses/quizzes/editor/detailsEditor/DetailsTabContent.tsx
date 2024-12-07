@@ -52,7 +52,15 @@ function DetailsTabContent(props: DetailsTabContentProps) {
 
             <div className="mb-3">
                 <label className="form-label text-secondary fw-bold">Quiz Instructions:</label>
-                <textarea className="form-control" rows={3} />
+                <textarea
+                    className="form-control"
+                    rows={3}
+                    value={props.quiz.description}
+                    onChange={(e) => props.setQuizDetail({
+                        ...props.quiz,
+                        description: e.target.value
+                    })}
+                />
             </div>
             <table className="table table-borderless">
                 <tbody>
