@@ -29,10 +29,18 @@ function QuizDetailScreen() {
         const attempts = await quizzesClient.getQuizAttemptsForUser(qid, currentUser._id)
         if (attempts.length > 0) {
             navigate(`quiz/answers/${attempts[0].attemptId}`, {
-                state: { isPreviousAttempt: true }
+                state: {
+                    isPreviousAttempt: true,
+                    isFacultyPreviewingQuiz: true
+                }
             })
         } else {
-            navigate(`quiz`)
+            navigate(`quiz`, {
+                state: {
+                    isPreviousAttempt: false,
+                    isFacultyPreviewingQuiz: true
+                }
+            })
         }
     }, [qid, currentUser?._id, navigate])
 
