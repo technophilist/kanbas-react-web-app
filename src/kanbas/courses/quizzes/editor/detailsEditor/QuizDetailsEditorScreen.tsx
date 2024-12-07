@@ -13,7 +13,7 @@ function QuizDetailsEditorScreen() {
     const [activeTab, setActiveTab] = useState("details")
     const [quizDetail, setQuizDetail] = useState<QuizDetail | null>(null)
     const [showUnsavedChanges, setShowUnsavedChanges] = useState(false)
-    const {qid} = useParams()
+    const { qid } = useParams()
     const navigate = useNavigate()
 
     const fetchQuizDetails = useCallback(async () => {
@@ -44,7 +44,6 @@ function QuizDetailsEditorScreen() {
                 accessCode: "",
                 isPublished: false
             }
-            alert("CREATIUNG A FREAKING NEW QUIZ")
             await quizzesClient.createQuiz(newQuiz)
             quiz = await quizzesClient.getQuizDetails(newQuiz.id)
         }
