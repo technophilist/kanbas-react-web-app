@@ -101,7 +101,7 @@ function Quizzes() {
                 />
                 {currentUser?.role === "FACULTY" && (
                     <button
-                        onClick={() => navigate("new/edit")}
+                        onClick={() => navigate(`${Date.now()}/edit`)}
                         className="btn btn-danger"
                     >+ Quiz</button>
                 )}

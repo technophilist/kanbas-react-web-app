@@ -13,14 +13,16 @@ function QuizDetailsEditorScreen() {
     const [activeTab, setActiveTab] = useState("details")
     const [quizDetail, setQuizDetail] = useState<QuizDetail | null>(null)
     const [showUnsavedChanges, setShowUnsavedChanges] = useState(false)
-    const { qid } = useParams()
+    const {qid} = useParams()
     const navigate = useNavigate()
 
-    const fetchQuizDetails = useCallback(() => {
+    const fetchQuizDetails = useCallback(async () => {
         if (!qid) return
-        if (qid === "new") {
-            setQuizDetail({
-                id: `${Date.now()}`,
+        const response = await quizzesClient.getQuizDetails(qid)
+        let quiz = response.quiz
+        if (!quiz) {
+            const newQuiz: QuizDetail = {
+                id: qid,
                 title: "",
                 quizType: "",
                 points: 0,
@@ -41,14 +43,13 @@ function QuizDetailsEditorScreen() {
                 viewResponses: "Immediately",
                 accessCode: "",
                 isPublished: false
-            })
-            return
+            }
+            alert("CREATIUNG A FREAKING NEW QUIZ")
+            await quizzesClient.createQuiz(newQuiz)
+            quiz = await quizzesClient.getQuizDetails(newQuiz.id)
         }
-        quizzesClient.getQuizDetails(qid)
-            .then(quiz => {
-                setQuizDetail(quiz)
-                setShowUnsavedChanges(false)
-            })
+        setQuizDetail(quiz)
+        setShowUnsavedChanges(false)
     }, [qid])
 
     const onSave = useCallback((currentQuiz: QuizDetail) => {
@@ -87,7 +88,9 @@ function QuizDetailsEditorScreen() {
         )
     }, [activeTab, quizDetail, handleQuizUpdate, onSave, onSaveAndPublish])
 
-    useEffect(fetchQuizDetails, [fetchQuizDetails])
+    useEffect(() => {
+        fetchQuizDetails()
+    }, [fetchQuizDetails])
 
     return (
         <div className="container">
