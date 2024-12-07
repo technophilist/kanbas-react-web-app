@@ -24,6 +24,18 @@ function QuizDetailScreen() {
         return `${year}/${month}/${day} ${formattedHours}:${minutes} ${ampm}`
     }, [])
 
+    const onPreviewButtonClick = useCallback(async () => {
+        if (!qid || !currentUser) return
+        const attempts = await quizzesClient.getQuizAttemptsForUser(qid, currentUser._id)
+        if (attempts.length > 0) {
+            navigate(`preview/answers/${attempts[0].attemptId}`, {
+                state: { isPreviousAttempt: true }
+            })
+        } else {
+            navigate(`preview`)
+        }
+    }, [qid, currentUser?._id, navigate])
+
     useEffect(() => {
         if (!qid) return
         quizzesClient.getQuizDetails(qid)
@@ -37,7 +49,7 @@ function QuizDetailScreen() {
                 <div>
                     <div className="d-flex justify-content-center mb-4">
                         <button
-                            onClick={() => navigate(`preview`)}
+                            onClick={onPreviewButtonClick}
                             className="btn btn-light me-2"
                         >Preview</button>
                         <button
