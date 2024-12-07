@@ -1,12 +1,13 @@
 import Question from "./editor/question-types"
 import { AnswerToQuestion, TrueOrFalseAnswer, MultipleChoiceAnswer, FillInTheBlankAnswer } from "./Answer"
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import * as quizzesClient from "./client"
-import { useParams, useLocation } from "react-router-dom"
+import { useParams, useLocation, useNavigate } from "react-router-dom"
 import QuizAttempt from "./QuizAttempt"
 
 function QuizAnswersScreen() {
-    const { attemptId } = useParams()
+    const navigate = useNavigate()
+    const { cid, qid, attemptId } = useParams()
     const location = useLocation()
     const isViewingPreviousAttempt = useMemo(() => location.state?.isPreviousAttempt === true, [location.state])
     const [quizAttempt, setQuizAttempt] = useState<QuizAttempt | null>(null)
@@ -23,6 +24,13 @@ function QuizAnswersScreen() {
         quizzesClient.getQuizQuestions(quizAttempt.quizId)
             .then(setQuizQuestions)
     }, [quizAttempt])
+
+    const onRetakeQuizButtonClick = useCallback(() => {
+        if (!window.confirm('Are you sure you want to retake this quiz? This attempt will be deleted.')) return
+        if (!quizAttempt) return
+        quizzesClient.deleteQuizAttempt(quizAttempt.attemptId)
+        navigate(`/kanbas/courses/${cid}/quizzes/${qid}/preview`)
+    }, [quizAttempt, navigate])
 
 
     const renderQuestionContent = (question: Question, answer: AnswerToQuestion | undefined) => {
@@ -129,11 +137,7 @@ function QuizAnswersScreen() {
             <div className="d-flex justify-content-between mt-4">
                 <button
                     className="btn btn-primary"
-                    onClick={() => {
-                        if (window.confirm('Are you sure you want to retake this quiz? This attempt will be deleted.')) {
-                            // TODO: STOPSHIP: Handle retake quiz
-                        }
-                    }}
+                    onClick={onRetakeQuizButtonClick}
                 >
                     {isViewingPreviousAttempt ? 'Start New Attempt' : 'Retake Quiz'}
                 </button>
