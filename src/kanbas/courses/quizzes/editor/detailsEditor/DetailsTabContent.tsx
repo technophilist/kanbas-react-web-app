@@ -223,8 +223,21 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                                             allowMultipleAttempts: e.target.checked
                                         })}
                                     />
-                                    <label className="form-label text-secondary mt-1" htmlFor="multipleAttempts">Allow
+                                    <label className="form-label text-secondary mt-1 me-3" htmlFor="multipleAttempts">Allow
                                         Multiple Attempts</label>
+                                    <div className="d-flex align-items-center">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            style={{ width: "75px" }}
+                                            value={props.quiz.maxAttempts}
+                                            onChange={(e) => props.setQuizDetail({
+                                                ...props.quiz,
+                                                maxAttempts: parseInt(e.target.value)
+                                            })}
+                                        />
+                                        <label className="form-label text-secondary ms-2 mb-0">Attempts Allowed</label>
+                                    </div>
                                 </div>
                             </div>
                         </td>
