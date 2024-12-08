@@ -12,7 +12,8 @@ function TOC() {
             <li className = "nav-item"><Link to = "/labs/lab4" className = {`nav-link ${pathname.includes("lab4") ? "active" : ""}`}>Lab 4</Link></li>
             <li className = "nav-item"><Link to="/labs/lab5" className = {`nav-link ${pathname.includes("lab5") ? "active" : ""}`}>Lab 5</Link></li>
             <li className = "nav-item"><Link to="/kanbas" className="nav-link">Kanbas</Link></li>
-            <li className = "nav-item"><a className="nav-link" id="wd-github" href="https://github.com/technophilist/kanbas-react-web-app">Github</a></li>
+            <li className = "nav-item"><a className="nav-link" id="wd-github" href="https://github.com/technophilist/kanbas-react-web-app">Frontend Github</a></li>
+            <li className = "nav-item"><a className="nav-link" id="wd-github" href="https://github.com/technophilist/kanbas-node-server-app">Backend Github</a></li>
         </ul>
     )
 
