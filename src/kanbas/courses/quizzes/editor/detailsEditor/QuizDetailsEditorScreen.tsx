@@ -8,16 +8,15 @@ import * as quizzesClient from "../../client"
 import { FaCheckCircle, FaInfoCircle } from "react-icons/fa"
 import DetailsTabContent from "./DetailsTabContent"
 
-
 function QuizDetailsEditorScreen() {
     const [activeTab, setActiveTab] = useState("details")
     const [quizDetail, setQuizDetail] = useState<QuizDetail | null>(null)
     const [showUnsavedChanges, setShowUnsavedChanges] = useState(false)
-    const { qid } = useParams()
+    const { cid, qid } = useParams()
     const navigate = useNavigate()
 
     const fetchQuizDetails = useCallback(async () => {
-        if (!qid) return
+        if (!qid || !cid) return
         const response = await quizzesClient.getQuizDetails(qid)
         let quiz = response.quiz
         if (!quiz) {
@@ -44,12 +43,12 @@ function QuizDetailsEditorScreen() {
                 accessCode: "",
                 isPublished: false
             }
-            await quizzesClient.createQuiz(newQuiz)
+            await quizzesClient.createQuizForCourse(cid, newQuiz)
             quiz = await quizzesClient.getQuizDetails(newQuiz.id)
         }
         setQuizDetail(quiz)
         setShowUnsavedChanges(false)
-    }, [qid])
+    }, [qid, cid])
 
     const onSave = useCallback((currentQuiz: QuizDetail) => {
         quizzesClient.updateQuizDetails(currentQuiz)
