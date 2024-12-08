@@ -54,13 +54,13 @@ function QuizAnswersScreen() {
                     } else if (answerObject.type === "multiple-choice") {
                         const answer: MultipleChoiceAnswer = {
                             type: answerObject.type,
-                            choiceId: answerObject.answer as string
+                            choiceId: answerObject.choiceId as string
                         }
                         answers[`${questionId}`] = answer
                     } else if (answerObject.type === "fill-in-the-blank") {
                         const answer: FillInTheBlankAnswer = {
                             type: answerObject.type,
-                            text: answerObject.answer as string
+                            text: answerObject.text as string
                         }
                         answers[`${questionId}`] = answer
                     }
