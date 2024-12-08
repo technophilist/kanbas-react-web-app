@@ -112,6 +112,7 @@ function QuizAnswersScreen() {
                             <input
                                 type="radio"
                                 disabled
+                                name={`answer-for-question-${question.id}`}
                                 checked={tfAnswer?.answer === true}
                                 className="me-2"
                             />
@@ -138,6 +139,7 @@ function QuizAnswersScreen() {
                                 <input
                                     type="radio"
                                     disabled
+                                    name={`answer-for-question-${question.id}`}
                                     checked={mcAnswer?.choiceId === choice.id}
                                     className="me-2"
                                 />
