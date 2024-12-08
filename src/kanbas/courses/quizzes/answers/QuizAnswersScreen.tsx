@@ -108,7 +108,7 @@ function QuizAnswersScreen() {
                 const tfAnswer = answer as TrueOrFalseAnswer
                 return (
                     <div>
-                        <div className="mb-2">
+                        <div className={`mb-2 p-2 w-100 ${tfAnswer.answer === true ? (question.correctAnswer === true ? 'bg-success bg-opacity-25' : 'bg-danger bg-opacity-25') : ''} ${question.correctAnswer === true ? 'bg-success bg-opacity-10' : ''}`}>
                             <input
                                 type="radio"
                                 disabled
@@ -118,7 +118,7 @@ function QuizAnswersScreen() {
                             />
                             <label>True</label>
                         </div>
-                        <div>
+                        <div className={`p-2 w-100 ${tfAnswer.answer === false ? (question.correctAnswer === false ? 'bg-success bg-opacity-25' : 'bg-danger bg-opacity-25') : ''} ${question.correctAnswer === false ? 'bg-success bg-opacity-10' : ''}`}>
                             <input
                                 type="radio"
                                 disabled
@@ -135,7 +135,10 @@ function QuizAnswersScreen() {
                 return (
                     <div>
                         {question.choices.map((choice) => (
-                            <div key={choice.id} className="mb-2">
+                            <div 
+                                key={choice.id} 
+                                className={`mb-2 p-2 w-100 ${mcAnswer.choiceId === choice.id ? (choice.isCorrect ? 'bg-success bg-opacity-25' : 'bg-danger bg-opacity-25') : ''} ${choice.isCorrect ? 'bg-success bg-opacity-10' : ''}`}
+                            >
                                 <input
                                     type="radio"
                                     disabled
@@ -151,8 +154,11 @@ function QuizAnswersScreen() {
 
             case "fill-in-the-blank":
                 const fibAnswer = answer as FillInTheBlankAnswer
+                const isCorrect = question.possibleAnswers.some(
+                    possibleAnswer => fibAnswer.text.toLowerCase() === possibleAnswer.toLowerCase()
+                )
                 return (
-                    <div>
+                    <div className={`p-2 w-100 ${isCorrect ? 'bg-success bg-opacity-25' : 'bg-danger bg-opacity-25'}`}>
                         <input
                             type="text"
                             className="form-control"
@@ -160,6 +166,11 @@ function QuizAnswersScreen() {
                             value={fibAnswer?.text || ''}
                             placeholder="No answer provided"
                         />
+                        {!isCorrect && (
+                            <small className="text-success mt-1 d-block">
+                                Possible answers: {question.possibleAnswers.join(', ')}
+                            </small>
+                        )}
                     </div>
                 )
         }
