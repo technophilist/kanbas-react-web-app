@@ -35,14 +35,45 @@ function QuizAnswersScreen() {
     useEffect(() => {
         if (!qid || !currentUser || currentUser.role !== 'STUDENT') return
         quizzesClient.getQuizDetails(qid)
-            .then(setQuizDetail)
+            .then((response) => setQuizDetail(response.quiz))
     }, [qid])
 
     // Get the quiz attempt
     useEffect(() => {
         if (!attemptId) return
         quizzesClient.getQuizAttempt(attemptId)
-            .then(setQuizAttempt)
+            .then((response) => {
+                const answers: Record<string, AnswerToQuestion> = {}
+                for (const [questionId, answerObject] of Object.entries(response.answers)) {
+                    if (answerObject.type === "true-false") {
+                        const answer: TrueOrFalseAnswer = {
+                            type: answerObject.type,
+                            answer: answerObject.answer as boolean
+                        }
+                        answers[`${questionId}`] = answer
+                    } else if (answerObject.type === "multiple-choice") {
+                        const answer: MultipleChoiceAnswer = {
+                            type: answerObject.type,
+                            choiceId: answerObject.answer as string
+                        }
+                        answers[`${questionId}`] = answer
+                    } else if (answerObject.type === "fill-in-the-blank") {
+                        const answer: FillInTheBlankAnswer = {
+                            type: answerObject.type,
+                            text: answerObject.answer as string
+                        }
+                        answers[`${questionId}`] = answer
+                    }
+                }
+                const attempt: QuizAttempt = {
+                    attemptId: response.attemptId,
+                    quizId: response.quizId,
+                    uid: response.uid,
+                    score: response.score,
+                    answers: answers
+                }
+                setQuizAttempt(attempt)
+            })
     }, [attemptId])
 
     // Get the quiz questions
