@@ -47,7 +47,7 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                     rows={3}
                     value={props.quiz.description}
                     onChange={(e) => props.setQuizDetail({
-                        ...props.quiz,
+                        ...(props.quiz),
                         description: e.target.value
                     })}
                 />
