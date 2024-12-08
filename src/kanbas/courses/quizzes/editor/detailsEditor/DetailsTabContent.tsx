@@ -26,16 +26,6 @@ function DetailsTabContent(props: DetailsTabContentProps) {
         return new Date(dateTime).getTime().toString()
     }, [])
 
-    const handleSave = useCallback(() => {
-        props.onSaveButtonClick(props.quiz)
-        navigate("../")
-    }, [props.quiz])
-
-    const handleSaveAndPublish = useCallback(() => {
-        props.onSaveAndPublishButtonClick(props.quiz)
-        navigate("../")
-    }, [props.quiz])
-
     return (
         <form>
             <div className="mb-3">
@@ -350,10 +340,10 @@ function DetailsTabContent(props: DetailsTabContentProps) {
                 <button type="button" className="btn btn-secondary" onClick={() => navigate("../")}>
                     Cancel
                 </button>
-                <button type="button" className="btn btn-danger" onClick={handleSave}>
+                <button type="button" className="btn btn-danger" onClick={() => props.onSaveButtonClick(props.quiz)}>
                     Save
                 </button>
-                <button type="button" className="btn btn-danger" onClick={handleSaveAndPublish}>
+                <button type="button" className="btn btn-danger" onClick={() => props.onSaveAndPublishButtonClick(props.quiz)}>
                     Save and Publish
                 </button>
             </div>
