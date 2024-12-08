@@ -24,7 +24,7 @@ function QuizScreen() {
     useEffect(() => {
         if (!qid) return
         quizzesClient.getQuizDetails(qid)
-            .then(setQuizDetail)
+            .then((response) => setQuizDetail(response.quiz))
         quizzesClient.getQuizQuestions(qid)
             .then((questions: Question[]) => {
                 setQuestions(questions)
