@@ -71,8 +71,8 @@ const getQuizAttemptsCountForUser = async (quizId: string, uid: string) => {
     return response.data
 }
 
-const createQuiz = async (quizDetail: QuizDetail) => {
-    const response = await axios.post(`${QUIZZES_API}/new`, quizDetail)
+const createQuizForCourse = async (courseId: string, quizDetail: QuizDetail) => {
+    const response = await axios.post(`${QUIZZES_API}/new`, { ...quizDetail, courseId })
     return response.data
 }
 
@@ -90,5 +90,5 @@ export {
     getQuizAttemptsForUser,
     deleteQuizAttempt,
     getQuizAttemptsCountForUser,
-    createQuiz
+    createQuizForCourse
 }
