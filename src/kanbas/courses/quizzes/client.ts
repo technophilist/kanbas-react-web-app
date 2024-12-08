@@ -22,7 +22,7 @@ const deleteQuiz = async (quizId: string) => {
 }
 
 const getQuizDetails = async (quizId: string) => {
-    const response = await axios.get(`${QUIZZES_API}/${quizId}`)
+    const response = await axios.get<{ quiz: QuizDetail }>(`${QUIZZES_API}/${quizId}`)
     return response.data
 }
 
@@ -32,7 +32,7 @@ const updateQuizDetails = async (updatedQuiz: QuizDetail) => {
 }
 
 const getQuizQuestions = async (quizId: string) => {
-    const response = await axios.get(`${QUIZZES_API}/${quizId}/questions`)
+    const response = await axios.get<Question[]>(`${QUIZZES_API}/${quizId}/questions`)
     return response.data
 }
 
@@ -51,13 +51,29 @@ const saveQuizAttempt = async (quizId: string, uid: string, answers: Record<stri
     return response.data.attemptId
 }
 
+
+type AttemptResponse = Readonly<{
+    attemptId: string,
+    quizId: string,
+    uid: string,
+    score: number,
+    answers: {
+        questionId: {
+            type: "true-false" | "multiple-choice" | "fill-in-the-blank",
+            answer: boolean | string | string
+        }
+    }
+}>
+
+
 const getQuizAttempt = async (attemptId: string) => {
-    const response = await axios.get(`${QUIZZES_API}/attempts/${attemptId}`)
+    const response = await axios.get<AttemptResponse>(`${QUIZZES_API}/attempts/${attemptId}`)
     return response.data
 }
 
+
 const getQuizAttemptsForUser = async (quizId: string, uid: string) => {
-    const response = await axios.get(`${QUIZZES_API}/attempts/${quizId}/user/${uid}`)
+    const response = await axios.get<AttemptResponse[]>(`${QUIZZES_API}/attempts/${quizId}/user/${uid}`)
     return response.data
 }
 
@@ -67,7 +83,7 @@ const deleteQuizAttempt = async (attemptId: string) => {
 }
 
 const getQuizAttemptsCountForUser = async (quizId: string, uid: string) => {
-    const response = await axios.get(`${QUIZZES_API}/${quizId}/attempts/count/${uid}`)
+    const response = await axios.get<{ count: number }>(`${QUIZZES_API}/${quizId}/attempts/count/${uid}`)
     return response.data
 }
 
