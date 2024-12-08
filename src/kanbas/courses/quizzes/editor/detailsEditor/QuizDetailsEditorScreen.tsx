@@ -44,7 +44,7 @@ function QuizDetailsEditorScreen() {
                 isPublished: false
             }
             await quizzesClient.createQuizForCourse(cid, newQuiz)
-            quiz = await quizzesClient.getQuizDetails(newQuiz.id)
+            quiz = (await quizzesClient.getQuizDetails(newQuiz.id)).quiz
         }
         setQuizDetail(quiz)
         setShowUnsavedChanges(false)
@@ -59,6 +59,7 @@ function QuizDetailsEditorScreen() {
     }, [navigate])
 
     const handleQuizUpdate = useCallback((updatedQuizDetail: QuizDetail) => {
+        console.log(`inside component: ${JSON.stringify(updatedQuizDetail)}`)
         setQuizDetail(updatedQuizDetail)
         setShowUnsavedChanges(true)
     }, [])
