@@ -27,7 +27,35 @@ const getQuizDetails = async (quizId: string) => {
 }
 
 const updateQuizDetails = async (updatedQuiz: QuizDetail) => {
-    const response = await axios.put(`${QUIZZES_API}/${updatedQuiz.id}`, updatedQuiz)
+    // STUPID LANGUAGE FOR SOME REASON, UPDATED QUIZ CONTAINS EMPTY FREAKING OBJECTS FOR ANSWERS EVENTHOUG IT IS 
+    // NOT INCLUDED IN THE QUIZ DETAILS JSON SCHEMA
+    const quizDetail: QuizDetail = {
+        id: updatedQuiz.id,
+        title: updatedQuiz.title,
+        quizType: updatedQuiz.quizType,
+        points: updatedQuiz.points,
+        assignmentGroup: updatedQuiz.assignmentGroup,
+        // Time-related properties
+        dueDateTimestampMillis: updatedQuiz.dueDateTimestampMillis,
+        availableFromTimestampMillis: updatedQuiz.availableFromTimestampMillis,
+        availableUntilTimestampMillis: updatedQuiz.availableUntilTimestampMillis,
+        timeLimitInMinutes: updatedQuiz.timeLimitInMinutes,
+        // Boolean flags
+        shouldShuffleAnswers: updatedQuiz.shouldShuffleAnswers,
+        allowMultipleAttempts: updatedQuiz.allowMultipleAttempts,
+        maxAttempts: updatedQuiz.maxAttempts,
+        isOneQuestionAtATime: updatedQuiz.isOneQuestionAtATime,
+        isWebcamRequired: updatedQuiz.isWebcamRequired,
+        shouldLockQuestionsAfterAnswering: updatedQuiz.shouldLockQuestionsAfterAnswering,
+        showCorrectAnswersImmediately: updatedQuiz.showCorrectAnswersImmediately,
+        // Additional properties
+        description: updatedQuiz.description,
+        assignTo: updatedQuiz.assignTo,
+        viewResponses: updatedQuiz.viewResponses,
+        accessCode: updatedQuiz.accessCode,
+        isPublished: updatedQuiz.isPublished
+    }
+    const response = await axios.put(`${QUIZZES_API}/${updatedQuiz.id}`, quizDetail)
     return response.data
 }
 
