@@ -59,7 +59,6 @@ function QuizDetailsEditorScreen() {
     }, [navigate])
 
     const handleQuizUpdate = useCallback((updatedQuizDetail: QuizDetail) => {
-        console.log(`inside component: ${JSON.stringify(updatedQuizDetail)}`)
         setQuizDetail(updatedQuizDetail)
         setShowUnsavedChanges(true)
     }, [])
