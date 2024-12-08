@@ -88,7 +88,9 @@ type AttemptResponse = Readonly<{
     answers: {
         questionId: {
             type: "true-false" | "multiple-choice" | "fill-in-the-blank",
-            answer: boolean | string | string
+            answer?: boolean
+            choiceId?: string
+            text?: string
         }
     }
 }>
