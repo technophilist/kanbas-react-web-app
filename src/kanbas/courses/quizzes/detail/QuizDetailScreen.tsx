@@ -61,7 +61,7 @@ function QuizDetailScreen() {
     useEffect(() => {
         if (!qid) return
         quizzesClient.getQuizDetails(qid)
-            .then(setQuizDetails)
+            .then(data => setQuizDetails(data.quiz))
     }, [qid])
 
     if (!quizDetails) return <div>Loading...</div>
