@@ -27,8 +27,8 @@ const getQuizDetails = async (quizId: string) => {
 }
 
 const updateQuizDetails = async (updatedQuiz: QuizDetail) => {
-    // STUPID LANGUAGE FOR SOME REASON, UPDATED QUIZ CONTAINS EMPTY FREAKING OBJECTS FOR ANSWERS EVENTHOUG IT IS 
-    // NOT INCLUDED IN THE QUIZ DETAILS JSON SCHEMA
+    // Note: For some reason,the updated quiz object may contain empty answer objects despite it not being part of
+    // the QuizDetail type. Creating a clean object to match the schema.
     const quizDetail: QuizDetail = {
         id: updatedQuiz.id,
         title: updatedQuiz.title,
