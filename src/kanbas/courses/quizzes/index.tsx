@@ -121,7 +121,18 @@ function Quizzes() {
                             <FaRocket className="me-4 text-success" />
                             <div>
                                 <h6
-                                    onClick={() => navigate(`${quiz.id}`)}
+                                    onClick={() => {
+                                        if (currentUser?.role !== "STUDENT") {
+                                            navigate(`${quiz.id}`);
+                                            return;
+                                        }
+                                        const now = Date.now();
+                                        const availableTime = parseInt(quiz.availableEpochTimestamp);
+                                        const dueTime = parseInt(quiz.dueEpochTimestamp);
+                                        if (now >= availableTime && now <= dueTime) {
+                                            navigate(`${quiz.id}`);
+                                        }
+                                    }}
                                     className="mb-1 fw-semibold">{quiz.title}
                                 </h6>
                                 <small className="text-muted">
