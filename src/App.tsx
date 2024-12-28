@@ -1,5 +1,4 @@
 import React from 'react';
-import Labs from "./labs"
 import './App.css';
 import Kanbas from "./kanbas";
 import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
@@ -13,8 +12,7 @@ function App() {
         <HashRouter>
             <div>
                 <Routes>
-                    <Route path="/" element={<Navigate to="labs"/>}/>
-                    <Route path="/labs/*" element={<Labs/>}/>
+                    <Route path="/" element={<Navigate to="/kanbas"/>}/>
                     <Route path="/kanbas/*" element={
                         <Provider store={store}>
                             <Kanbas/>
