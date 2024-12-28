@@ -1,63 +1,102 @@
+import ModuleControls from "./ModuleControls";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {BsGripVertical} from "react-icons/bs";
+import ModuleControlButtons from "./ModuleControlButtons";
+import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../store";
+import {setModules, addModule, deleteModule, editModule, updateModule} from "./reducer";
+import * as coursesClient from "../client";
+import * as modulesClient from "./client"
+
+export type KanbasModule = {
+    _id: string;
+    name: string;
+    description: string;
+    course: string;
+    lessons: {
+        _id: string;
+        name: string;
+        description: string;
+        module: string;
+    }[],
+    editing?: boolean
+}
+
 function Modules() {
+    const {cid} = useParams()
+    const [moduleName, setModuleName] = useState("")
+    const {modules} = useSelector((state: RootState) => state.modulesReducer)
+    const dispatch = useDispatch<AppDispatch>()
+    const fetchModules = useCallback(async () => {
+        const modules = await coursesClient.findModulesForCourse(cid as string)
+        dispatch(setModules(modules))
+    }, [cid, dispatch])
+    const createModuleForCourse = useCallback(async () => {
+        if (!cid) return
+        const newModule = {name: moduleName, course: cid}
+        const module = await coursesClient.createModuleForCourse(cid, newModule)
+        dispatch(addModule(module))
+    }, [cid, dispatch, moduleName])
+    const removeModule = useCallback(async (moduleId: string) => {
+        await modulesClient.deleteModule(moduleId)
+        dispatch(deleteModule(moduleId))
+    }, [dispatch])
+    const {currentUser} = useSelector((state: RootState) => state.accountReducer)
+    const saveModule = useCallback(async (module: KanbasModule) => {
+        await modulesClient.updateModule(module)
+        dispatch(updateModule(module))
+    }, [])
+    const moduleItems = useMemo(() => {
+        return modules
+            .map((module) => {
+                return (
+                    <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+                        <div className="wd-title p-3 ps-2 bg-secondary">
+                            <BsGripVertical className="me-2 fs-3"/>
+                            {!module.editing && module.name}
+                            {module.editing && (
+                                <input
+                                    className="form-control w-50 d-inline-block"
+                                    onChange={(e) => {
+                                        dispatch(updateModule({...module, name: e.target.value}))
+                                    }}
+                                    onKeyDown={(e) => {
+                                        if (e.key !== "Enter") return
+                                        saveModule({...module, editing: false})
+                                    }}
+                                    defaultValue={module.name}
+                                />
+                            )}
+                            {currentUser && currentUser.role === "FACULTY" && <ModuleControlButtons
+                                deleteModule={removeModule}
+                                moduleId={module._id}
+                                editModule={(moduleId) => dispatch(editModule(moduleId))}
+                            />}
+                        </div>
+                        {module.lessons && module.lessons.map((lesson) => (
+                            <li className="wd-lesson list-group-item p-3 ps-1">
+                                <BsGripVertical className="me-2 fs-3"/> {lesson.name}
+                            </li>))}
+                    </li>)
+            })
+    }, [cid, currentUser, dispatch, modules])
+
+    useEffect(() => {
+        fetchModules()
+    }, [fetchModules]);
     return (
         <div>
-            <button>Collapse All</button>
-            <button>View Progress</button>
-            <select>
-                <option value="Publish All">Publish All</option>
-            </select>
-            <button>+ Module</button>
-            <ul id="wd-modules">
-                <li className="wd-module">
-                    <div className="wd-title">Week 1, Lecture 1 - Course Introduction Syllabus, Agenda</div>
-                    <ul className="wd-lessons">
-                        <li className="wd-lesson">
-                            <span className="wd-title">LEARNING OBJECTIVES</span>
-                            <ul className="wd-content">
-                                <li className="wd-content-item">Introduction to the course</li>
-                                <li className="wd-content-item">Learn what is Web Development</li>
-                            </ul>
-                        </li>
-                        <li className="wd-lesson">
-                            <span className="wd-title">READING</span>
-                            <ul className="wd-content">
-                                <li className="wd-content-item">Full Stack Developer - Chapter 1 - Introduction</li>
-                                <li className="wd-content-item">Full Stack Developer - Chapter 2 - Creating User</li>
-                                <li className="wd-content-item">Learn what is Web Development</li>
-                            </ul>
-                        </li>
-                        <li className="wd-lesson">
-                            <span className="wd-title">SLIDES</span>
-                            <ul className="wd-content">
-                                <li className="wd-content-item">Introduction to Web Development</li>
-                                <li className="wd-content-item">Creating an HTTP server with Node.js</li>
-                                <li className="wd-content-item">Creating a React Application</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li className="wd-module">
-                    <div className="wd-title">Week 1, Lecture 2 - Formatting User Interfaces with HTML</div>
-                    <ul className="wd-lessons">
-                        <li className="wd-lesson">
-                            <span className="wd-title">LEARNING OBJECTIVES</span>
-                            <ul className="wd-content">
-                                <li className="wd-content-item">Learn how to create user interfaces with HTML</li>
-                                <li className="wd-content-item">Deploy the assignment to Netlify</li>
-                            </ul>
-                        </li>
-                        <li className="wd-lesson">
-                            <span className="wd-title">SLIDES</span>
-                            <ul className="wd-content">
-                                <li className="wd-content-item">Introduction to HTML and the DOM</li>
-                                <li className="wd-content-item">Formatting Web content with Headings</li>
-                                <li className="wd-content-item">Formatting content with Lists and Tables</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+            <ModuleControls
+                setModuleName={setModuleName}
+                moduleName={moduleName}
+                addModule={createModuleForCourse}
+            /> <br/> <br/> <br/>
+            <ul id="wd-modules" className="list-group rounded-0">
+                {moduleItems}
             </ul>
-        </div>);
+        </div>
+    )
 }
 
 export default Modules

@@ -1,26 +1,70 @@
+import {MdDoNotDisturbAlt} from "react-icons/md";
+import {FaCheckCircle} from "react-icons/fa";
+import {BiImport} from "react-icons/bi";
+import {LiaFileImportSolid} from "react-icons/lia";
+import {IoMdNotificationsOutline} from "react-icons/io";
+import {PiChartBarHorizontalFill, PiCrosshair} from "react-icons/pi";
+import {IoMegaphoneOutline} from "react-icons/io5";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
+
 function CourseStatus() {
+    const {currentUser} = useSelector((state: RootState) => state.accountReducer)
     return (
-        <div id="wd-course-status">
+        <div id="wd-course-status" className="ps-2" style={{width: "300px"}}>
             <h2>Course Status</h2>
-            <button>Unpublish</button>
-            <button>Publish</button>
+            {currentUser && currentUser.role === "FACULTY" && <div className="d-flex">
+                <div className="w-50 pe-1">
+                    <button
+                        className="btn btn-lg btn-secondary w-100 text-nowrap d-flex align-items-center justify-content-center">
+                        <MdDoNotDisturbAlt className="fs-5"/> Unpublish
+                    </button>
+                </div>
+                <div className="w-50">
+                    <button
+                        className="btn btn-lg btn-success w-100 d-flex align-items-center justify-content-center">
+                        <FaCheckCircle className="me-2 fs-5"/> Publish
+                    </button>
+                </div>
+            </div>}
             <br/>
-            <br/>
-            <button>Import Existing Content</button>
-            <br/>
-            <button>Import from Commons</button>
-            <br/>
-            <button>Choose Home Page</button>
-            <br/>
-            <button>View Course Stream</button>
-            <br/>
-            <button>New Announcement</button>
-            <br/>
-            <button>New Analytics</button>
-            <br/>
-            <button>View Course Notifications</button>
-        </div>
-    );
+            {currentUser && currentUser.role === "FACULTY" &&
+                <button className="btn btn-lg btn-secondary w-100 mt-1 text-start d-flex align-items-center">
+                    <BiImport className="me-2 fs-5"/> Import Existing Content
+                </button>
+            }
+            {currentUser && currentUser.role === "FACULTY" &&
+                <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
+                    <LiaFileImportSolid className="me-2 fs-5"/> Import from Commons
+                </button>
+            }
+            {currentUser && currentUser.role === "FACULTY" &&
+                <button className="btn btn-lg btn-secondary w-100 mt-1 text-start d-flex align-items-center">
+                    <PiCrosshair
+                        className="me-2 fs-5"/>Choose
+                    Home page
+                </button>
+            }
+            <button className="btn btn-lg btn-secondary w-100 mt-1 text-start d-flex align-items-center">
+                <PiChartBarHorizontalFill
+                    className="me-2 fs-5" style={{transform: "rotate(270deg)"}}/> View Course Stream
+            </button>
+            {currentUser && currentUser.role === "FACULTY" &&
+                <button className="btn btn-lg btn-secondary w-100 mt-1 text-start d-flex align-items-center">
+                    <IoMegaphoneOutline className="me-2 fs-5"/>New Announcement
+                </button>
+            }
+
+            {currentUser && currentUser.role === "FACULTY" &&
+                <button className="btn btn-lg btn-secondary w-100 mt-1 text-start d-flex align-items-center">
+                    <PiChartBarHorizontalFill
+                        className="me-2 fs-5" style={{transform: "rotate(270deg)"}}/>New Analytics
+                </button>
+            }
+            <button className="btn btn-lg btn-secondary w-100 mt-1 text-start d-flex align-items-center">
+                <IoMdNotificationsOutline className="me-2 fs-5"/>View Course Notifications
+            </button>
+        </div>)
 }
 
 export default CourseStatus

@@ -1,85 +1,197 @@
-import {Link} from "react-router-dom";
-import courseImage from "../images/reactjs.jpeg"
-import {useMemo} from "react";
+import {useNavigate} from "react-router-dom";
+import React, {useMemo, useState} from "react";
+import {useSelector} from "react-redux";
+import {RootState} from "./store";
 
-const courseList = [
-    {
-        dashboardTitle: "CS1234 React JS",
-        courseTitle: "Full Stack software developer",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/1234/home"
-    },
-    {
-        dashboardTitle: "CS5678 Node JS",
-        courseTitle: "Backend Development",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/5678/home"
-    },
-    {
-        dashboardTitle: "CS9101 Python",
-        courseTitle: "Data Science",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/9101/home"
-    },
-    {
-        dashboardTitle: "CS1121 Java",
-        courseTitle: "Enterprise Applications",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/1121/home"
-    },
-    {
-        dashboardTitle: "CS3141 C++",
-        courseTitle: "System Programming",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/3141/home"
-    },
-    {
-        dashboardTitle: "CS5161 Ruby",
-        courseTitle: "Web Development",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/5161/home"
-    },
-    {
-        dashboardTitle: "CS7181 Go",
-        courseTitle: "Concurrent Programming",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/7181/home"
-    },
-    {
-        dashboardTitle: "CS9201 Swift",
-        courseTitle: "iOS Development",
-        imgSrc: courseImage,
-        route: "/kanbas/courses/9201/home"
-    }
-]
+export type Course = Readonly<{
+    _id: string;
+    name: string;
+    number: string;
+    startDate: string;
+    endDate: string;
+    department: string;
+    credits: number;
+    description: string;
+    imageFileName: string;
+}>
 
+type DashboardProps = Readonly<{
+    allCourses: Course[],
+    enrolledCourses: Course[],
+    course: Course,
+    setCourse: (course: Course) => void
+    addNewCourse: () => void
+    deleteCourse: (courseId: string) => void
+    updateCourse: () => void
+    onEnrollButtonClick: (userId: string, courseId: string) => void
+    onUnEnrollButtonClick: (userId: string, courseId: string) => void
+}>
 
-function Dashboard() {
-    const courses = useMemo(() => {
-        return courseList.map((course) => {
+type CourseItemProps = Readonly<{
+    course: Course,
+    isEnrolled: boolean,
+    isFaculty: boolean,
+    onUnenrollCourseButtonClick: (courseId: string) => void
+    onDeleteCourseButtonClick: (courseId: string) => void
+    onEnrollCourseButtonClick: (courseId: string) => void
+    setCourse: (course: Course) => void
+}>
+
+function CourseItem(props: CourseItemProps) {
+    const navigate = useNavigate()
+    const enrollmentButtons = useMemo(() => {
+        return props.isEnrolled ? (<button
+            onClick={() => props.onUnenrollCourseButtonClick(props.course._id)}
+            className="btn btn-danger float-end"
+            id="wd-delete-course-click">Unenroll</button>) : (<button
+            onClick={() => props.onEnrollCourseButtonClick(props.course._id)}
+            className="btn btn-success float-end">Enroll</button>)
+    }, [props])
+    return (<div className="wd-dashboard-course col" style={{width: "300px"}}>
+        <div className="card rounded-3 overflow-hidden">
+            <img src={process.env.PUBLIC_URL + `/course-images/${props.course.imageFileName}`}
+                 width="100%" height={160}/>
+            <div className="card-body">
+                <h5 className="wd-dashboard-course-title card-title">
+                    {props.course.name} </h5>
+                <p className="wd-dashboard-course-title card-text overflow-y-hidden"
+                   style={{maxHeight: 100}}>
+                    {props.course.description} </p>
+                {props.isEnrolled && <button className="btn btn-primary"
+                                             onClick={() => navigate(`/kanbas/courses/${props.course._id}/home`)}>Go
+                </button>}
+                {!props.isFaculty && enrollmentButtons}
+                {props.isFaculty && <button
+                    onClick={(event) => {
+                        event.preventDefault();
+                        props.onDeleteCourseButtonClick(props.course._id)
+                    }} className="btn btn-danger float-end"
+                    id="wd-delete-course-click">Delete</button>}
+                {props.isFaculty && <button id="wd-edit-course-click"
+                                            onClick={(event) => {
+                                                event.preventDefault();
+                                                props.setCourse(props.course);
+                                            }}
+                                            className="btn btn-warning me-2 float-end">
+                    Edit
+                </button>}
+            </div>
+        </div>
+    </div>)
+}
+
+function Dashboard(props: DashboardProps) {
+    const {currentUser} = useSelector((state: RootState) => state.accountReducer)
+    const isFaculty = useMemo(() => currentUser ? currentUser.role === "FACULTY" : false, [currentUser])
+    const enrolledCourseItems = useMemo(() => {
+        return props.enrolledCourses
+            .map((course) => (
+                <CourseItem
+                    key={course._id}
+                    course={course}
+                    isEnrolled={true}
+                    isFaculty={isFaculty}
+                    onUnenrollCourseButtonClick={() => {
+                        if (currentUser == null) return
+                        props.onUnEnrollButtonClick(currentUser._id, course._id)
+                    }}
+                    onDeleteCourseButtonClick={props.deleteCourse}
+                    onEnrollCourseButtonClick={() => {
+                        if (currentUser == null) return
+                        props.onEnrollButtonClick(currentUser._id, course._id)
+                    }}
+                    setCourse={props.setCourse}/>
+            ))
+    }, [currentUser, isFaculty, props])
+    const enrolledCourseIds = useMemo(() => {
+        return props.enrolledCourses.map(course => course._id)
+    }, [props.enrolledCourses])
+    const notEnrolledCourseItems = useMemo(() => {
+        return props.allCourses
+            .filter(course => !enrolledCourseIds.includes(course._id))
+            .map((course) => (
+                <CourseItem
+                    key={course._id}
+                    course={course}
+                    isEnrolled={false}
+                    isFaculty={isFaculty}
+                    onUnenrollCourseButtonClick={() => {
+                        if (currentUser == null) return
+                        props.onUnEnrollButtonClick(currentUser._id, course._id)
+                    }}
+                    onEnrollCourseButtonClick={() => {
+                        if (currentUser == null) return
+                        props.onEnrollButtonClick(currentUser._id, course._id)
+                    }}
+                    onDeleteCourseButtonClick={props.deleteCourse}
+                    setCourse={props.setCourse}/>
+            ))
+    }, [currentUser, enrolledCourseIds, isFaculty, props])
+    const [isCurrentlyDisplayingAllCourses, setIsCurrentlyDisplayingAllCourses] = useState(false)
+    const coursesTypeButton = useMemo(() => {
+        if (isCurrentlyDisplayingAllCourses) {
             return (
-                <div className="wd-dashboard-course" key={course.courseTitle + course.dashboardTitle}>
-                    <img src={courseImage} width={200}/>
-                    <div>
-                        <Link className="wd-dashboard-course-link"
-                              to={course.route}>{course.dashboardTitle}</Link>
-                        <p className="wd-dashboard-course-title">{course.courseTitle}</p>
-                        <Link to={course.route}>Go</Link>
-                    </div>
-                </div>
+                <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                        setIsCurrentlyDisplayingAllCourses(false)
+                    }}
+                >Display only enrolled courses</button>
             )
-        })
-    }, [])
+        }
+        return (
+            <button
+                className="btn btn-primary"
+                onClick={() => {
+                    setIsCurrentlyDisplayingAllCourses(true)
+                }}
+            >Display all courses</button>)
+    }, [isCurrentlyDisplayingAllCourses])
 
     return (
         <div id="wd-dashboard">
-            <h1 id="wd-dashboard-title">Dashboard</h1>
+            <div className="d-flex justify-content-between">
+                <h1 id="wd-dashboard-title">Dashboard</h1>
+                {!isFaculty && coursesTypeButton}
+            </div>
             <hr/>
-            <h2 id="wd-dashboard-published">Published Courses (12)</h2>
+            {currentUser && isFaculty && (
+                <>
+                    <h5>New Course
+                        <button className="btn btn-primary float-end"
+                                id="wd-add-new-course-click"
+                                onClick={() => props.addNewCourse()}> Add </button>
+                        <button className="btn btn-warning float-end me-2"
+                                onClick={props.updateCourse} id="wd-update-course-click">
+                            Update
+                        </button>
+                    </h5>
+
+                    <input
+                        defaultValue={props.course.name}
+                        className="form-control mb-2"
+                        value={props.course.name}
+                        onChange={(e) => props.setCourse({...props.course, name: e.target.value})}
+                    />
+                    <textarea
+                        defaultValue={props.course.description}
+                        className="form-control"
+                        value={props.course.description}
+                        onChange={(e) => props.setCourse({...props.course, description: e.target.value})}
+                    />
+                    <hr/>
+                </>
+            )}
+            <h2 id="wd-dashboard-published">Published Courses ({enrolledCourseItems.length})</h2>
             <hr/>
-            <div id="wd-dashboard-courses">{courses}</div>
+            <div id="wd-dashboard-courses" className="row">
+                <div className="row row-cols-1 row-cols-md-5 g-4">
+                    {enrolledCourseItems}
+                    {!isFaculty && isCurrentlyDisplayingAllCourses && notEnrolledCourseItems}
+                </div>
+            </div>
         </div>
-    );
+    )
 }
 
 export default Dashboard

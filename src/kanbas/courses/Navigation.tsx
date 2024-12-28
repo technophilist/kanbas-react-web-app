@@ -1,19 +1,34 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
+import {useMemo} from "react";
 
 function CoursesNavigation() {
+    const {pathname} = useLocation()
+    const {cid} = useParams()
+    const navItems = useMemo(() => {
+        return [
+            {link: `/kanbas/courses/${cid}/home`, label: "Home"},
+            {link: `/kanbas/courses/${cid}/modules`, label: "Modules"},
+            {link: `/kanbas/courses/${cid}/piazza`, label: "Piazza"},
+            {link: `/kanbas/courses/${cid}/zoom`, label: "Zoom"},
+            {link: `/kanbas/courses/${cid}/assignments`, label: "Assignments"},
+            {link: `/kanbas/courses/${cid}/quizzes`, label: "Quizzes"},
+            {link: `/kanbas/courses/${cid}/grades`, label: "Grades"},
+            {link: `/kanbas/courses/${cid}/people`, label: "People"}
+        ]
+    }, [cid])
+    const navLinkItems = useMemo(() => {
+        return navItems.map((navItem) => {
+            return (
+                <Link id="wd-course-home-link"
+                      key={navItem.link}
+                      to={navItem.link}
+                      className={`list-group-item border-0 ${pathname === navItem.link ? "active" : "text-danger"}`}>{navItem.label}</Link>
+            )
+        })
+    }, [pathname])
     return (
-        <div id="wd-courses-navigation">
-            <Link id="wd-course-home-link" to="/kanbas/courses/1234/home">Home</Link><br/>
-            <Link id="wd-course-modules-link" to="/kanbas/courses/1234/modules">Modules
-            </Link><br/>
-            <Link id="wd-course-piazza-link" to="/kanbas/courses/1234/piazza">Piazza</Link><br/>
-            <Link id="wd-course-zoom-link" to="/kanbas/courses/1234/zoom">Zoom</Link><br/>
-            <Link id="wd-course-quizzes-link" to="/kanbas/courses/1234/assignments">
-                Assignments</Link><br/>
-            <Link id="wd-course-assignments-link" to="/kanbas/courses/1234/quizzes">Quizzes
-            </Link><br/>
-            <Link id="wd-course-grades-link" to="/kanbas/courses/1234/grades">Grades</Link><br/>
-            <Link id="wd-course-people-link" to="/kanbas/people">People</Link><br/>
+        <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+            {navLinkItems}
         </div>);
 }
 
