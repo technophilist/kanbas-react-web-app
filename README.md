@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# Kanbas
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Kanbas is a rudimentary version of the widely acclaimed Learning Management System (LMS), Canvas. This full-stack application contains a comprehensive suite of features such as quizzes, courses and assignments. The application is structured around different user roles, such as students and faculty, which dictate the available features, ensuring that users have access to the specific tools they need for their roles. This is the repository for the frontend. This application also needs the backend server to be running in order for it to work. Here's the [link](https://github.com/technophilist/kanbas-node-server-app) to the backend repository.
 
-## Available Scripts
+## Table of contents
+1. [Demo](#demo)
+2. [Screenshots](#screenshots)
+3. [Tech Stack](#tech-stack)
+4. [Notable features](#notable-features)
+5. [Building and running the app](#building-and-running-the-app)
 
-In the project directory, you can run:
+## Demo
+Comming Soon...
 
-### `npm start`
+## Screenshots
+Comming Soon...
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech Stack
+- Entirely Written in [TypeScript](https://www.typescriptlang.org/).
+- [React Router](https://reactrouter.com) for routing and navigation.
+- [Redux](https://redux.js.org) for global state management.
+- [Axios](https://axios-http.com/docs/intro) for making HTTP requests.
+- [Bootstrap](https://getbootstrap.com) for responsive design and styling.
+- [React Icons](https://react-icons.github.io/react-icons/) for icons.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Notable features
 
-### `npm test`
+<dl>
+  <dt> Role-Based Access Control 🔒 </dt>
+  <dd> Each user is granted features tailored to their specific role. For instance, faculty members can add course quizzes, create and edit assignments, while students are limited to joining courses, completing assignments, and taking quizzes. This ensures a streamlined experience for each user group.</dd>
+  
+  <dt> Visually Appealing User Interface ✨/dt>
+  <dd> The application boasts a visually appealing user-friendly interface, leveraging the Bootstrap framework to closely resemble the look and feel of the official Canvas application.</dd>
+  
+  <dt> Secure Navigation 🚪 </dt>
+  <dd> The application implements protected routes, allowing access only to authenticated users. Unauthenticated users attempting to navigate these routes are automatically redirected to the login or signup page, ensuring secure and restricted access to sensitive sections of the app.</dd>
+</dl>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Building and running the app
+- Create a ```.local.env``` file in the root of the project and add the following environment variable.
+  ```
+  REACT_APP_REMOTE_SERVER=the_url_of_the_server. // Eg: REACT_APP_REMOTE_SERVER=http://localhost:4000
+  ```
+- Execute ```npm install``` to install dependencies.
+- Execute ```npm run``` to start the application.
