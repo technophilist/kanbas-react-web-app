@@ -14,7 +14,13 @@ Kanbas is a rudimentary version of the widely acclaimed Learning Management Syst
 Comming Soon...
 
 ## Screenshots
-Comming Soon...
+![Dashboard Image](screenshots/dashboard.png)
+![Course Home Image](screenshots/course_home.png)
+![Create MCQ Question Image](screenshots/create_mcq_question.png)
+![Quiz Screen Image](screenshots/quiz_screen.png)
+![Quiz Results Correct Image](screenshots/quiz_results_correct.png)
+![Quiz Results Wrong Image](screenshots/quiz_results_wrong.png)
+
 
 ## Tech Stack
 - Entirely Written in [TypeScript](https://www.typescriptlang.org/).
