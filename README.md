@@ -1,5 +1,11 @@
 # Kanbas
-[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
+![Banner Image](screenshots/banner.png)
+<p align = "center">
+  <a href="https://www.repostatus.org/#inactive">
+    <img src="https://www.repostatus.org/badges/latest/inactive.svg" alt="Project Status: Inactive" title="Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.">
+</a>
+</p>
+
 
 Kanbas is a rudimentary version of the widely acclaimed Learning Management System (LMS), Canvas. This full-stack application contains a comprehensive suite of features such as quizzes, courses and assignments. The application is structured around different user roles, such as students and faculty, which dictate the available features, ensuring that users have access to the specific tools they need for their roles. This is the repository for the frontend. This application also needs the backend server to be running in order for it to work. Here's the [link](https://github.com/technophilist/kanbas-node-server-app) to the backend repository.
 
