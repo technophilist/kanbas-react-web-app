@@ -40,7 +40,7 @@ Comming Soon...
   <dt> Role-Based Access Control 🔒 </dt>
   <dd> Each user is granted features tailored to their specific role. For instance, faculty members can add course quizzes, create and edit assignments, while students are limited to joining courses, completing assignments, and taking quizzes. This ensures a streamlined experience for each user group.</dd>
   
-  <dt> Visually Appealing User Interface ✨/dt>
+  <dt> Visually Appealing User Interface ✨</dt>
   <dd> The application boasts a visually appealing user-friendly interface, leveraging the Bootstrap framework to closely resemble the look and feel of the official Canvas application.</dd>
   
   <dt> Secure Navigation 🚪 </dt>
