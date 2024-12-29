@@ -53,4 +53,4 @@ Comming Soon...
   REACT_APP_REMOTE_SERVER=the_url_of_the_server. // Eg: REACT_APP_REMOTE_SERVER=http://localhost:4000
   ```
 - Execute ```npm install``` to install dependencies.
-- Execute ```npm run``` to start the application.
+- Execute ```npm start``` to start the application.
