@@ -17,7 +17,7 @@ Kanbas is a rudimentary version of the widely acclaimed Learning Management Syst
 5. [Building and running the app](#building-and-running-the-app)
 
 ## Demo
-Comming Soon...
+[Link to demo](https://technophilist.github.io/kanbas-demo-page/)
 
 ## Screenshots
 ![Dashboard Image](screenshots/dashboard.png)
